@@ -21,10 +21,7 @@ import Footer from "@/components/footer";
 import { Toaster } from "react-hot-toast";
 import { Router, useRouter } from "next/router";
 import { usePathname } from "next/navigation";
-export const metadata = {
-  title: "April Tours Main Homepage",
-  description: "Test 2",
-};
+
 type RootLayoutProp = {
   children: ReactNode;
 };
