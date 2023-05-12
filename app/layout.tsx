@@ -2,11 +2,9 @@
 import Header from "@/components/header";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { FC, Fragment, ReactNode, useEffect } from "react";
-import "boxicons/css/boxicons.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import "../styles/index.scss";
-import "../styles/globals.css";
+import { FC, Fragment, ReactNode, useEffect, useLayoutEffect } from "react";
+import "@/styles/index.scss";
+import "@/styles/globals.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -33,10 +31,14 @@ const RootLayout: FC<RootLayoutProp> = ({ children }) => {
       duration: 1200,
       once: true,
     });
+  }, []);
+
+  useLayoutEffect(() => {
     if (typeof window !== "undefined") {
       require("bootstrap/dist/js/bootstrap");
     }
   }, []);
+
   const pathname = usePathname();
 
   useEffect(() => {
