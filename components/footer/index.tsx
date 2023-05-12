@@ -104,8 +104,8 @@ const Footer = () => {
                   أنواع الرحلات
                 </h4>
                 <ul className="footer-links text-right">
-                  {types.map((i) => (
-                    <li className="text-14 ">
+                  {types.map((i, index) => (
+                    <li className="text-14 " key={index}>
                       <Link href={`/tours-list?type=${i.type}`}>{i.type}</Link>
                     </li>
                   ))}
