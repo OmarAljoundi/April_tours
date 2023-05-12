@@ -1,8 +1,8 @@
 import { AnyAction } from "@reduxjs/toolkit";
 import { ThunkAction } from "@reduxjs/toolkit";
-import { ITourType } from "models/interface/Tour";
 import { RootState } from "../index";
 import TourTypeSlice from "./tourType-slice";
+import { ITourType } from "@/models/interface/Tour";
 
 export const tourTypesAction = TourTypeSlice.actions;
 

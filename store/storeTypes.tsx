@@ -1,4 +1,4 @@
-import { ITourType } from "models/interface/Tour";
+import { ITourType } from "@/models/interface/Tour";
 
 export type TourTypeState = {
   TourTypes: ITourType[] | null;

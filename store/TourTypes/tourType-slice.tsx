@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ITourType } from "models/interface/Tour";
-import { TourTypeState } from "store/storeTypes";
+import { TourTypeState } from "../storeTypes";
+import { ITourType } from "@/models/interface/Tour";
 
 const initialTypesState: TourTypeState = {
   TourTypes: null,
