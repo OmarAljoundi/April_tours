@@ -22,15 +22,12 @@ const ToursList = () => {
   const Originalpathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams();
-      params.set(name, value);
+  const createQueryString = useCallback((name: string, value: string) => {
+    const params = new URLSearchParams();
+    params.set(name, value);
 
-      return `${params.toString()}&`;
-    },
-    [searchParams]
-  );
+    return `${params.toString()}&`;
+  }, []);
 
   const getInitHeaderSearch = () => {
     var contries = searchParams.get("countries");
@@ -212,8 +209,8 @@ const ToursList = () => {
           <div className="border-top-light pt-20" style={{ marginTop: 5 }}>
             <div className="row y-gap-30 justify-content-end">
               {isFetching && <TourListLoading columns={6} />}
-              {_response?.tours?.map((tour) => (
-                <div className="col-12 col-lg-4 col-md-6">
+              {_response?.tours?.map((tour, index) => (
+                <div className="col-12 col-lg-4 col-md-6" key={index}>
                   <div
                     key={tour?.id}
                     data-aos="fade"
@@ -227,10 +224,10 @@ const ToursList = () => {
               {isNoResult() && (
                 <div className="d-grid d-lg-flex  align-items-center justify-between">
                   <div className="text-right">
-                    <img
+                    {/* <img
                       src={"/assets/img/custom/no-result.png"}
                       style={{ width: "150px" }}
-                    />
+                    /> */}
                   </div>
                   <div className="text-right xl:w-50 sm:w-100">
                     <h4>لا توجد نتائج لبحثك</h4>
