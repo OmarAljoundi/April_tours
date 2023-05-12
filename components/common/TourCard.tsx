@@ -47,8 +47,9 @@ export const TourCard: FC<{ tour: ITour }> = ({ tour }) => {
               </div>
               <div className="mt-3">
                 <div className="d-flex justify-content-end gap-2 mt-2">
-                  {tour.startDay?.split(",").map((i) => (
+                  {tour.startDay?.split(",").map((i, index) => (
                     <div
+                      key={index}
                       className="badge -blue-1 bg-blue-1-05 text-blue-1 text-12 py-10 "
                       style={{
                         width: 62,
@@ -72,8 +73,9 @@ export const TourCard: FC<{ tour: ITour }> = ({ tour }) => {
                       + {tour.tourCountries.length - 2}
                     </div>
                   )}
-                  {tour.tourCountries.slice(0, 2).map((i) => (
+                  {tour.tourCountries.slice(0, 2).map((i, index) => (
                     <div
+                      key={index}
                       className="badge -blue-1 bg-blue-1-05 text-blue-1 text-12 py-10"
                       style={{
                         width: 65,

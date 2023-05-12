@@ -22,8 +22,11 @@ const Overview: FC<{ tour: ITour }> = ({ tour }) => {
 
             <div className="row x-gap-40 y-gap-40 pt-20">
               <div className="col-md-6 border-right-light">
-                {tour?.tourExcludes.map((i) => (
-                  <div className="text-dark-1 text-18 text-right d-flex justify-content-end">
+                {tour?.tourExcludes.map((i, index) => (
+                  <div
+                    className="text-dark-1 text-18 text-right d-flex justify-content-end"
+                    key={index}
+                  >
                     <span dir="rtl">
                       {i.title} <br />
                       <small className="text-blue-1 text-14">
@@ -35,8 +38,11 @@ const Overview: FC<{ tour: ITour }> = ({ tour }) => {
                 ))}
               </div>
               <div className="col-md-6 ">
-                {tour?.tourIncludes.map((i) => (
-                  <div className="text-dark-1 text-18 text-right d-flex justify-content-end">
+                {tour?.tourIncludes.map((i, index) => (
+                  <div
+                    className="text-dark-1 text-18 text-right d-flex justify-content-end"
+                    key={index}
+                  >
                     <span dir="rtl">
                       {i.title} <br />
                       <small className="text-blue-1 text-14">

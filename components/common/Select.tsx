@@ -27,8 +27,10 @@ export const Select: FC<SelectProp> = ({
         id={`customInput__${label}`}
         {...rest}
       >
-        {options.map((i) => (
-          <option value={i.value}>{i.label}</option>
+        {options.map((i, index) => (
+          <option value={i.value} key={index}>
+            {i.label}
+          </option>
         ))}
       </select>
       <small id={`${label}__help`} className="form-text text-muted">

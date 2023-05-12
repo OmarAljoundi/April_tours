@@ -75,7 +75,7 @@ const DropdownSelelctBar: FC<{ formik: FormikProps<HeaderSearch> }> = ({
             <i className="icon icon-chevron-sm-down text-7 mr-15" />
             {formik.values.types && formik.values.types.length > 0 ? (
               <div className="d-flex" style={{ columnGap: "3px" }}>
-                {formik.values.types?.map((i) => (
+                {formik.values.types?.map((i, index) => (
                   <button
                     className="mainSearch__submit button -dark-1  bg-blue-1 text-white"
                     type="button"
@@ -83,6 +83,7 @@ const DropdownSelelctBar: FC<{ formik: FormikProps<HeaderSearch> }> = ({
                       height: "23px",
                       padding: "0 15px",
                     }}
+                    key={index}
                     onClick={() => {
                       var updated = formik.values.types.filter((x) => x !== i);
                       try {
@@ -173,7 +174,7 @@ const DropdownSelelctBar: FC<{ formik: FormikProps<HeaderSearch> }> = ({
             <i className="icon icon-chevron-sm-down text-7 mr-15" />
             {formik.values.period && formik.values.period.length > 0 ? (
               <div className="d-flex" style={{ columnGap: "3px" }}>
-                {formik.values.period?.map((i) => (
+                {formik.values.period?.map((i, index) => (
                   <button
                     className="mainSearch__submit button -dark-1  bg-blue-1 text-white"
                     type="button"
@@ -181,6 +182,7 @@ const DropdownSelelctBar: FC<{ formik: FormikProps<HeaderSearch> }> = ({
                       height: "23px",
                       padding: "0 15px",
                     }}
+                    key={index}
                     onClick={() => {
                       var updated = formik.values.period.filter((x) => x !== i);
                       try {
@@ -269,7 +271,7 @@ const DropdownSelelctBar: FC<{ formik: FormikProps<HeaderSearch> }> = ({
             <i className="icon icon-chevron-sm-down text-7 mr-15" />
             {formik.values.countries && formik.values.countries.length > 0 ? (
               <div className="d-flex" style={{ columnGap: "3px" }}>
-                {formik.values.countries?.map((i) => (
+                {formik.values.countries?.map((i, index) => (
                   <button
                     className="mainSearch__submit button -dark-1  bg-blue-1 text-white"
                     type="button"
@@ -277,6 +279,7 @@ const DropdownSelelctBar: FC<{ formik: FormikProps<HeaderSearch> }> = ({
                       height: "23px",
                       padding: "0 15px",
                     }}
+                    key={index}
                     onClick={() => {
                       var updated = formik.values.countries.filter(
                         (x) => x !== i

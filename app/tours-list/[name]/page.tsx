@@ -72,11 +72,11 @@ const Tour = () => {
                     </div>
                     <div className="row x-gap-0 y-gap-10 justify-center">
                       <div className="col-auto">
-                        <TelegramShareButton
+                        {/* <TelegramShareButton
                           title="Telegram Share"
                           url=""
                           children
-                        />
+                        /> */}
                       </div>
                       {/* <div className="col-auto">
                     <Whatsapp
@@ -172,7 +172,7 @@ const Tour = () => {
                 </StickyBox>
                 <div className="col-lg-8">
                   <div className="relative d-flex justify-end overflow-hidden js-section-slider">
-                    <img src={_response?.tour?.imageUrl} />
+                    {/* <img src={_response?.tour?.imageUrl} /> */}
                   </div>
                   {/* End relative */}
 
