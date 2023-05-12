@@ -1,5 +1,7 @@
 @import "../public/assets/sass/main.scss";
-
+@import "bootstrap/dist/css/bootstrap.css";
+@import "boxicons/css/boxicons.min.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
 @font-face {
   font-family: "shekari";
   src: local("shekari"), url(./font/shekari.ttf) format("truetype");
