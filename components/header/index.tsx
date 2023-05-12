@@ -14,10 +14,10 @@ const Header = () => {
   const dispatch = useAppDispatch();
   const { loading, onGetTourTypes } = useApiService();
 
-  const fillTypes = async () => {
-    var x = (await onGetTourTypes(true)) as ITourType[];
-    dispatch(setTourTypes(x));
-  };
+  // const fillTypes = async () => {
+  //   var x = (await onGetTourTypes(true)) as ITourType[];
+  //   dispatch(setTourTypes(x));
+  // };
 
   const changeBackground = () => {
     if (window.scrollY >= 10) {
@@ -29,8 +29,7 @@ const Header = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", changeBackground);
-    fillTypes();
-  }, [fillTypes]);
+  }, []);
 
   return (
     <>
