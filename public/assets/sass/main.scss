@@ -1,0 +1,256 @@
+@import "./abstracts/tools";
+@import "./abstracts/variables";
+
+@import "./animations/easings.scss";
+@import "./animations/animations.scss";
+@import "./animations/core.scss";
+
+@import "./base/base";
+@import "./base/button";
+@import "./base/form";
+@import "./base/typography";
+
+@import "./components/404.scss";
+@import "./components/sectionTitle.scss";
+@import "./components/masthead.scss";
+@import "./components/citiesCard.scss";
+@import "./components/ctaCard.scss";
+@import "./components/tabs.scss";
+@import "./components/accordion.scss";
+@import "./components/header.scss";
+@import "./components/cardImage.scss";
+@import "./components/footer.scss";
+@import "./components/mainSearch.scss";
+@import "./components/featureIcon.scss";
+@import "./components/testimonials.scss";
+@import "./components/pagination.scss";
+@import "./components/dashboard.scss";
+@import "./components/blogCard.scss";
+@import "./components/dragSlider.scss";
+@import "./components/niceSelect.scss";
+@import "./components/mapFilter.scss";
+@import "./components/hotelsCard.scss";
+
+@import "./components/preloader.scss";
+@import "./utilities/spacing";
+@import "./utilities/utilities";
+
+@import "./vendors/icons.scss";
+
+// custom scss for all site & slick
+@import "./custom/custom-slick";
+@import "./custom/price-range-slider";
+@import "./custom/custom-next";
+
+.SearchSelect__control {
+  border: 0 !important;
+  margin-top: 0 !important;
+}
+.SearchSelect__control:focus {
+  border: 0 !important;
+}
+.SearchSelect__indicators {
+  display: none !important;
+}
+
+.SearchSelect__control--is-focused {
+  box-shadow: none !important;
+}
+.SearchSelect__input,
+.SearchSelect__input-container,
+.SearchSelect__single-value {
+  font-family: "alfont-bold" !important;
+  color: #4596a5 !important;
+}
+.SearchSelect__input-container,
+.SearchSelect__value-container {
+  cursor: pointer;
+}
+
+.search-box {
+  bottom: -110px;
+  z-index: 9999;
+  right: 0;
+  left: 0;
+}
+.tour-search,
+.tour-search-box {
+  position: relative;
+  display: block;
+  z-index: 1;
+}
+
+.tour-search-one__inner,
+.tour-search-one__inputs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.tour-search-one {
+  background-color: #fff;
+
+  border-radius: 20px;
+}
+.tour-search-one__inputs {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: calc(100% - 224px);
+  max-width: calc(100% - 224px);
+}
+.tour-search-one__inner,
+.tour-search-one__inputs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.tour-search-one__input-box {
+  flex: 1 1 33.333%;
+  max-width: 33.333%;
+  padding: 27px 40px 25px;
+  max-height: 100px;
+}
+.tour-search-one__input-box label {
+  display: block;
+  margin: 0;
+  color: var(--thm-gray);
+  font-weight: 400;
+  letter-spacing: 0;
+  box-shadow: none;
+  line-height: 18px;
+}
+.tour-search-one__input-box
+  input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="reset"]),
+.tour-search-one__input-box textarea {
+  border: none;
+  outline: none;
+  color: black;
+  display: block;
+  line-height: 28px;
+}
+.tour-search-one__btn-wrap {
+  flex: 1 1 224px;
+  max-width: 224px;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 0;
+}
+.tour-search-one__btn {
+  padding: 33px 60px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.thm-btn {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  border: none;
+
+  outline: none !important;
+  background-color: #f2c710;
+  color: white;
+
+  transition: all 0.3s linear;
+  overflow: hidden;
+  letter-spacing: 0.1em;
+  z-index: 1;
+}
+.border-right {
+  border-right: 1px solid #ebe6de;
+}
+
+.list__O {
+  column-count: 2; /* Set number of columns */
+  column-gap: 5px; /* Set gap between columns */
+  line-height: 1.5; /* Set line height */
+}
+
+.list-item__O {
+  margin-bottom: 10px; /* Set margin between items */
+  break-inside: avoid; /* Prevent item from breaking across columns */
+}
+
+.border-right-light {
+  border-right: 1px solid var(--color-border);
+}
+.border-left-light {
+  border-left: 1px solid var(--color-border);
+}
+.border-bottom-light {
+  border-bottom: 1px solid var(--color-border);
+}
+
+// Bootstrap Loading Skeleton
+%loading-skeleton {
+  color: transparent !important;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #eee;
+  border-color: #eee;
+
+  &::placeholder {
+    color: transparent;
+  }
+}
+@keyframes loading-skeleton {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.loading-skeleton {
+  pointer-events: none;
+  animation: loading-skeleton 1s infinite alternate;
+
+  img {
+    filter: grayscale(100) contrast(0%) brightness(1.8);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  li,
+  .btn,
+  label,
+  .box-loading .form-control {
+    @extend %loading-skeleton;
+  }
+}
+
+.package-card-alpha .package-thumb .card-lavel {
+  background: var(--color-blue-1);
+  border-radius: 3px;
+  bottom: 0;
+  color: #fff;
+  left: 20px;
+  padding: 3px 15px;
+  position: absolute;
+  -webkit-transform: translateY(50%);
+  transform: translateY(50%);
+}
+
+.card-lavel-type {
+  background: var(--color-blue-1-05);
+  border: 2px solid var(--color-yellow-1);
+  border-radius: 3px;
+  color: var(--color-blue-1);
+  font-weight: 600;
+  left: 20px;
+  padding: 10px;
+  top: 10px;
+  position: absolute;
+  text-transform: capitalize;
+  -webkit-transform: translateY(50%);
+  transform: translateY(50%);
+}
+
+.package-card-alpha .package-card-body {
+  padding: 30px 25px;
+}

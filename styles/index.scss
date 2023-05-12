@@ -1,0 +1,38 @@
+@import "../public/assets/sass/main.scss";
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+@font-face {
+  font-family: "shekari";
+  src: local("shekari"), url(./font/shekari.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "alfont-bold";
+  src: local("alfont_com_AlFont_com_Swissra-Bold copy"),
+    url(./font/alfont_com_AlFont_com_Swissra-Bold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "alfont-heavy";
+  src: local("alfont_com_AlFont_com_Swissra-Condensed-Heavy-1"),
+    url(./font/alfont_com_AlFont_com_Swissra-Condensed-Heavy-1.otf)
+      format("opentype");
+}
+
+@font-face {
+  font-family: "alfont-normal";
+  src: local("alfont_com_AlFont_com_Swissra-Normal-1"),
+    url(./font/alfont_com_AlFont_com_Swissra-Normal-1.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "alfont-thin";
+  src: local("alfont_com_AlFont_com_Swissra-Thin-1"),
+    url(./font/alfont_com_AlFont_com_Swissra-Thin-1.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Mont-semi";
+  src: local("Montserrat-SemiBold"),
+    url(./font/Montserrat-SemiBold.ttf) format("truetype");
+}
