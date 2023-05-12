@@ -30,7 +30,7 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener("scroll", changeBackground);
     fillTypes();
-  }, []);
+  }, [fillTypes]);
 
   return (
     <>

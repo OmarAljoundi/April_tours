@@ -8,7 +8,7 @@ export const TourListLoading: FC<{ columns: number }> = ({ columns }) => {
           <div className="pt-20">
             <div className="row x-gap-20 y-gap-20  w-100 m-0 p-0">
               <div className="col-md-auto">
-                <img
+                {/* <img
                   src="//placekitten.com/600/200"
                   width={400}
                   height={200}
@@ -18,7 +18,7 @@ export const TourListLoading: FC<{ columns: number }> = ({ columns }) => {
                     borderTopRightRadius: "4px",
                   }}
                   alt="..."
-                />
+                /> */}
               </div>
               <div className="col-md">
                 <div className="d-flex justify-content-between ">

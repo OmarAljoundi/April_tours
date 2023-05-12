@@ -9,7 +9,7 @@ const Footer = () => {
     <div className="footer-area">
       <div className="footer-main-wrapper">
         <div className="footer-vactor">
-          <img src="/assets/img/banner/footer-bg.png" alt="" />
+          {/* <img src="/assets/img/banner/footer-bg.png" alt="" /> */}
         </div>
         <div className="container">
           <div className="row justify-content-center  flex-row-reverse row-footer">
@@ -117,7 +117,7 @@ const Footer = () => {
                 <h4 className="footer-widget-title text-center text-16 ">
                   زور صفحتنا على الإنستجرام
                 </h4>
-                <div className="footer-gallary-grid">
+                {/* <div className="footer-gallary-grid">
                   <div className="footer-gallary-item">
                     <a href="assets/images/gallary/fg-1.png">
                       <img src="//placehold.co/400x400" alt="" />
@@ -148,7 +148,7 @@ const Footer = () => {
                       <img src="//placehold.co/400x400" alt="" />
                     </a>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -191,11 +191,11 @@ const Footer = () => {
             <div className="col-lg-4  order-lg-2 order-1">
               <div className="footer-logo text-center">
                 <a href="index.html">
-                  <img
+                  {/* <img
                     src="/assets/img/logo/main-logo.png"
                     className="w-50"
                     alt=""
-                  />
+                  /> */}
                 </a>
               </div>
             </div>
