@@ -24,7 +24,9 @@ const persistedReducer = persistReducer(
     storage,
     transforms: [
       encryptTransform({
-        secretKey: process.env.NEXT_PUBLIC_SECRET_KEY,
+        secretKey:
+          process.env.NEXT_PUBLIC_SECRET_KEY ??
+          "aaaaaaaaaaaaaaaaaaawdsadadasdasdsd",
         onError: function (error) {
           console.log(error);
         },
