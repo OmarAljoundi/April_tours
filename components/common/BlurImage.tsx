@@ -20,6 +20,8 @@ export const BlurImage: FC<{
           width={width}
           height={height}
           objectFit="cover"
+          fetchPriority="high"
+          loading="eager"
           quality={100}
           className={`
               ${
@@ -37,6 +39,8 @@ export const BlurImage: FC<{
           alt=""
           src={image}
           layout="fill"
+          fetchPriority="high"
+          loading="eager"
           objectFit="cover"
           quality={100}
           className={`

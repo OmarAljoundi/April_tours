@@ -4,8 +4,6 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import { FC, Fragment, ReactNode, useEffect, useLayoutEffect } from "react";
 import "boxicons/css/boxicons.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/index.scss";
 import "@/styles/globals.css";
 import "swiper/css";
@@ -15,7 +13,6 @@ import "swiper/css/scrollbar";
 import "swiper/css/effect-cards";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-
 import { QueryClient, QueryClientProvider } from "react-query";
 import { persistor, store } from "@/store";
 import Footer from "@/components/footer";

@@ -7,7 +7,6 @@ import { useQuery } from "react-query";
 import { Order, SearchQuery, eFilterOperator } from "@/models/interface/Search";
 import { ILocationResponse } from "@/models/interface/Response";
 import Link from "next/link";
-import Image from "next/image";
 import useApiService from "@/hooks/useApiService";
 import { BlurImage } from "../common/BlurImage";
 
