@@ -2,10 +2,10 @@
 import Header from "@/components/header";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { FC, Fragment, ReactNode, useEffect, useLayoutEffect } from "react";
+import { FC, ReactNode, useEffect, useLayoutEffect } from "react";
 import "boxicons/css/boxicons.min.css";
-import "@/styles/index.scss";
-import "@/styles/globals.css";
+import "@/public/assets/index.scss";
+import "@/public/assets/globals.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -17,9 +17,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { persistor, store } from "@/store";
 import Footer from "@/components/footer";
 import { Toaster } from "react-hot-toast";
-import { Router, useRouter } from "next/router";
 import { usePathname } from "next/navigation";
-import Head from "next/head";
 
 type RootLayoutProp = {
   children: ReactNode;
@@ -54,15 +52,7 @@ const RootLayout: FC<RootLayoutProp> = ({ children }) => {
 
   return (
     <html lang="en">
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-          crossOrigin="anonymous"
-        />
-      </Head>
+      <head></head>
       <body>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
