@@ -19,6 +19,7 @@ import Footer from "@/components/footer";
 import { Toaster } from "react-hot-toast";
 import { Router, useRouter } from "next/router";
 import { usePathname } from "next/navigation";
+import Head from "next/head";
 
 type RootLayoutProp = {
   children: ReactNode;
@@ -53,7 +54,15 @@ const RootLayout: FC<RootLayoutProp> = ({ children }) => {
 
   return (
     <html lang="en">
-      <head></head>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+          crossOrigin="anonymous"
+        />
+      </Head>
       <body>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
