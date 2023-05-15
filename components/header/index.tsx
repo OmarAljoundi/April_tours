@@ -14,11 +14,6 @@ const Header = () => {
   const dispatch = useAppDispatch();
   const { loading, onGetTourTypes } = useApiService();
 
-  // const fillTypes = async () => {
-  //   var x = (await onGetTourTypes(true)) as ITourType[];
-  //   dispatch(setTourTypes(x));
-  // };
-
   const changeBackground = () => {
     if (window.scrollY >= 10) {
       setNavbar(true);
@@ -28,6 +23,9 @@ const Header = () => {
   };
 
   useEffect(() => {
+    onGetTourTypes(true).then((response: ITourType[]) => {
+      dispatch(setTourTypes(response));
+    });
     window.addEventListener("scroll", changeBackground);
   }, []);
 

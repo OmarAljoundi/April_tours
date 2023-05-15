@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const Home = () => {
   return (
-    <>
+    <div className="overflowHidden">
       <Hero />
       <section className="layout-pt-lg layout-pb-md mt-20" data-aos="fade-up">
         <div className="container">
@@ -25,7 +25,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="relative pt-40 sm:pt-20">
+          <div className="relative pt-40 sm:pt-20 ">
             <PopularDestinations />
           </div>
         </div>
@@ -122,7 +122,7 @@ const Home = () => {
         </div>
         {/* End .container */}
       </section>
-    </>
+    </div>
   );
 };
 

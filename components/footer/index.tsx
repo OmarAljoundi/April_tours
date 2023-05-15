@@ -7,7 +7,7 @@ const Footer = () => {
     (o) => o.Store.TourTypesReducer?.TourTypes ?? []
   );
   return (
-    <div className="footer-area">
+    <div className="footer-area overflowHidden">
       <div className="footer-main-wrapper">
         <div className="footer-vactor">
           <Image
@@ -17,7 +17,7 @@ const Footer = () => {
             height={568}
           />
         </div>
-        <div className="container">
+        <div className="container overflowHidden">
           <div className="row justify-content-center  flex-row-reverse row-footer">
             <div className="col-lg-4 text-white">
               <div className="footer-widget">
