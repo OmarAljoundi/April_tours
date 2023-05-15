@@ -19,7 +19,7 @@ const MainFilterSearchBox: FC<{ formik: FormikProps<HeaderSearch> }> = ({
           <LocationSearch formik={formik} />
           {/* End Location */}
 
-          <div className="searchMenu-date  pr-20 py-5 px-30  js-form-dd js-calendar">
+          <div className="searchMenu-date  pr-20 py-20 px-30  js-form-dd js-calendar">
             <div>
               <h4 className="text-15 fw-500 ls-2 lh-16">مدة الرحلة</h4>
               <PeriodSearch formik={formik} />

@@ -63,7 +63,7 @@ const Tour = () => {
   );
 
   return (
-    <>
+    <div className="md:overflowHidden">
       <div className="header-margin"></div>
       {loading || isLoading ? (
         <div className="preloader">
@@ -245,7 +245,7 @@ const Tour = () => {
           </section>
         </>
       )}
-    </>
+    </div>
   );
 };
 

@@ -41,6 +41,8 @@ const RootLayout: FC<RootLayoutProp> = ({ children }) => {
   const pathname = usePathname();
 
   useEffect(() => {
+    // some browsers (like safari) may require a timeout to delay calling this
+    // function after a page has loaded; otherwise, it may not update the position
     window.scrollTo({
       behavior: "instant" as any,
       left: 0,

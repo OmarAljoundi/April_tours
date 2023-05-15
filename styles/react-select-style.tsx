@@ -42,7 +42,7 @@ export const ReactSelectStyle: StylesConfig<any, true> = {
     width: "fit-content",
     display: "inline-block",
     padding: "2px 10px",
-    fontSize: "14px",
+    fontSize: "16px",
     backgroundColor: "#3093d0 ",
     color: "#fff!important",
     borderRadius: "8px",

@@ -55,6 +55,7 @@ const TourCategories = () => {
               >
                 <div className="tourTypeCard__content text-center pt-60 pb-24 px-30">
                   <Image
+                    loading="lazy"
                     src={item.icon}
                     width={50}
                     height={50}

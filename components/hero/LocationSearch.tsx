@@ -9,7 +9,7 @@ const LocationSearch: FC<{ formik: FormikProps<HeaderSearch> }> = ({
 }) => {
   return (
     <>
-      <div className="searchMenu-loc pr-20 py-5 px-30 js-form-dd js-liverSearch">
+      <div className="searchMenu-loc pr-20 py-20 px-30 js-form-dd js-liverSearch">
         <div>
           <h4 className="text-15 fw-500 ls-2 lh-16">الوجهة</h4>
           <div className="text-15 text-light-1 ls-2 lh-16">

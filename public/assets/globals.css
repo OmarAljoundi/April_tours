@@ -7,3 +7,6 @@ body,
   max-width: 100vw;
   scroll-behavior: smooth !important;
 }
+.location_selector__input {
+  font-size: 16px !important;
+}
