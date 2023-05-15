@@ -328,3 +328,21 @@ $layout-sizes-sm: (
     }
   }
 }
+
+.overflowHidden {
+  overflow: hidden;
+}
+.overflowVisiable {
+  overflow: visible;
+}
+
+@each $break in $_sizesBreaks {
+  @include media-below($break) {
+    .#{$break}\:overflowHidden {
+      overflow: hidden;
+    }
+    .#{$break}\:overflowVisiable {
+      overflow: visible;
+    }
+  }
+}

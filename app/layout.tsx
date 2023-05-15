@@ -12,7 +12,7 @@ import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 import "swiper/css/effect-cards";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
+import { PersistGate } from "redux-persist/es/integration/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { persistor, store } from "@/store";
 import Footer from "@/components/footer";
@@ -60,7 +60,7 @@ const RootLayout: FC<RootLayoutProp> = ({ children }) => {
             <QueryClientProvider client={queryClient}>
               <div id="__next">
                 <Header />
-                <div className="overflow-hidden">
+                <div className="md:overflowHidden overflowVisiable ">
                   {children}
                   <Footer />
                 </div>

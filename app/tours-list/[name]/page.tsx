@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useLayoutEffect } from "react";
 import { useQuery } from "react-query";
 import ImageGallery from "react-image-gallery";
 import { TelegramShareButton } from "react-share";
@@ -13,12 +13,20 @@ import StickyBox from "react-sticky-box";
 import SidebarRight from "@/components/tours/SidebarRight";
 import Overview from "@/components/tours/Overview";
 import Itinerary from "@/components/tours/itinerary";
-import Link from "next/link";
 import Tours from "@/components/tours/Tours";
-import { Twitter, Whatsapp, Facebook, Linkedin } from "react-social-sharing";
 import { GenerateShareMessage } from "@/utils/GenerateShareMessage";
 import LoadingAirplan from "@/components/common/LoadingAirplan";
 import { BlurImage } from "@/components/common/BlurImage";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  TwitterShareButton,
+  TwitterIcon,
+} from "next-share";
 
 const Tour = () => {
   const { name } = useParams();
@@ -76,38 +84,38 @@ const Tour = () => {
                     <div className="title text-18 text-center">
                       شاركها مع أحبابك
                     </div>
-                    <div className="row x-gap-0 y-gap-10 justify-center">
+                    <div className="row x-gap-10 y-gap-10 justify-center mt-5">
                       <div className="col-auto">
-                        <Whatsapp
-                          small
-                          message={GenerateShareMessage()}
-                          link={decodeURIComponent(window.location.href)}
-                          style={styles}
-                        />
+                        <WhatsappShareButton
+                          url={decodeURIComponent(window.location.href)}
+                          content={GenerateShareMessage()}
+                        >
+                          <WhatsappIcon size={32} round />
+                        </WhatsappShareButton>
                       </div>
                       <div className="col-auto">
-                        <Facebook
-                          small
-                          message={GenerateShareMessage()}
-                          link={decodeURIComponent(window.location.href)}
-                          style={styles}
-                        />
+                        <FacebookShareButton
+                          url={decodeURIComponent(window.location.href)}
+                          quote={GenerateShareMessage()}
+                        >
+                          <FacebookIcon size={32} round />
+                        </FacebookShareButton>
                       </div>
                       <div className="col-auto">
-                        <Twitter
-                          small
-                          message={GenerateShareMessage()}
-                          link={decodeURIComponent(window.location.href)}
-                          style={styles}
-                        />
+                        <TwitterShareButton
+                          url={decodeURIComponent(window.location.href)}
+                          content={GenerateShareMessage()}
+                        >
+                          <TwitterIcon size={32} round />
+                        </TwitterShareButton>
                       </div>
                       <div className="col-auto">
-                        <Linkedin
-                          small
-                          message={GenerateShareMessage()}
-                          link={decodeURIComponent(window.location.href)}
-                          style={styles}
-                        />
+                        <LinkedinShareButton
+                          url={decodeURIComponent(window.location.href)}
+                          content={GenerateShareMessage()}
+                        >
+                          <LinkedinIcon size={32} round />
+                        </LinkedinShareButton>
                       </div>
                     </div>
                   </div>
