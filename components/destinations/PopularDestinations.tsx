@@ -7,6 +7,7 @@ import { useQuery } from "react-query";
 import { Order, SearchQuery, eFilterOperator } from "@/models/interface/Search";
 import { ILocationResponse } from "@/models/interface/Response";
 import Link from "next/link";
+import Image from "next/image";
 import useApiService from "@/hooks/useApiService";
 import { BlurImage } from "../common/BlurImage";
 
@@ -59,6 +60,10 @@ const PopularDestinations = () => {
           prevEl: ".js-destination-prev",
         }}
         breakpoints={{
+          300: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
           500: {
             slidesPerView: 2,
             spaceBetween: 20,
@@ -78,8 +83,7 @@ const PopularDestinations = () => {
         {_response?.locations?.map((item) => (
           <SwiperSlide key={item.id}>
             <Link
-              // href={`/destination/${item.name.replaceAll(" ", "-")}`}
-              href={`/`}
+              href={`/destination/${item.name.replaceAll(" ", "-")}`}
               className="citiesCard -type-1 d-block rounded-4"
               key={item.id}
             >

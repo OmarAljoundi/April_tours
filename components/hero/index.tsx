@@ -6,9 +6,8 @@ import { BlurImage } from "../common/BlurImage";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 export const dynamic = "force-dynamic";
-import { NextPage } from "next";
 
-const Hero: NextPage = () => {
+const Hero = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const createQueryString = useCallback(
@@ -60,13 +59,18 @@ const Hero: NextPage = () => {
           <div className="col-lg-auto">
             <div className="masthead__content text-right">
               <h1
-                className="text-30 lg:text-20 sm:text-15"
+                className="text-30 lg:text-20 sm:text-25"
                 data-aos="fade-up"
                 data-aos-delay="100"
               >
                 اكتشف المغامرات الجديدة{" "}
               </h1>
-              <p className="mt-5" data-aos="fade-up" data-aos-delay="200">
+              <p
+                className="mt-5 text-15 lg:text-15 sm:text-15"
+                data-aos="fade-up"
+                data-aos-delay="200"
+                style={{ color: "black" }}
+              >
                 استكشف أجمل الوجهات السياحية في العالم وعش تجربة لا تُنسى. احجز
                 رحلتك الآن واستعد للمغامرة{" "}
               </p>

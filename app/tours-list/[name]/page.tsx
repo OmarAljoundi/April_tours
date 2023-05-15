@@ -15,9 +15,17 @@ import Overview from "@/components/tours/Overview";
 import Itinerary from "@/components/tours/itinerary";
 import Link from "next/link";
 import Tours from "@/components/tours/Tours";
+import { Twitter, Whatsapp, Facebook, Linkedin } from "react-social-sharing";
+import { GenerateShareMessage } from "@/utils/GenerateShareMessage";
+import LoadingAirplan from "@/components/common/LoadingAirplan";
+import { BlurImage } from "@/components/common/BlurImage";
+
 const Tour = () => {
   const { name } = useParams();
   const { onSearchTours, loading } = useApiService();
+  const styles = {
+    background: "var(--color-blue-1)",
+  };
 
   const fetchTour = async () => {
     var _SQ: SearchQuery = {
@@ -50,10 +58,8 @@ const Tour = () => {
     <>
       <div className="header-margin"></div>
       {loading || isLoading ? (
-        <div className="container-fluid padding-top-large-loading">
-          <div style={{ margin: "330px auto" }}>
-            <span className="loader"></span>
-          </div>
+        <div className="preloader">
+          <LoadingAirplan />
         </div>
       ) : (
         <>
@@ -72,44 +78,37 @@ const Tour = () => {
                     </div>
                     <div className="row x-gap-0 y-gap-10 justify-center">
                       <div className="col-auto">
-                        {/* <TelegramShareButton
-                          title="Telegram Share"
-                          url=""
-                          children
-                        /> */}
+                        <Whatsapp
+                          small
+                          message={GenerateShareMessage()}
+                          link={decodeURIComponent(window.location.href)}
+                          style={styles}
+                        />
                       </div>
-                      {/* <div className="col-auto">
-                    <Whatsapp
-                      solidcircle
-                      small
-                      link={window.location.href}
-                      style={styles}
-                    />
-                  </div>
-                  <div className="col-auto">
-                    <Facebook
-                      solidcircle
-                      small
-                      link={window.location.href}
-                      style={styles}
-                    />
-                  </div>
-                  <div className="col-auto">
-                    <Twitter
-                      solidcircle
-                      small
-                      link={window.location.href}
-                      style={styles}
-                    />
-                  </div>
-                  <div className="col-auto">
-                    <Linkedin
-                      solidcircle
-                      small
-                      link={window.location.href}
-                      style={styles}
-                    />
-                  </div> */}
+                      <div className="col-auto">
+                        <Facebook
+                          small
+                          message={GenerateShareMessage()}
+                          link={decodeURIComponent(window.location.href)}
+                          style={styles}
+                        />
+                      </div>
+                      <div className="col-auto">
+                        <Twitter
+                          small
+                          message={GenerateShareMessage()}
+                          link={decodeURIComponent(window.location.href)}
+                          style={styles}
+                        />
+                      </div>
+                      <div className="col-auto">
+                        <Linkedin
+                          small
+                          message={GenerateShareMessage()}
+                          link={decodeURIComponent(window.location.href)}
+                          style={styles}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -171,8 +170,11 @@ const Tour = () => {
                   <SidebarRight tour={_response?.tour} />
                 </StickyBox>
                 <div className="col-lg-8">
-                  <div className="relative d-flex justify-end overflow-hidden js-section-slider">
-                    {/* <img src={_response?.tour?.imageUrl} /> */}
+                  <div
+                    className="relative d-flex justify-end overflow-hidden js-section-slider w-100"
+                    style={{ height: "400px" }}
+                  >
+                    <BlurImage image={_response?.tour?.imageUrl} />
                   </div>
                   {/* End relative */}
 
@@ -215,36 +217,23 @@ const Tour = () => {
           </div>
         </div>
       </section> */}
+
           <section className="layout-pt-lg layout-pb-md">
-            <div className="container">
-              <div className="row y-gap-20 justify-between items-end">
-                <div className="col-auto">
-                  <Link
-                    href="/tours-list?onsale=on"
-                    className="button -md -blue-1 bg-blue-1-05 text-blue-1"
-                  >
-                    <div className="bi bi-arrow-up-left mr-15" /> عرض المزيد
-                  </Link>
-                </div>
+            <div className="container-fluid container-xl">
+              <div className="row y-gap-20 justify-center items-center">
                 <div className="col-auto">
                   <div className="sectionTitle -md">
-                    <h2 className="sectionTitle__title">
-                      الرحلات الأكثر مبيعاً
+                    <h2 className="sectionTitle__title text-24 lg:text-22">
+                      رحلات أخرى قد تعجبك؟
                     </h2>
                   </div>
                 </div>
-                {/* End .col */}
-
-                {/* End .col */}
               </div>
-              {/* End .row */}
 
               <div className="row y-gap-30 pt-40 sm:pt-20 item_gap-x30">
                 <Tours />
               </div>
-              {/* End .row */}
             </div>
-            {/* End .container */}
           </section>
         </>
       )}

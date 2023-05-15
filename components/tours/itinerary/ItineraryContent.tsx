@@ -20,32 +20,34 @@ const ItineraryContent: FC<{ tourStories: ITourSections[] }> = ({
               {/* End item number */}
 
               <div className="mr-20 w-100 shadow p-4">
-                <div className="text-22 lh-15 fw-500">
+                <div className="text-22 lg:text-16 lh-15 fw-500">
                   {DaysArranged[index]}
                 </div>
-                <div className="text-20 lh-15 text-light-1 mt-5 text-blue-1 fw-bold">
+                <div className="text-20 lg:text-14 lh-15 text-light-1 mt-5 text-blue-1 fw-bold">
                   {item.title}
                 </div>
                 <div
                   className={`accordion-collapse collapse ${
-                    index == 0 ? "show" : "hide"
+                    index == 0 ? "show" : ""
                   }`}
                   id={`item_${index + 1}`}
                   data-bs-parent="#itineraryContent"
                 >
                   <div className="pt-15 pb-15">
-                    <div className="text-16 lh-17">{item.description}</div>
+                    <div className="text-14 lg:text-12 lh-17">
+                      {item.description}
+                    </div>
                   </div>
                 </div>
                 {/* End accordion conent */}
 
                 <button
-                  className="button -md -blue-1 bg-blue-1-05 text-blue-1  d-block lh-15 text-14  fw-500 mt-20 fw-bold accordion__button "
+                  className="button -sm -blue-1 bg-blue-1-05 text-blue-1
+                    d-block lh-15 text-14  fw-500 mt-20 fw-bold accordion__button "
                   data-bs-toggle="collapse"
                   data-bs-target={`#item_${index + 1}`}
                 >
-                  إظهار التفاصيل
-                  <i className="bi bi-info-circle mr-15"></i>
+                  التفاصيل
                 </button>
               </div>
             </div>

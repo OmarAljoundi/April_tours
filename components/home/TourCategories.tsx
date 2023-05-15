@@ -25,6 +25,10 @@ const TourCategories = () => {
           clickable: true,
         }}
         breakpoints={{
+          300: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
           500: {
             slidesPerView: 2,
             spaceBetween: 20,
@@ -45,7 +49,8 @@ const TourCategories = () => {
           <SwiperSlide key={item.id}>
             <div data-aos="fade" data-aos-delay={"100"}>
               <Link
-                href={`/`} ///tours-list?types=${item.type}
+                scroll={false}
+                href={`/tours-list?type=${item.type}`}
                 className="tourTypeCard -type-1 d-block rounded-4 bg-blue-1-05 rounded-4"
               >
                 <div className="tourTypeCard__content text-center pt-60 pb-24 px-30">

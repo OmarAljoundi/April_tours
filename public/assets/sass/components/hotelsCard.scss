@@ -20,7 +20,8 @@
         background-image: linear-gradient(transparent 24px, black 20px);
         background-size: 0;
         background-repeat: no-repeat;
-        transition: background-size 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0s;
+        transition: background-size 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+          0s;
       }
     }
   }
@@ -65,7 +66,8 @@
         background-image: linear-gradient(transparent 24px, black 20px);
         background-size: 0;
         background-repeat: no-repeat;
-        transition: background-size 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0s;
+        transition: background-size 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+          0s;
       }
     }
   }
@@ -110,7 +112,8 @@
         background-image: linear-gradient(transparent 24px, black 20px);
         background-size: 0;
         background-repeat: no-repeat;
-        transition: background-size 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0s;
+        transition: background-size 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+          0s;
       }
     }
   }
@@ -155,7 +158,8 @@
         background-image: linear-gradient(transparent 24px, black 20px);
         background-size: 0;
         background-repeat: no-repeat;
-        transition: background-size 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0s;
+        transition: background-size 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+          0s;
       }
     }
   }
@@ -200,7 +204,8 @@
         background-image: linear-gradient(transparent 24px, black 20px);
         background-size: 0;
         background-repeat: no-repeat;
-        transition: background-size 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0s;
+        transition: background-size 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+          0s;
       }
     }
   }
@@ -275,7 +280,8 @@
         background-image: linear-gradient(transparent 24px, black 20px);
         background-size: 0;
         background-repeat: no-repeat;
-        transition: background-size 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0s;
+        transition: background-size 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+          0s;
       }
     }
   }
@@ -305,11 +311,10 @@
   }
 
   &:hover {
-    background-color: var(--color-blue-1) !important;
     transform: translateY(-10px);
 
     .tourTypeCard__content > * {
-      color: white !important;
+      color: var(--color-yellow-1) !important;
     }
   }
 }

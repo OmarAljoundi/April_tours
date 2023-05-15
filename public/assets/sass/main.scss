@@ -254,3 +254,106 @@
 .package-card-alpha .package-card-body {
   padding: 30px 25px;
 }
+
+.preloader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  background: #fff;
+  top: 0;
+  left: 0;
+  font-size: 30px;
+  vertical-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  margin-left: 0;
+  padding: 30px 0;
+  width: 150px;
+  height: 150px;
+  border: 1px solid hsla(0, 0%, 49%, 0.15);
+  border-radius: 100%;
+}
+
+.hide {
+  display: none;
+}
+
+.loader1 {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.loader1 span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(calc(18deg * var(--i)));
+}
+
+.loader1 span:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  background: var(--color-yellow-1);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: animate 2s linear infinite;
+  animation-delay: calc(0.1s * var(--i));
+}
+
+.loader1 .rocket {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: rotating 2s linear infinite;
+  animation-delay: -1s;
+}
+
+.loader1 .rocket:before {
+  content: "\ee73";
+  font-family: boxicons !important;
+  position: absolute;
+  top: 80px;
+  left: 85px;
+  color: var(--color-yellow-1);
+  font-size: 60px;
+  transform: rotate(180deg);
+}
+
+@keyframes animate {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  80%,
+  to {
+    transform: scale(0);
+  }
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotate(10deg);
+  }
+
+  to {
+    transform: rotate(370deg);
+  }
+}

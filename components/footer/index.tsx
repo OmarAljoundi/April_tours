@@ -1,4 +1,5 @@
 import { useAppSelector } from "@/hooks/useStoreService";
+import Image from "next/image";
 import Link from "next/link";
 
 const Footer = () => {
@@ -9,7 +10,12 @@ const Footer = () => {
     <div className="footer-area">
       <div className="footer-main-wrapper">
         <div className="footer-vactor">
-          {/* <img src="/assets/img/banner/footer-bg.png" alt="" /> */}
+          <Image
+            src="/assets/img/banner/footer-bg.png"
+            alt=""
+            width={1920}
+            height={568}
+          />
         </div>
         <div className="container">
           <div className="row justify-content-center  flex-row-reverse row-footer">
@@ -106,7 +112,9 @@ const Footer = () => {
                 <ul className="footer-links text-right">
                   {types.map((i, index) => (
                     <li className="text-14 " key={index}>
-                      <Link href={`/tours-list?type=${i.type}`}>{i.type}</Link>
+                      <Link scroll={false} href={`/tours-list?type=${i.type}`}>
+                        {i.type}
+                      </Link>
                     </li>
                   ))}
                 </ul>

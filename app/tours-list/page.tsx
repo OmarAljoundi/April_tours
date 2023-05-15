@@ -16,7 +16,6 @@ import { useFormik } from "formik";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useQuery } from "react-query";
-
 const ToursList = () => {
   const { onSearchGeneral } = useApiService();
   const Originalpathname = usePathname();
@@ -207,14 +206,19 @@ const ToursList = () => {
         <div className="container-fluid container-lg">
           <TopHeaderFilter total={_response?.total} formik={formik} />
           <div className="border-top-light pt-20" style={{ marginTop: 5 }}>
-            <div className="row y-gap-30 justify-content-end">
+            <div className="row y-gap-30 justify-content-end" id="top-list-2">
               {isFetching && <TourListLoading columns={6} />}
               {_response?.tours?.map((tour, index) => (
                 <div className="col-12 col-lg-4 col-md-6" key={index}>
                   <div
                     key={tour?.id}
-                    data-aos="fade"
-                    data-aos-delay={"100"}
+                    data-aos={`${
+                      (index + 1) % 2 == 0 ? "fade-left" : "fade-right"
+                    }`}
+                    data-aos-anchor="#top-list-2"
+                    data-aos-delay={100 * (index + 1)}
+                    data-aos-offset="0"
+                    data-aos-duration="500"
                     className="shadow"
                   >
                     <TourCard tour={tour} />

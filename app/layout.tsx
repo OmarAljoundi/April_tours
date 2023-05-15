@@ -60,8 +60,10 @@ const RootLayout: FC<RootLayoutProp> = ({ children }) => {
             <QueryClientProvider client={queryClient}>
               <div id="__next">
                 <Header />
-                {children}
-                <Footer />
+                <div className="overflow-hidden">
+                  {children}
+                  <Footer />
+                </div>
               </div>
             </QueryClientProvider>
           </PersistGate>

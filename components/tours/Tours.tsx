@@ -64,12 +64,15 @@ const Tours = () => {
           },
         }}
       >
-        {_response?.tours?.map((item) => (
+        {_response?.tours?.map((item, index) => (
           <SwiperSlide key={item.id} style={{ padding: "10px" }}>
             <div
               key={item?.id}
-              data-aos="fade"
-              data-aos-delay={"100"}
+              data-aos={`${(index + 1) % 2 == 0 ? "fade-left" : "fade-right"}`}
+              data-aos-anchor="#top-list-2"
+              data-aos-delay={100 * (index + 1)}
+              data-aos-offset="0"
+              data-aos-duration="500"
               className="shadow"
             >
               <TourCard tour={item} />

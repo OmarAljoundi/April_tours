@@ -8,9 +8,9 @@ import Link from "next/link";
 
 const Home = () => {
   return (
-    <div className="overflow-hidden">
+    <>
       <Hero />
-      <section className="layout-pb-md" data-aos="fade-up">
+      <section className="layout-pt-lg layout-pb-md mt-20" data-aos="fade-up">
         <div className="container">
           <div className="row y-gap-20 justify-end items-end">
             <div className="col-auto">
@@ -36,7 +36,7 @@ const Home = () => {
           <div className="row y-gap-20 justify-center items-center">
             <div className="col-auto">
               <div className="sectionTitle -md">
-                <h2 className="sectionTitle__title sm:text-16">
+                <h2 className="sectionTitle__title text-24 lg:text-22">
                   الرحلات الأكثر مبيعاً
                 </h2>
               </div>
@@ -56,7 +56,7 @@ const Home = () => {
 
             <div className="col-auto">
               <div className="sectionTitle -md ">
-                <h2 className="sectionTitle__title sm:text-16 ">
+                <h2 className="sectionTitle__title text-24 lg:text-22 ">
                   إختار المغامرة المفضلة
                 </h2>
               </div>
@@ -122,7 +122,7 @@ const Home = () => {
         </div>
         {/* End .container */}
       </section>
-    </div>
+    </>
   );
 };
 
