@@ -1,4 +1,5 @@
 "use client";
+import { BlurImage } from "@/components/common/BlurImage";
 import SelectDestinaitons from "@/components/common/SelectDestinations";
 import { TourCard } from "@/components/common/TourCard";
 import Tours from "@/components/tours/Tours";
@@ -47,10 +48,9 @@ const Destination = () => {
 
       <section className="section-bg pt-80 pb-80 relative z-5">
         <div className="section-bg__item col-12">
-          <img
-            src="/assets/img/banner/destination-banner.png"
-            alt="image"
-            className="w-full h-full object-cover"
+          <BlurImage
+            image="/assets/img/banner/destination-banner.png"
+            customClass="w-full h-full object-cover"
           />
         </div>
         {/* End .section-bg__item */}
@@ -92,9 +92,8 @@ const Destination = () => {
             <div className="row y-gap-30" id="top-list">
               {isFetching && <TourListLoading columns={6} />}
               {_response?.tours?.map((tour, index) => (
-                <div className="col-12 col-lg-4 col-md-6">
+                <div className="col-12 col-lg-4 col-md-6" key={tour?.id}>
                   <div
-                    key={tour?.id}
                     data-aos={`${
                       (index + 1) % 2 == 0 ? "fade-left" : "fade-right"
                     }`}
