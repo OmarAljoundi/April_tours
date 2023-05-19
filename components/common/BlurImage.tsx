@@ -31,7 +31,7 @@ export const BlurImage: FC<{
           objectFit="cover"
           fetchPriority={priority}
           loading={loading}
-          quality={100}
+          quality={50}
           className={`
               ${
                 customClass ?? ""
@@ -51,7 +51,7 @@ export const BlurImage: FC<{
           fetchPriority={priority}
           loading={loading}
           objectFit="cover"
-          quality={100}
+          quality={50}
           className={`
              ${
                customClass ?? ""
