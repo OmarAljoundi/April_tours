@@ -1,12 +1,4 @@
 "use client";
-import { useLayoutEffect } from "react";
-import { useQuery } from "react-query";
-import ImageGallery from "react-image-gallery";
-import { TelegramShareButton } from "react-share";
-import useApiService from "@/hooks/useApiService";
-import { useParams } from "next/navigation";
-import { SearchQuery, eFilterOperator } from "@/models/interface/Search";
-import { ITourResponse } from "@/models/interface/Response";
 import { BuildBreadCrumb } from "@/utils/BreadCrumnHelper";
 import TopBreadCrumb from "@/components/tours/TopBreadCrumb";
 import StickyBox from "react-sticky-box";
@@ -15,8 +7,6 @@ import Overview from "@/components/tours/Overview";
 import Itinerary from "@/components/tours/itinerary";
 import Tours from "@/components/tours/Tours";
 import { GenerateShareMessage } from "@/utils/GenerateShareMessage";
-import LoadingAirplan from "@/components/common/LoadingAirplan";
-import { BlurImage } from "@/components/common/BlurImage";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -28,7 +18,6 @@ import {
   TwitterIcon,
 } from "next-share";
 import ImageSlides from "./ImageSlides";
-import { ITour } from "@/models/interface/Tour";
 
 export default function TourInfo({ tour }) {
   return (
