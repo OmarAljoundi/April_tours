@@ -19,7 +19,7 @@ const Loading = () => {
             <div className="row y-gap-10 items-center justify-content-sm-between justify-content-center">
               <div className="col-auto">
                 <div className="text-18">
-                  <span className="fw-500">نتائج2 البحث</span>{" "}
+                  <span className="fw-500">نتائج البحث</span>{" "}
                   <span className="english-font">{0}</span>
                   <span className="pe-1">رحلات</span>
                 </div>
