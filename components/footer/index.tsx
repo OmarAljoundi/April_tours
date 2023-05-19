@@ -1,4 +1,5 @@
 import { useAppSelector } from "@/hooks/useStoreService";
+import { ITourType } from "@/models/interface/Tour";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -110,9 +111,15 @@ const Footer = () => {
                   أنواع الرحلات
                 </h4>
                 <ul className="footer-links text-right">
-                  {types.map((i, index) => (
+                  {types.map((i: ITourType, index) => (
                     <li className="text-14 " key={index}>
-                      <Link scroll={false} href={`/tours-list?type=${i.type}`}>
+                      <Link
+                        scroll={false}
+                        href={`/tours-list?types=${i.type.replaceAll(
+                          " ",
+                          "+"
+                        )}`}
+                      >
                         {i.type}
                       </Link>
                     </li>

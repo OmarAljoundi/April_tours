@@ -93,7 +93,7 @@ const DropdownSelelctBar: FC<{ formik: FormikProps<HeaderSearch> }> = ({
                       formik.submitForm();
                     }}
                   >
-                    <i className="bi bi-x text-14 mr-10"></i>
+                    <i className="bx bx-x text-14 mr-10"></i>
                     <span className="text-10">{i}</span>
                   </button>
                 ))}
@@ -192,7 +192,7 @@ const DropdownSelelctBar: FC<{ formik: FormikProps<HeaderSearch> }> = ({
                       formik.submitForm();
                     }}
                   >
-                    <i className="bi bi-x text-14 mr-10"></i>
+                    <i className="bx bx-x text-14 mr-10"></i>
                     <span className="text-10">{i.label}</span>
                   </button>
                 ))}
@@ -291,7 +291,7 @@ const DropdownSelelctBar: FC<{ formik: FormikProps<HeaderSearch> }> = ({
                       formik.submitForm();
                     }}
                   >
-                    <i className="bi bi-x text-14 mr-10"></i>
+                    <i className="bx bx-x text-14 mr-10"></i>
                     <span className="text-10">{i.label}</span>
                   </button>
                 ))}

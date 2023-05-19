@@ -4,7 +4,25 @@ import BlockGuide from "@/components/home/BlockGuide";
 import Counter from "@/components/home/Counter";
 import TourCategories from "@/components/home/TourCategories";
 import Tours from "@/components/tours/Tours";
+import { IContentResponse } from "@/models/interface/Response";
+import ContentService from "@/services/ContentService";
+import { AxiosResponse } from "axios";
+import { Metadata } from "next";
 import Link from "next/link";
+
+async function getInfo() {
+  const res =
+    (await ContentService.readContent()) as AxiosResponse<IContentResponse>;
+  return res.data?.content?.home;
+}
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const contet = await getInfo();
+  return {
+    title: contet.seoTitle,
+    description: contet.seoDescription,
+    keywords: contet.seoTags,
+  };
+}
 
 const Home = () => {
   return (

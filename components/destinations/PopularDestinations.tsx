@@ -88,7 +88,11 @@ const PopularDestinations = () => {
               key={item.id}
             >
               <div className="citiesCard__image ratio ratio-3:4">
-                <BlurImage image={item.imageUrl} />
+                <BlurImage
+                  image={item.imageUrl}
+                  loading="eager"
+                  priority="low"
+                />
               </div>
               <div className="citiesCard__content d-flex flex-column justify-between text-center pt-30 pb-20 px-20">
                 <div className="citiesCard__bg" />

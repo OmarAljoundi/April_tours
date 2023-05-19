@@ -94,6 +94,8 @@ const Hero = () => {
                 width={560}
                 height={560}
                 customClass="rounded-lg"
+                loading="eager"
+                priority="high"
               />
             </div>
             {/* End col-auto */}
@@ -104,6 +106,8 @@ const Hero = () => {
                 customClass="rounded-lg"
                 width={290}
                 height={560}
+                loading="eager"
+                priority="high"
               />
             </div>
             {/* End col-auto */}

@@ -9,7 +9,11 @@ export const TourCard: FC<{ tour: ITour }> = ({ tour }) => {
     <div className="package-card-alpha">
       <div className="package-thumb position-relative">
         <div style={{ height: "270px", overflow: "hidden" }}>
-          <BlurImage image={tour.imageUrl || ""} />
+          <BlurImage
+            image={tour.imageUrl || ""}
+            loading="eager"
+            priority="low"
+          />
         </div>
 
         <p className="card-lavel ">
@@ -27,6 +31,8 @@ export const TourCard: FC<{ tour: ITour }> = ({ tour }) => {
                 width={40}
                 height={40}
                 quality={100}
+                loading="eager"
+                fetchPriority="low"
               />
             </div>
             <div className="text-10">{tour.tourType?.type}</div>

@@ -1,4 +1,5 @@
 import { homeItems } from "@/data/mainMenuData";
+import Link from "next/link";
 
 const MainMenu = ({ style = "" }) => {
   return (
@@ -6,9 +7,9 @@ const MainMenu = ({ style = "" }) => {
       <ul className={`menu__nav ${style} -is-active`}>
         {homeItems.map((o: any, index) => (
           <li className="menu-item-has-children -has-mega-menu" key={index}>
-            <a href={o.routePath}>
+            <Link href={o.routePath}>
               <span className="mr-10">{o.name}</span>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

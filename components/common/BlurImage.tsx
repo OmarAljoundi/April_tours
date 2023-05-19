@@ -6,7 +6,16 @@ export const BlurImage: FC<{
   width?: number;
   height?: number;
   customClass?: string;
-}> = ({ image, height, width, customClass }) => {
+  loading?: "lazy" | "eager";
+  priority?: "high" | "low";
+}> = ({
+  image,
+  height,
+  width,
+  customClass,
+  priority = "low",
+  loading = "lazy",
+}) => {
   const [isLoading, setLoading] = useState(true);
   return (
     <div
@@ -20,8 +29,8 @@ export const BlurImage: FC<{
           width={width}
           height={height}
           objectFit="cover"
-          fetchPriority="high"
-          loading="eager"
+          fetchPriority={priority}
+          loading={loading}
           quality={100}
           className={`
               ${
@@ -39,8 +48,8 @@ export const BlurImage: FC<{
           alt=""
           src={image}
           layout="fill"
-          fetchPriority="high"
-          loading="eager"
+          fetchPriority={priority}
+          loading={loading}
           objectFit="cover"
           quality={100}
           className={`

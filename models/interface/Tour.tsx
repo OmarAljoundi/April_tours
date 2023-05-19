@@ -20,6 +20,7 @@ export interface ITour {
   tourPricing: ITourPricing[];
   tourSections: ITourSections[];
   tourCountries: ITourCountries[];
+  tourImages: ITourImages[];
   tourType: ITourType | null;
   file?: FileType | null;
   active: boolean;
@@ -37,13 +38,6 @@ export interface ITourExcludes {
   tourId: number;
   title: string;
   details: string;
-}
-
-export interface ITourImage {
-  id: number;
-  tourId: number;
-  imageUrl: string;
-  file?: FileType;
 }
 
 export interface ITourIncludes {
@@ -78,4 +72,10 @@ export interface ITourType {
   count: number;
   price: number;
   icon: string;
+}
+export interface ITourImages {
+  id: number;
+  imageOrder: number;
+  imageUrl: string;
+  imageUrlThumb: string;
 }

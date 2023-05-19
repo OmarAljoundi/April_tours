@@ -16,6 +16,10 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "april-tours.s3.me-central-1.amazonaws.com",
+      },
+      {
+        protocol: "https",
         hostname: "placehold.co",
         port: "",
         pathname: "/*",

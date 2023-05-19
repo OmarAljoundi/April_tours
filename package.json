@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "@splidejs/react-splide": "^0.7.12",
+    "@splidejs/splide": "^4.1.4",
     "@types/node": "20.0.0",
     "@types/react": "18.2.5",
     "@types/react-bootstrap": "^0.32.32",
@@ -34,6 +36,7 @@
     "react-pro-sidebar": "^1.0.0",
     "react-query": "^3.39.3",
     "react-redux": "^8.0.5",
+    "react-responsive-carousel": "^3.2.23",
     "react-select": "^5.7.3",
     "react-share": "^4.4.1",
     "react-social-icons": "^5.15.0",

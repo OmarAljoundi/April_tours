@@ -1,46 +1,40 @@
-"use client";
 import { BlurImage } from "@/components/common/BlurImage";
 import SelectDestinaitons from "@/components/common/SelectDestinations";
 import { TourCard } from "@/components/common/TourCard";
 import Tours from "@/components/tours/Tours";
 import { TourListLoading } from "@/components/tours/tourList-loading";
-import useApiService from "@/hooks/useApiService";
-import { ITourResponse } from "@/models/interface/Response";
+import { IContentResponse, ITourResponse } from "@/models/interface/Response";
 import { SearchQuery, eFilterOperator } from "@/models/interface/Search";
+import ContentService from "@/services/ContentService";
+import TourService from "@/services/TourService";
+import { AxiosResponse } from "axios";
+import { Metadata } from "next";
 import { useParams, useSearchParams } from "next/navigation";
-import { useQuery } from "react-query";
 
-const Destination = () => {
-  const searchParams = useSearchParams();
-  const { onGetTabs } = useApiService();
-  const { name } = useParams();
-  const fetchTours = async () => {
-    var _SQ: SearchQuery = {
-      FilterByOptions: [],
-      OrderByOptions: [],
-      PageIndex: 0,
-      PageSize: 0,
-      Tab: 1,
-    };
-    _SQ.FilterByOptions.push({
-      FilterFor: decodeURIComponent(name?.replaceAll("-", " ")),
-      FilterOperator: eFilterOperator.EqualsTo,
-      MemberName: "Name",
-    });
-    _SQ.Tab = Number(searchParams.get("ActiveTab"));
-
-    return (await onGetTabs(_SQ)) as ITourResponse;
+export default async function Destination({
+  params,
+  searchParams,
+}: {
+  params: { name: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
+  var _SQ: SearchQuery = {
+    FilterByOptions: [],
+    OrderByOptions: [],
+    PageIndex: 0,
+    PageSize: 0,
+    Tab: 1,
   };
-
-  const {
-    data: _response,
-    refetch,
-    isFetching,
-  } = useQuery([!!name, searchParams.get("ActiveTab")], () => fetchTours(), {
-    refetchOnWindowFocus: false,
-    keepPreviousData: true,
-    enabled: searchParams.get("ActiveTab") != null,
+  _SQ.FilterByOptions.push({
+    FilterFor: decodeURIComponent(params?.name?.replaceAll("-", " ")),
+    FilterOperator: eFilterOperator.EqualsTo,
+    MemberName: "Name",
   });
+  _SQ.Tab = Number(searchParams?.ActiveTab ?? 0);
+
+  const _response = (await TourService.searchTabs(
+    _SQ
+  )) as AxiosResponse<ITourResponse>;
 
   return (
     <>
@@ -61,7 +55,7 @@ const Destination = () => {
               <div className="text-center">
                 <h1 className="text-30 fw-600 text-white">
                   جميع الرحلات ضمن برنامج{" "}
-                  {decodeURIComponent(name.replaceAll("-", " "))}
+                  {decodeURIComponent(params?.name.replaceAll("-", " "))}
                 </h1>
               </div>
               {/* End text-center */}
@@ -90,8 +84,8 @@ const Destination = () => {
 
             <div className="border-top-light mt-30 mb-30"></div>
             <div className="row y-gap-30" id="top-list">
-              {isFetching && <TourListLoading columns={6} />}
-              {_response?.tours?.map((tour, index) => (
+              {/* {isFetching && <TourListLoading columns={6} />} */}
+              {_response?.data.tours?.map((tour, index) => (
                 <div className="col-12 col-lg-4 col-md-6" key={tour?.id}>
                   <div
                     data-aos={`${
@@ -113,6 +107,4 @@ const Destination = () => {
       </section>
     </>
   );
-};
-
-export default Destination;
+}

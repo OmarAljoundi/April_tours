@@ -1,3 +1,4 @@
+"use client";
 import useApiService from "@/hooks/useApiService";
 import { ILocationTours } from "@/models/interface/Location";
 import { ILocationToursResponse } from "@/models/interface/Response";
