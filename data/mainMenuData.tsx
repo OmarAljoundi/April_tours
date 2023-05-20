@@ -1,7 +1,7 @@
 export const homeItems = [
   {
     name: "عن ابريل تورز",
-    routePath: "/home/home_5",
+    routePath: "/about-us",
   },
   {
     name: "آراء العملاء",

@@ -1,15 +1,10 @@
 import { BlurImage } from "@/components/common/BlurImage";
 import SelectDestinaitons from "@/components/common/SelectDestinations";
 import { TourCard } from "@/components/common/TourCard";
-import Tours from "@/components/tours/Tours";
-import { TourListLoading } from "@/components/tours/tourList-loading";
-import { IContentResponse, ITourResponse } from "@/models/interface/Response";
+import { ITourResponse } from "@/models/interface/Response";
 import { SearchQuery, eFilterOperator } from "@/models/interface/Search";
-import ContentService from "@/services/ContentService";
 import TourService from "@/services/TourService";
 import { AxiosResponse } from "axios";
-import { Metadata } from "next";
-import { useParams, useSearchParams } from "next/navigation";
 
 export default async function Destination({
   params,
@@ -43,7 +38,7 @@ export default async function Destination({
       <section className="section-bg pt-80 pb-80 relative z-5">
         <div className="section-bg__item col-12">
           <BlurImage
-            image="/assets/img/banner/destination-banner.png"
+            image="/assets/img/banner/destination-banner.jpg"
             customClass="w-full h-full object-cover"
           />
         </div>

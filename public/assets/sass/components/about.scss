@@ -1,0 +1,51 @@
+.pd-top-80 {
+  padding-top: 80;
+}
+
+.section-title .title {
+  font-weight: 700;
+  margin-bottom: 0;
+}
+.section-title .title span {
+  color: var(--color-yellow-1);
+}
+.single-intro.style-two {
+  padding: 0 15px;
+}
+.single-intro.style-two .thumb {
+  margin-bottom: 20px;
+}
+.single-intro.style-two .intro-title {
+  position: relative;
+  margin-bottom: 30px;
+}
+.single-intro.style-two .intro-title:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -10px;
+  width: 50px;
+  height: 2px;
+  background: var(--color-yellow-1);
+}
+.single-intro p {
+  margin-bottom: 0;
+}
+
+.about-section-right-thumb {
+  position: relative;
+}
+.about-section-right-thumb img {
+  border-radius: 10px;
+}
+.about-section-right-thumb .about-absolute-thumb {
+  position: absolute;
+  left: -150px;
+  bottom: -50px;
+}
+.about-section-right-thumb img {
+  border-radius: 10px;
+}
+.padding-banner {
+  padding: 150px 0;
+}
