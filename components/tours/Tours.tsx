@@ -24,18 +24,14 @@ const Tours = () => {
     return (await onSearchTours(_SQ)) as ITourResponse;
   };
 
-  const { data: _response, isFetching } = useQuery(
-    "Tours",
-    () => fetchTours(),
-    {
-      refetchOnWindowFocus: false,
-      keepPreviousData: false,
-    }
-  );
+  const { data: _response, isLoading } = useQuery("Tours", () => fetchTours(), {
+    refetchOnWindowFocus: false,
+    keepPreviousData: false,
+  });
 
   return (
     <>
-      {isFetching && <TourListLoading columns={3} />}
+      {isLoading && <TourListLoading columns={3} />}
       <Swiper
         spaceBetween={30}
         modules={[Navigation, Pagination]}

@@ -29,6 +29,9 @@ export default function Page() {
           <BlurImage
             image="/assets/img/banner/about-1.jpg"
             customClass="w-full h-full object-cover"
+            loading="eager"
+            q={100}
+            priority="high"
           />
         </div>
         {/* End .section-bg__item */}

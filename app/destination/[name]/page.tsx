@@ -40,6 +40,9 @@ export default async function Destination({
           <BlurImage
             image="/assets/img/banner/destination-banner.jpg"
             customClass="w-full h-full object-cover"
+            priority="high"
+            loading="eager"
+            q={100}
           />
         </div>
         {/* End .section-bg__item */}

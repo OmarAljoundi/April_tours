@@ -18,7 +18,7 @@ import { persistor, store } from "@/store";
 import Footer from "@/components/footer";
 import { Toaster } from "react-hot-toast";
 import { usePathname } from "next/navigation";
-
+import NextTopLoader from "nextjs-toploader";
 type RootLayoutProp = {
   children: ReactNode;
 };
@@ -60,6 +60,17 @@ const RootLayout: FC<RootLayoutProp> = ({ children }) => {
             <QueryClientProvider client={queryClient}>
               <div id="__next">
                 <Header />
+                <NextTopLoader
+                  color="var(--color-yellow-1)"
+                  initialPosition={0.08}
+                  crawlSpeed={200}
+                  height={3}
+                  crawl={true}
+                  showSpinner={true}
+                  easing="ease"
+                  speed={200}
+                  shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+                />
                 {children}
                 <Footer />
               </div>

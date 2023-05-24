@@ -9,6 +9,7 @@ import ContentService from "@/services/ContentService";
 import { AxiosResponse } from "axios";
 import { Metadata } from "next";
 import Link from "next/link";
+import { Router } from "next/router";
 
 async function getInfo() {
   const res =
