@@ -8,13 +8,18 @@ export const TourCard: FC<{ tour: ITour }> = ({ tour }) => {
   return (
     <div className="package-card-alpha">
       <div className="package-thumb position-relative">
-        <div style={{ height: "270px", overflow: "hidden" }}>
+        <Link
+          scroll={false}
+          as={`/tours-list/${tour.name!.replaceAll(" ", "-")}`}
+          href={`/tours-list/${tour.name!.replaceAll(" ", "-")}`}
+          style={{ height: "270px", overflow: "hidden", display: "block" }}
+        >
           <BlurImage
             image={tour.imageUrl || ""}
             loading="eager"
             priority="low"
           />
-        </div>
+        </Link>
 
         <p className="card-lavel ">
           <span className="mr-10"> أيام +{tour?.numberOfDays}</span>

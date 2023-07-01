@@ -21,7 +21,7 @@ export const BlurImage: FC<{
   const [isLoading, setLoading] = useState(true);
   return (
     <div
-      className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8"
+      className="aspect-w-1 aspect-h-1 w-full overflow-hidden  bg-gray-200 xl:aspect-w-7 xl:aspect-h-8"
       style={{ width: width ?? "100%", height: height ?? "100%" }}
     >
       {width && height ? (

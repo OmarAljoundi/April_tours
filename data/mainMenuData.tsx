@@ -4,19 +4,26 @@ export const homeItems = [
     routePath: "/about-us",
   },
   {
-    name: "آراء العملاء",
-    routePath: "/home/home_4",
-  },
-  {
-    name: "تأشيرات",
-    routePath: "/home/home_3",
-  },
-  {
     name: "الوجهات السياحية",
     routePath: "/tours-list",
   },
   {
     name: "الرئيسية",
     routePath: "/",
+  },
+];
+
+export const MobileHomeItems = [
+  {
+    name: "الرئيسية",
+    routePath: "/",
+  },
+  {
+    name: "الوجهات السياحية",
+    routePath: "/tours-list",
+  },
+  {
+    name: "عن ابريل تورز",
+    routePath: "/about-us",
   },
 ];

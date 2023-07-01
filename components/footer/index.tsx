@@ -40,7 +40,7 @@ const Footer = () => {
                     </h5>
                     <ul className="footer-social-links justify-content-lg-end justify-content-center">
                       <li>
-                        <a href="#">
+                        <a href="https://www.instagram.com/apriltours1/">
                           <i
                             className="bx bxl-instagram text-22"
                             style={{ marginTop: "1px" }}
@@ -48,7 +48,7 @@ const Footer = () => {
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a href="https://www.facebook.com/apriltours1/">
                           <i
                             className="bx bxl-facebook text-22"
                             style={{ marginTop: "1px" }}
@@ -56,25 +56,9 @@ const Footer = () => {
                         </a>
                       </li>
                       <li>
-                        <a href="#">
-                          <i
-                            className="bx bxl-twitter text-22"
-                            style={{ marginTop: "1px" }}
-                          ></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
+                        <a href="wa.me/972544476226">
                           <i
                             className="bx bxl-whatsapp text-22"
-                            style={{ marginTop: "1px" }}
-                          ></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i
-                            className="bx bxl-pinterest-alt text-22"
                             style={{ marginTop: "1px" }}
                           ></i>
                         </a>
@@ -91,16 +75,10 @@ const Footer = () => {
                 </h4>
                 <ul className="footer-links text-right">
                   <li className="text-14 ">
-                    <a href="about.html">عن أبريل تورز</a>
+                    <Link href="about-us">عن أبريل تورز</Link>
                   </li>
                   <li className="text-14 ">
-                    <a href="package.html">الوجهات السياحية</a>
-                  </li>
-                  <li className="text-14 ">
-                    <a href="destination.html">التأشيرات</a>
-                  </li>
-                  <li className="text-14 ">
-                    <a href="guide.html">خدماتنا</a>
+                    <Link href="tours-list">الوجهات السياحية</Link>
                   </li>
                 </ul>
               </div>
