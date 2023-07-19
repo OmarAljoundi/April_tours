@@ -66,8 +66,9 @@ const TourCategories = () => {
                   <h4 className="text-dark-1 text-18 fw-500 mt-3 md:mt-30">
                     {item.type}
                   </h4>
-                  <p className="text-light-1 lh-14 text-14 mt-2" dir="rtl">
-                    {item.count} رحلات تبدأ من JOD {item.price}
+                  <p className="text-light-1 lh-14 text-14 mt-2 " dir="rtl">
+                    {item.count} رحلات تبدأ من{" "}
+                    <span className="english-font">USD {item.price}</span>
                   </p>
                 </div>
               </Link>

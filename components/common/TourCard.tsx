@@ -115,7 +115,7 @@ export const TourCard: FC<{ tour: ITour }> = ({ tour }) => {
               <div className="text-right  mt-10  mb-10">
                 <div className="text-12 text-light-1 ">إبتداء من </div>
                 <div className="text-18  lh-12 fw-600 english-font mt-1">
-                  JOD {tour?.price}
+                  USD {tour?.price}
                 </div>
                 <div className="text-14 text-light-1 ">للغرفة المزدوجة</div>
               </div>

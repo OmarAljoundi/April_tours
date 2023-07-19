@@ -105,7 +105,7 @@ export default function TourInfo({ tour }) {
                         <div className="d-flex x-gap-5 items-center">
                           <div className="text-15 text-light-1">
                             <span className="english-font">
-                              {tour?.price} JOD
+                              {tour?.price} USD
                             </span>{" "}
                             إبتداء من
                           </div>
