@@ -5,44 +5,44 @@ import { Suspense } from "react";
 import { TourListLoading } from "@/components/tours/tourList-loading";
 import TopBreadCrumb from "@/components/tours/TopBreadCrumb";
 
-export async function generateStaticParams() {
-  const response = await getDestination();
-  if (response.success && response.results && response.results.length > 0) {
-    return response.results.map((dest) => ({
-      destination: `${dest.slug}`,
-    }));
-  }
-  return [];
-}
+// export async function generateStaticParams() {
+//   const response = await getDestination();
+//   if (response.success && response.results && response.results.length > 0) {
+//     return response.results.map((dest) => ({
+//       destination: `${dest.slug}`,
+//     }));
+//   }
+//   return [];
+// }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { destination: string };
-}): Promise<Metadata> {
-  const slug = params.destination;
-  const response = await getDestination();
-  const destination = response?.results?.find(
-    (x) => x.slug == decodeURIComponent(slug)
-  );
-  if (destination) {
-    return {
-      title: destination?.seo?.title,
-      description: destination?.seo?.description,
-      openGraph: {
-        title: destination?.seo?.title || "",
-        description: destination?.seo?.description || "",
-        type: "website",
-        images: [destination.image ?? ""],
-        siteName: "April Tours",
-      },
-      keywords: destination.seo?.tags || "",
-    };
-  }
-  return {
-    title: "Error - Destination not found ",
-  };
-}
+// export async function generateMetadata({
+//   params,
+// }: {
+//   params: { destination: string };
+// }): Promise<Metadata> {
+//   const slug = params.destination;
+//   const response = await getDestination();
+//   const destination = response?.results?.find(
+//     (x) => x.slug == decodeURIComponent(slug)
+//   );
+//   if (destination) {
+//     return {
+//       title: destination?.seo?.title,
+//       description: destination?.seo?.description,
+//       openGraph: {
+//         title: destination?.seo?.title || "",
+//         description: destination?.seo?.description || "",
+//         type: "website",
+//         images: [destination.image ?? ""],
+//         siteName: "April Tours",
+//       },
+//       keywords: destination.seo?.tags || "",
+//     };
+//   }
+//   return {
+//     title: "Error - Destination not found ",
+//   };
+// }
 
 export default async function DestinationPage({
   params,
