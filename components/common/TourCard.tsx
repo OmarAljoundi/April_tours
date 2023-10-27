@@ -1,38 +1,52 @@
-import { ITour } from "@/models/interface/Tour";
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { BlurImage } from "./BlurImage";
+import { Tour } from "@/types/custom";
+import { Button, Card, Chip } from "@nextui-org/react";
+import { ArrowLeft } from "lucide-react";
 
-export const TourCard: FC<{ tour: ITour }> = ({ tour }) => {
+export const TourCard: FC<{ tour: Tour }> = ({ tour }) => {
+  const [mount, setMount] = useState(false);
+
+  useEffect(() => {
+    if (!mount) setMount(true);
+  }, [mount]);
+
+  if (!mount) return null;
+
   return (
-    <div className="package-card-alpha">
-      <div className="package-thumb position-relative">
+    <Card className="package-card-alpha">
+      <div className="package-thumb relative">
         <Link
           scroll={false}
-          as={`/tours-list/${tour.name!.replaceAll(" ", "-")}`}
-          href={`/tours-list/${tour.name!.replaceAll(" ", "-")}`}
+          as={`/tour/${tour.slug}`}
+          href={`/tour/${tour.slug}`}
           style={{ height: "270px", overflow: "hidden", display: "block" }}
         >
           <BlurImage
-            image={tour.imageUrl || ""}
+            image={
+              tour.images && tour.images.length > 0
+                ? tour.images[0]
+                : "/images/placeholder.svg"
+            }
             loading="eager"
             priority="low"
           />
         </Link>
 
-        <p className="card-lavel ">
-          <span className="mr-10"> أيام +{tour?.numberOfDays}</span>
+        <p className="card-lavel">
+          <span className=""> أيام +{tour?.number_of_days}</span>
           <i className="bi bi-clock"></i>{" "}
         </p>
       </div>
-      <div className="tourCard__content mt-10 px-2 py-1 position-relative">
+      <div className="tourCard__content mt-3 px-2 py-1 relative">
         <p className="card-lavel-type">
-          <div className="d-grid p-1" style={{ justifyItems: "center" }}>
+          <div className="grid p-1" style={{ justifyItems: "center" }}>
             <div>
               <Image
-                src={tour.tourType?.icon}
-                alt={tour.tourType.type}
+                src={tour.tour_type?.image}
+                alt={tour.tour_type?.name}
                 width={40}
                 height={40}
                 quality={100}
@@ -40,82 +54,65 @@ export const TourCard: FC<{ tour: ITour }> = ({ tour }) => {
                 fetchPriority="low"
               />
             </div>
-            <div className="text-10">{tour.tourType?.type}</div>
+            <div className="text-10">{tour.tour_type?.name}</div>
           </div>
         </p>
-        <div className="row justify-content-between align-items-start">
-          <div className="d-grid col-12">
-            <h3 className="text-22 lh-16 fw-500 text-right mt-10">
-              <span className="text-22 sm:text-20"> {tour?.name}</span> <br />
-              <div className="d-flex items-center lh-14 justify-content-end mb-1">
-                <div className="text-14 text-light-1 text-right">
-                  أيام +{tour?.numberOfDays}
-                </div>
-                <div className="size-3 bg-light-1 rounded-full ml-10 mr-10" />
-                <div className="text-14 text-light-1">
-                  {tour?.tourType?.type}
-                </div>
+        <div className="w-full p-3">
+          <div className="grid ">
+            <div className="text-ellipsis overflow-hidden line-clamp-1 max-w-[calc(100%-40px)]">
+              <span className="text-base">{tour?.name}</span>
+            </div>
+            <div className="flex items-center lh-14 justify-start mb-1">
+              <div className="text-14 text-light-1">
+                {tour?.tour_type?.name}
               </div>
-              <div className="mt-3">
-                <div className="d-flex justify-content-end gap-2 mt-2">
-                  {tour.startDay?.split(",").map((i, index) => (
-                    <div
-                      key={index}
-                      className="badge -blue-1 bg-blue-1-05 text-blue-1 text-12 py-10 "
-                      style={{
-                        width: 62,
-                        border: "2px solid var(--color-yellow-1)",
-                      }}
-                    >
-                      {i}
-                    </div>
-                  ))}
-                </div>
-                <div className="d-flex justify-content-end gap-2 mt-10 flex-wrap">
-                  {tour.tourCountries.length > 2 && (
-                    <div
-                      className="badge -blue-1 bg-blue-1-05 text-blue-1 text-12 py-10 english-font"
-                      style={{
-                        width: 62,
-                        height: "fit-content",
-                        border: "2px solid var(--color-yellow-1)",
-                      }}
-                    >
-                      + {tour.tourCountries.length - 2}
-                    </div>
-                  )}
-                  {tour.tourCountries.slice(0, 2).map((i, index) => (
-                    <div
-                      key={index}
-                      className="badge -blue-1 bg-blue-1-05 text-blue-1 text-12 py-10"
-                      style={{
-                        width: 65,
-                        height: "fit-content",
-                        border: "2px solid var(--color-yellow-1)",
-                      }}
-                    >
-                      {i.label}
-                    </div>
-                  ))}
-                </div>
+            </div>
+            <div className="mt-3">
+              <div className="flex justify-start gap-2 mt-2">
+                {(!tour.start_day || tour.start_day.length == 0) && (
+                  <Chip color="primary" className="rounded-md">
+                    كل يوم
+                  </Chip>
+                )}
+                {tour.start_day?.map((i, index) => (
+                  <Chip color="primary" className="rounded-md" key={index}>
+                    {i}
+                  </Chip>
+                ))}
               </div>
-            </h3>
-            <div className="d-flex justify-content-between align-items-end">
+              <div className="flex justify-start gap-2 mt-3 flex-wrap">
+                {tour.tour_countries.slice(0, 2).map((i, index) => (
+                  <Chip
+                    key={index}
+                    className="rounded-md"
+                    size="md"
+                    color="secondary"
+                  >
+                    {i}
+                  </Chip>
+                ))}
+                {tour.tour_countries.length > 2 && (
+                  <Chip className="rounded-md" size="md" color="secondary">
+                    {tour.tour_countries.length - 2} +
+                  </Chip>
+                )}
+              </div>
+            </div>
+            <div className="flex justify-between items-end">
               <div className="mb-3">
-                <Link
-                  scroll={false}
-                  as={`/tours-list/${tour.name!.replaceAll(" ", "-")}`}
-                  href={`/tours-list/${tour.name!.replaceAll(" ", "-")}`}
-                  className="mainSearch__submit button -dark-1 py-15 px-5 col-12 rounded-4 bg-blue-1 text-white text-12"
-                  style={{ height: "30px" }}
+                <Button
+                  as={Link}
+                  color="primary"
+                  href={`/tour/${tour.slug}`}
+                  endContent={<ArrowLeft />}
                 >
-                  <div className="bi bi-arrow-up-left mr-15 " /> عرض التفاصيل
-                </Link>
+                  عرض التفاصيل
+                </Button>
               </div>
-              <div className="text-right  mt-10  mb-10">
+              <div className="text-right  mt-2  mb-2">
                 <div className="text-12 text-light-1 ">إبتداء من </div>
-                <div className="text-18  lh-12 fw-600 english-font mt-1">
-                  USD {tour?.price}
+                <div className="text-18  lh-12 fw-600  mt-1">
+                  USD {tour?.price_double}
                 </div>
                 <div className="text-14 text-light-1 ">للغرفة المزدوجة</div>
               </div>
@@ -123,9 +120,6 @@ export const TourCard: FC<{ tour: ITour }> = ({ tour }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Card>
   );
 };
-<Link href="/" className="button -md -blue-1 bg-dark-1 text-white">
-  <i className="bi bi-arrow-up-left mr-15"></i> تفاصيل أكثر
-</Link>;

@@ -31,24 +31,24 @@ const Counter = () => {
     },
   ];
   return (
-    <>
+    <div className="grid grid-cols-2 gap-4">
       {blockContent.map((item) => (
         <div
-          className="col-sm-6"
+          className="w-full pr-4 pl-4 shadow-card"
           key={item.id}
           data-aos="fade"
           data-aos-delay={item.delayAnim}
         >
-          <div className="py-60 sm:py-30 text-center">
-            <div className="text-40 lg:text-30 lh-13 text-dark-1 fw-600 english-font">
+          <div className="py-14 sm:py-7 text-center">
+            <div className="text-xl lg:text-lg text-black">
               {item.number}
               {item.hasUnit}
             </div>
-            <div className="text-14 lh-14 text-light-1 mt-10">{item.meta}</div>
+            <div className="text-14 lh-14 text-light-1 mt-2">{item.meta}</div>
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

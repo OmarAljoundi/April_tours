@@ -10,7 +10,7 @@ const MainFilterSearchBox: FC<{ formik: FormikProps<HeaderSearch> }> = ({
   return (
     <>
       <div
-        className="mainSearch bg-white pt-20 pb-20 rounded-4 shadow-1 mt-35"
+        className="mainSearch bg-white pt-5 pb-20 rounded-4 shadow-1 mt-35"
         data-aos="fade-up"
         data-aos-delay="200"
         dir="rtl"

@@ -27,16 +27,16 @@ const BlockGuide = () => {
     },
   ];
   return (
-    <>
+    <div className="grid grid-cols-1 justify-items-center items-center justify-center  md:grid-cols-3 gap-3 gap-y-6">
       {blockContent.map((item) => (
         <div
-          className="col-lg-3 col-sm-6"
+          className="pr-4 pl-4"
           data-aos="fade"
           data-aos-delay={item.delayAnim}
           key={item.id}
         >
           <div className="featureIcon -type-1 ">
-            <div className="d-flex justify-center">
+            <div className="flex justify-center">
               <Image
                 src={item.icon}
                 alt="image"
@@ -49,7 +49,7 @@ const BlockGuide = () => {
             <div className="text-center mt-30">
               <h4 className="text-18 fw-500">{item.title}</h4>
               <p
-                className="text-15 mt-10"
+                className="text-15 mt-2"
                 dangerouslySetInnerHTML={{
                   __html: item.text,
                 }}
@@ -58,7 +58,7 @@ const BlockGuide = () => {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

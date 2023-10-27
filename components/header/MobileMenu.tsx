@@ -64,8 +64,8 @@ const MobileMenu = () => {
 
       <div className="pro-footer">
         <ContactInfo />
-        <div className="mt-10 text-right">
-          <h5 className="text-16 fw-500 mb-10">تابعنا على </h5>
+        <div className="mt-2 text-right">
+          <h5 className="text-16 fw-500 mb-2">تابعنا على </h5>
           <div className="d-flex x-gap-20 items-center justify-end">
             <Social />
           </div>

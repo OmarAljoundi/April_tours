@@ -1,16 +1,17 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
+import { useQuery } from "react-query";
+import { getTourTypes } from "@/lib/operations";
 import Link from "next/link";
-import { useAppSelector } from "@/hooks/useStoreService";
 import Image from "next/image";
-import { ITourType } from "@/models/interface/Tour";
 
 const TourCategories = () => {
-  const types = useAppSelector(
-    (o) => o.Store.TourTypesReducer?.TourTypes ?? []
+  const { data, isLoading } = useQuery(
+    "Types",
+    async () => await getTourTypes(),
+    { refetchInterval: false, refetchOnWindowFocus: false }
   );
-
   return (
     <>
       <Swiper
@@ -26,17 +27,10 @@ const TourCategories = () => {
         }}
         breakpoints={{
           300: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          500: {
             slidesPerView: 2,
             spaceBetween: 20,
           },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 22,
-          },
+
           1024: {
             slidesPerView: 3,
           },
@@ -45,57 +39,46 @@ const TourCategories = () => {
           },
         }}
       >
-        {types?.map((item: ITourType, index) => (
+        {data?.results?.map((item, index) => (
           <SwiperSlide key={item.id}>
             <div data-aos="fade" data-aos-delay={"100"}>
               <Link
                 scroll={false}
-                href={`/tours-list?type=${item.type}`}
-                className="tourTypeCard -type-1 d-block rounded-4 bg-blue-1-05 rounded-4"
+                href={`/tour-listing?type=${item.name}`}
+                className="tourTypeCard -type-1 block  bg-primary/10 rounded-sm"
               >
-                <div className="tourTypeCard__content text-center pt-60 pb-24 px-30">
+                <div className="tourTypeCard__content text-center pt-14 pb-6 px-7">
                   <Image
                     loading="lazy"
-                    src={item.icon}
+                    src={item.image}
                     width={50}
                     height={50}
-                    alt={item.type}
+                    alt={item.name}
                     className="m-auto"
                   />
 
-                  <h4 className="text-dark-1 text-18 fw-500 mt-3 md:mt-30">
-                    {item.type}
-                  </h4>
-                  <p className="text-light-1 lh-14 text-14 mt-2 " dir="rtl">
-                    {item.count} رحلات تبدأ من{" "}
-                    <span className="english-font">USD {item.price}</span>
-                  </p>
+                  <h4 className="text-black  text-lg mt-3 ">{item.name}</h4>
                 </div>
               </Link>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="col-auto">
-        <div className="d-flex x-gap-15 items-center justify-center mt-20">
-          <div className="col-auto">
-            <button className="d-flex items-center text-24 arrow-left-hover js-tour-type-prev">
-              <i className="icon icon-arrow-left" />
-            </button>
-          </div>
-          {/* End prev */}
-
-          <div className="col-auto">
-            <div className="pagination -dots text-border js-tour-type-pag" />
-          </div>
-          {/* End pagination */}
-
-          <div className="col-auto">
-            <button className="d-flex items-center text-24 arrow-right-hover js-tour-type-next">
+      <div className="w-auto">
+        <div className="flex gap-x-4 items-center justify-center mt-5">
+          <div className="w-auto">
+            <button className="flex items-center text-xl arrow-right-hover js-tour-type-prev">
               <i className="icon icon-arrow-right" />
             </button>
           </div>
-          {/* End next */}
+          <div className="w-auto">
+            <div className="pagination -dots text-border js-tour-type-pag" />
+          </div>
+          <div className="w-auto">
+            <button className="flex items-center text-xl arrow-left-hover  js-tour-type-next">
+              <i className="icon icon-arrow-left" />
+            </button>
+          </div>
         </div>
       </div>
     </>

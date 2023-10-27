@@ -1,11 +1,9 @@
 import { useEffect, useRef, FC } from "react";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import { Options, Splide, SplideSlide } from "@splidejs/react-splide";
-import { ITourImages } from "@/models/interface/Tour";
-import Image from "next/image";
 import { BlurImage } from "../common/BlurImage";
 
-const ImageSlides: FC<{ tourImages: ITourImages[]; mainImage?: string }> = ({
+const ImageSlides: FC<{ tourImages: string[]; mainImage?: string }> = ({
   tourImages,
   mainImage,
 }) => {
@@ -56,18 +54,19 @@ const ImageSlides: FC<{ tourImages: ITourImages[]; mainImage?: string }> = ({
   };
   return (
     <div style={{ width: "100%" }}>
-      {tourImages?.length == 0 ? (
+      {tourImages?.length == 1 ? (
         <BlurImage image={mainImage} height={400} />
       ) : (
         <>
           <Splide
+            dir="ltr"
             options={sliderOptions}
             ref={mainSliderRef}
             className="main-slider"
           >
             {tourImages?.map((o, i) => (
               <SplideSlide key={i}>
-                <BlurImage image={o.imageUrl} height={300} />
+                <BlurImage image={o} height={300} />
               </SplideSlide>
             ))}
           </Splide>
@@ -80,7 +79,7 @@ const ImageSlides: FC<{ tourImages: ITourImages[]; mainImage?: string }> = ({
             >
               {tourImages?.map((o, i) => (
                 <SplideSlide key={i}>
-                  <BlurImage image={o.imageUrlThumb} width={120} height={63} />
+                  <BlurImage image={o} width={120} height={63} />
                 </SplideSlide>
               ))}
             </Splide>

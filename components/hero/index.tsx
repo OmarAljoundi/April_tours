@@ -1,68 +1,15 @@
 "use client";
-import { HeaderSearch } from "@/models/interface/HeaderSearch";
-import MainFilterSearchBox from "./MainFilterSearchBox";
-import { useFormik } from "formik";
 import { BlurImage } from "../common/BlurImage";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
-export const dynamic = "force-dynamic";
+import Filter from "../filter/filter";
 
 const Hero = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams as any);
-      params.set(name, value);
-
-      return `${params.toString()}&`;
-    },
-    [searchParams]
-  );
-  const getInitHeaderSearch = () => {
-    var initHeader: HeaderSearch = {};
-    return initHeader;
-  };
-  const handleFormSubmit = async () => {
-    const { period, countries, types } = formik.values;
-    var path = "";
-    if (period && period.length > 0) {
-      path += createQueryString(
-        "durations",
-        formik.values.period.map((o) => o.label).join(",")
-      );
-    } else {
-      //searchParams.delete("durations");
-    }
-
-    if (countries && countries.length > 0) {
-      path += createQueryString(
-        "countries",
-        formik.values.countries.map((o) => o.label).join(",")
-      );
-    } else {
-      // searchParams.delete("countries");
-    }
-
-    router.push(("/tours-list" + "?" + path) as any);
-    //navigateSearch("/tours-list", searchParams);
-  };
-  const formik = useFormik({
-    onSubmit: handleFormSubmit,
-    initialValues: getInitHeaderSearch(),
-    enableReinitialize: true,
-  });
   return (
-    <section className="masthead -type-10">
+    <section className="masthead -type-10 pb-0 lg:pb-52">
       <div className="container-1500">
-        <div className="row">
-          <div className="col-lg-auto">
+        <div className="flex  justify-end ">
+          <div className="max-w-xl">
             <div className="masthead__content text-right">
-              <h1
-                className="text-30 lg:text-20 sm:text-25"
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
+              <h1 className="text-3xl" data-aos="fade-up" data-aos-delay="100">
                 اكتشف المغامرات الجديدة{" "}
               </h1>
               <p
@@ -74,9 +21,8 @@ const Hero = () => {
                 استكشف أجمل الوجهات السياحية في العالم وعش تجربة لا تُنسى. احجز
                 رحلتك الآن واستعد للمغامرة{" "}
               </p>
-              <div data-aos="fade-up" data-aos-delay="300">
-                <MainFilterSearchBox formik={formik} />
-                {/* End filter content */}
+              <div className="mt-5" data-aos="fade-up" data-aos-delay="300">
+                <Filter onChange={false} />
               </div>
             </div>
           </div>
@@ -87,7 +33,7 @@ const Hero = () => {
           data-aos="fade-left"
           data-aos-delay="500"
         >
-          <div className="row y-gap-30 flex-nowrap">
+          <div className="flex gap-x-5 flex-nowrap">
             <div className="col-auto">
               <BlurImage
                 image="/assets/img/hero/1.jpg"
@@ -103,7 +49,7 @@ const Hero = () => {
             <div className="col-auto">
               <BlurImage
                 image="/assets/img/hero/2.jpg"
-                customClass="rounded-lg"
+                customClass="rounded-lg lg:opacity-20 2xl:opacity-100 "
                 width={290}
                 height={560}
                 loading="eager"

@@ -1,85 +1,36 @@
-"use client";
-import Header from "@/components/header";
-import Aos from "aos";
-import "aos/dist/aos.css";
-import { FC, ReactNode, useEffect, useLayoutEffect } from "react";
-import "boxicons/css/boxicons.min.css";
-import "@/public/assets/index.scss";
-import "@/public/assets/globals.css";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "swiper/css/scrollbar";
-import "swiper/css/effect-cards";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/es/integration/react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { persistor, store } from "@/store";
-import Footer from "@/components/footer";
-import { Toaster } from "react-hot-toast";
-import { usePathname } from "next/navigation";
-import NextTopLoader from "nextjs-toploader";
+export const dynamic = "force-dynamic";
+import CustomerProvider from "@/provider/customer-provider";
+import { headers } from "next/headers";
+import { FC, ReactNode } from "react";
+import { Toaster } from "sonner";
+import StyledJsxRegistry from "./registry";
+import { Cairo } from "next/font/google";
+import { cn } from "@/lib/utils";
+import "./globals.css";
 type RootLayoutProp = {
   children: ReactNode;
 };
-const queryClient = new QueryClient();
-
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  display: "swap",
+  preload: true,
+  style: "normal",
+  weight: ["1000", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 const RootLayout: FC<RootLayoutProp> = ({ children }) => {
-  useEffect(() => {
-    Aos.init({
-      duration: 1200,
-      once: true,
-    });
-  }, []);
-
-  useLayoutEffect(() => {
-    if (typeof window !== "undefined") {
-      require("bootstrap/dist/js/bootstrap");
-    }
-  }, []);
-
-  const pathname = usePathname();
-
-  useEffect(() => {
-    // some browsers (like safari) may require a timeout to delay calling this
-    // function after a page has loaded; otherwise, it may not update the position
-    window.scrollTo({
-      behavior: "instant" as any,
-      left: 0,
-      top: 0,
-    });
-  }, [pathname]);
+  const headersList = headers();
 
   return (
-    <html lang="en">
-      <head></head>
-      <body>
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <Toaster />
-            <QueryClientProvider client={queryClient}>
-              <div id="__next">
-                <Header />
-                <NextTopLoader
-                  color="var(--color-yellow-1)"
-                  initialPosition={0.08}
-                  crawlSpeed={200}
-                  height={3}
-                  crawl={true}
-                  showSpinner={true}
-                  easing="ease"
-                  speed={200}
-                  shadow="0 0 10px #2299DD,0 0 5px #2299DD"
-                />
-                {children}
-                <Footer />
-              </div>
-            </QueryClientProvider>
-          </PersistGate>
-        </Provider>
-        {/* <ScrollToTop /> */}
-        {/* <CallToActions /> */}
-        {/* End Call To Actions Section */}
+    <html dir={headersList.get("x-dir")} style={{ height: "100%" }}>
+      <body className={cn("h-full", cairo.className)}>
+        <Toaster position="top-right" expand={true} richColors />
+        {headersList.get("x-dir") == "rtl" ? (
+          <StyledJsxRegistry>
+            <CustomerProvider>{children}</CustomerProvider>
+          </StyledJsxRegistry>
+        ) : (
+          <> {children}</>
+        )}
       </body>
     </html>
   );

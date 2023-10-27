@@ -7,7 +7,7 @@ const ContactForm = () => {
   };
 
   return (
-    <form className="row y-gap-20 pt-20" onSubmit={handleSubmit}>
+    <form className="row y-gap-20 pt-5" onSubmit={handleSubmit}>
       <div className="col-12">
         <div className="form-input">
           <input type="text" id="name" required />

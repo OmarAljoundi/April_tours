@@ -5,16 +5,16 @@ import Image from "next/image";
 export default function AboutUs() {
   return (
     <>
-      <div className="intro-area md:pt-40 md:pb-40 pt-80 pb-80">
+      <div className="intro-area md:pt-20 pt-10 pb-10  md:pb-20 overflow-hidden">
         <div className="container">
-          <div className="section-title text-lg-center text-left md:mb-40 mb-80">
-            <h2 className="title text-30 md:text-right lg:text-center ">
+          <div className="section-title lg:text-center text-left md:mb-20 mb-10">
+            <h2 className="title text-2xl md:text-3xl lg:text-right text-center ">
               <span>ماذا تقدم </span> أبريل للسياحة؟
             </h2>
           </div>
-          <div className="row y-gap-50">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-9">
             {content_bullets.map((i) => (
-              <div className="col-lg-3 col-md-6" key={i.title}>
+              <div key={i.title}>
                 <div className="single-intro style-two">
                   <div className="thumb">
                     <Image
@@ -39,42 +39,39 @@ export default function AboutUs() {
         </div>
       </div>
 
-      <div className="about-section pb-80">
+      <div className="about-section overflow-hidden">
         <div className="container">
-          <div className="row">
-            <div className="col-lg-5 align-self-center">
-              <div className="thumb about-section-right-thumb mb-50">
-                <div className=" citiesCard__image ratio ratio-1:1">
+          <div className="grid grid-cols-12 gap-y-8 gap-x-8">
+            <div className="col-span-12 lg:col-span-7">
+              <div className="section-title mb-lg-0 px-[10px]">
+                <h2 className="title text-xl md:text-2xl text-right">
+                  أبدأ رحلتك في السفر
+                </h2>
+                <h3 className="text-secondary mt-2 text-3xl">مع أبريل تورز</h3>
+
+                <p dir="rtl" className="whitespace-pre-line mt-5 text-base">
+                  {about_content}
+                </p>
+              </div>
+            </div>
+            <div className="col-span-12 lg:col-span-5 align-self-center">
+              <div className="thumb about-section-right-thumb mb-12">
+                <div className="citiesCard__image  rounded-b-none ratio aspect-[1/1]">
                   <BlurImage
                     image="/assets/img/custom/person_abt.png"
                     loading="eager"
                     priority="low"
+                    customClass="rounded-b-none"
                   />
                 </div>
                 <Image
-                  className="about-absolute-thumb d-block lg:d-none"
+                  className="absolute -left-5 -bottom-5 lg:block hidden w-52 h-52"
                   src="/assets/img/custom/ticket.png"
                   alt="img"
                   width={300}
                   height={200}
                   quality={100}
                 />
-              </div>
-            </div>
-            <div className="col-lg-5  offset-lg-2">
-              <div className="section-title mb-lg-0">
-                <h2 className="title text-40 md:text-30 text-right">
-                  أبدأ رحلتك في السفر
-                  <br />
-                  <span className="secondary-font text-50">مع أبريل تورز</span>
-                </h2>
-                <p
-                  className="text-right text-15 mt-20"
-                  dir="rtl"
-                  style={{ whiteSpace: "pre-line" }}
-                >
-                  {about_content}
-                </p>
               </div>
             </div>
           </div>

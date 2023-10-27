@@ -1,63 +1,53 @@
-import { ITour } from "@/models/interface/Tour";
+import { Tour } from "@/types/custom";
+import { Card } from "@nextui-org/react";
+import { Check, Dot, X } from "lucide-react";
 import React, { FC } from "react";
-const Overview: FC<{ tour: ITour }> = ({ tour }) => {
+const Overview: FC<{ tour: Tour }> = ({ tour }) => {
   return (
-    <>
-      {tour?.additionalInfo && (
-        <div className="row x-gap-40 y-gap-40">
-          <div className="col-12">
-            <h3 className="text-36 fw-500 text-right">
-              معلومات عامة عن الرحلة
-            </h3>
-
-            <p className="text-dark-1 text-15 mt-20">{tour?.additionalInfo}</p>
-          </div>
-        </div>
-      )}
-
-      <div className={` ${tour?.additionalInfo ? "border-top-light" : ""}`}>
-        <div className="row x-gap-40 y-gap-40 ">
-          <div className="col-12">
-            <h3 className="text-36 fw-500 text-right">البرنامج يشمل التالي</h3>
-
-            <div className="row x-gap-40 y-gap-40 pt-20">
-              <div className="col-md-6 border-right-light">
-                {tour?.tourExcludes.map((i, index) => (
-                  <div
-                    className="text-dark-1 text-18 text-right d-flex justify-content-end"
-                    key={index}
-                  >
-                    <span dir="rtl">
-                      {i.title} <br />
-                      <small className="text-blue-1 text-14">
-                        ( {i.details.split(",").join(" ، ")} )
-                      </small>
-                    </span>
-                    <i className="icon-close text-red-2 text-10 ml-10 mt-10 fw-bold"></i>
-                  </div>
-                ))}
+    <Card className="mt-2 p-4 rounded-sm">
+      <h4 className="mb-0 text-2xl  ">مميزات البرنامج</h4>
+      <div className="border border-dashed my-5"></div>
+      <h6 className="mb-4  "> ما يشمله البرنامج </h6>
+      <ul className="flex flex-col gap-4 mb-2">
+        {tour?.tour_includes?.map((i) => (
+          <li key={i.uuid}>
+            <div className="flex items-start gap-4">
+              <div className="w-6 h-6 grid place-content-center rounded-full shrink-0 bg-green-700">
+                <Check className="las w-6 h-6 p-1 text-lg text-white" />
               </div>
-              <div className="col-md-6 ">
-                {tour?.tourIncludes.map((i, index) => (
-                  <div
-                    className="text-dark-1 text-18 text-right d-flex justify-content-end"
-                    key={index}
-                  >
-                    <span dir="rtl">
-                      {i.title} <br />
-                      <small className="text-blue-1 text-14">
-                        ( {i.details.split(",").join(" ، ")} )
-                      </small>
-                    </span>
-                    <i className="icon-check text-10 ml-10 mt-10 text-green-2 fw-bold"></i>
+              <div className="grid items-start">
+                <span className="font-bold ">{i.title}</span>
+                <span className="inline-block  ">
+                  <div className="grid items-center flex-wrap">
+                    {i.description.split(",").map((i) => (
+                      <div className="flex items-center" key={i}>
+                        <div>
+                          <Dot className="text-green-900 w-6 h-6" />
+                        </div>
+                        <div>{i}</div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </span>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </>
+          </li>
+        ))}
+      </ul>
+      <h6 className="mb-4  "> ما لايشمله البرنامج </h6>
+      <ul className="flex flex-col gap-4 mb-2">
+        {tour?.tour_excludes?.map(({ uuid, description, title }) => (
+          <li key={uuid}>
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 grid place-content-center rounded-full shrink-0 bg-red-500/80">
+                <X className="p-1 text-white" />
+              </div>
+              <span className="inline-block ">{description}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </Card>
   );
 };
 

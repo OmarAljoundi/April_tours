@@ -1,4 +1,3 @@
-import { useAppSelector } from "@/hooks/useStoreService";
 import { HeaderSearch } from "@/models/interface/HeaderSearch";
 import {
   PriceRangeForSearch,
@@ -11,9 +10,6 @@ import { FC, useRef, useState } from "react";
 const DropdownSelelctBar: FC<{ formik: FormikProps<HeaderSearch> }> = ({
   formik,
 }) => {
-  const tour_types = useAppSelector(
-    (o) => o.Store.TourTypesReducer?.TourTypes ?? []
-  );
   const countriesRef = useRef(null);
   const durationRef = useRef(null);
   const typesRef = useRef(null);
@@ -109,7 +105,7 @@ const DropdownSelelctBar: FC<{ formik: FormikProps<HeaderSearch> }> = ({
           <div className="dropRating dropdown-menu" ref={typesRef}>
             <div className="px-20 py-20 rounded-4 bg-white border-light">
               <h5 className="text-15 fw-500 mb-15 text-right">نوع الرحلة</h5>
-              <div className="sidebar-checkbox">
+              {/* <div className="sidebar-checkbox">
                 {tour_types.map((item) => (
                   <div
                     key={item.type}
@@ -153,7 +149,7 @@ const DropdownSelelctBar: FC<{ formik: FormikProps<HeaderSearch> }> = ({
                     </div>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
           {/* End dropdown-menu */}

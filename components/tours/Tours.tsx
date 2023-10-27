@@ -1,37 +1,31 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
-import toursData from "../../data/tours";
 import { useQuery } from "react-query";
-import { OverlayTrigger, Popover, Tooltip } from "react-bootstrap";
-import useApiService from "@/hooks/useApiService";
-import { SearchQuery } from "@/models/interface/Search";
-import { ITourResponse } from "@/models/interface/Response";
 import { TourCard } from "../common/TourCard";
 import { TourListLoading } from "./tourList-loading";
+import { getTours } from "@/lib/operations";
 
 const Tours = () => {
-  const { onSearchTours, loading } = useApiService();
-
-  const fetchTours = async () => {
-    var _SQ: SearchQuery = {
-      FilterByOptions: [],
-      OrderByOptions: [],
-      PageIndex: 0,
-      PageSize: 6,
-    };
-
-    return (await onSearchTours(_SQ)) as ITourResponse;
-  };
-
-  const { data: _response, isLoading } = useQuery("Tours", () => fetchTours(), {
-    refetchOnWindowFocus: false,
-    keepPreviousData: false,
-  });
+  const { data: _response, isLoading } = useQuery(
+    "Tours",
+    async () => await getTours(),
+    {
+      refetchOnWindowFocus: false,
+      keepPreviousData: false,
+      select: (data) => {
+        return data.slice(0, 6);
+      },
+    }
+  );
 
   return (
     <>
-      {isLoading && <TourListLoading columns={3} />}
+      {isLoading && (
+        <div className="grid md:grid-cols-2 gap-5 lg:grid-cols-3">
+          <TourListLoading columns={3} />
+        </div>
+      )}
       <Swiper
         spaceBetween={30}
         modules={[Navigation, Pagination]}
@@ -60,7 +54,7 @@ const Tours = () => {
           },
         }}
       >
-        {_response?.tours?.map((item, index) => (
+        {_response?.map((item, index) => (
           <SwiperSlide key={item.id} style={{ padding: "10px" }}>
             <div
               key={item?.id}
@@ -76,26 +70,22 @@ const Tours = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-
-      <div className="d-flex x-gap-15 items-center justify-center pt-40 sm:pt-20">
-        <div className="col-auto">
-          <button className="d-flex items-center text-24 arrow-left-hover js-populars-tour-prev">
-            <i className="icon icon-arrow-left" />
-          </button>
+      <div className="w-auto mb-5">
+        <div className="flex gap-x-4 items-center justify-center mt-5">
+          <div className="w-auto">
+            <button className="d-flex items-center text-xl arrow-right-hover js-populars-tour-prev">
+              <i className="icon icon-arrow-right" />
+            </button>
+          </div>
+          <div className="w-auto">
+            <div className="pagination -dots text-border js-tour-pag_active" />
+          </div>
+          <div className="w-auto">
+            <button className="flex items-center text-xl arrow-left-hover  js-populars-tour-next">
+              <i className="icon icon-arrow-left" />
+            </button>
+          </div>
         </div>
-        {/* End arrow prev */}
-
-        <div className="col-auto">
-          <div className="pagination -dots text-border js-tour-pag_active" />
-        </div>
-        {/* End arrow pagination */}
-
-        <div className="col-auto">
-          <button className="d-flex items-center text-24 arrow-right-hover js-populars-tour-next">
-            <i className="icon icon-arrow-right" />
-          </button>
-        </div>
-        {/* End arrow next */}
       </div>
     </>
   );

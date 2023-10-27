@@ -1,94 +1,67 @@
 "use client";
-import { useEffect, useState } from "react";
 import MainMenu from "./MainMenu";
-import MobileMenu from "./MobileMenu";
 import Link from "next/link";
-import { useAppDispatch } from "@/hooks/useStoreService";
-import { setTourTypes } from "@/store/TourTypes/tourType-action";
-import { ITourType } from "@/models/interface/Tour";
-import useApiService from "@/hooks/useApiService";
 import Image from "next/legacy/image";
+import {
+  Button,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@nextui-org/react";
+import { MenuSquare } from "lucide-react";
+import { useCallback, useState } from "react";
 
 const Header = () => {
-  const [navbar, setNavbar] = useState(false);
-  const dispatch = useAppDispatch();
-  const { loading, onGetTourTypes } = useApiService();
+  const [isOpen, setIsOpen] = useState(false);
 
-  const changeBackground = () => {
-    if (window.scrollY >= 10) {
-      setNavbar(true);
-    } else {
-      setNavbar(false);
-    }
-  };
-
-  useEffect(() => {
-    onGetTourTypes(true).then((response: ITourType[]) => {
-      dispatch(setTourTypes(response));
-    });
-    window.addEventListener("scroll", changeBackground);
+  const handleOpen = useCallback(() => {
+    setIsOpen(false);
   }, []);
-
   return (
-    <>
-      <header className={`header -type-5 ${navbar ? "-header-5-sticky" : ""}`}>
-        <div className="header__container container">
-          <div className="row justify-end items-center">
-            <div className="col-auto mobile-col">
-              <div className="d-flex items-center flex-row-reverse ">
-                <div className="mr-20 d-flex items-center">
-                  <button
-                    className="items-center icon-menu text-dark-1 text-20 d-none md:d-flex lg:d-flex xl:d-flex"
-                    data-bs-toggle="offcanvas"
-                    aria-controls="mobile-sidebar_menu"
-                    data-bs-target="#mobile-sidebar_menu"
-                  ></button>
-
-                  <div
-                    className="offcanvas offcanvas-start  mobile_menu-contnet"
-                    tabIndex={-1}
-                    id="mobile-sidebar_menu"
-                    aria-labelledby="offcanvasMenuLabel"
-                    data-bs-scroll="true"
-                  >
-                    <MobileMenu />
-                    {/* End MobileMenu */}
-                  </div>
-                </div>
-                {/* humberger menu */}
-                <Link href={"/"}>
-                  <Image
-                    src="/assets/img/logo/main-logo.png"
-                    alt="April Tours Logo"
-                    width={150}
-                    height={90}
-                    layout="fixed"
-                    objectFit="contain"
-                    quality={100}
-                    className="ease-in-out group-hover:opacity-75"
-                  />
-                </Link>
-                {/* End logo */}
-
-                <div className="header-menu d-flex md:d-none lg:d-none xl:d-none">
-                  <div className="header-menu__content">
-                    <MainMenu style="text-dark-1" />
-                  </div>
-                </div>
-                {/* End header-menu */}
-              </div>
-              {/* End d-flex */}
-            </div>
-            {/* End col */}
-
-            {/* End col-auto */}
+    <header className={`container`} style={{ position: "relative" }}>
+      <div
+        className={`flex justify-between sm:justify-start gap-x-2 items-center`}
+      >
+        <Link className="block" href={"/"}>
+          <Image
+            src="/assets/img/logo/main-logo.png"
+            alt="April Tours Logo"
+            width={150}
+            height={90}
+            layout="fixed"
+            objectFit="contain"
+            quality={100}
+            className="ease-in-out group-hover:opacity-75"
+          />
+        </Link>
+        <div>
+          <div className="hidden sm:block">
+            <MainMenu handleOpen={handleOpen} />
           </div>
-          {/* End .row */}
+          <div className="block sm:hidden px-2">
+            <Popover
+              placement="right"
+              showArrow={true}
+              offset={10}
+              isOpen={isOpen}
+              onOpenChange={(open) => setIsOpen(open)}
+            >
+              <PopoverTrigger>
+                <Button variant="ghost" isIconOnly>
+                  <MenuSquare />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <MainMenu
+                  classes="flex-col gap-y-1 divide-y-2"
+                  handleOpen={handleOpen}
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
         </div>
-        {/* End header_container */}
-      </header>
-      {/* // End header */}
-    </>
+      </div>
+    </header>
   );
 };
 

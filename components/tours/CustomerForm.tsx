@@ -1,32 +1,34 @@
-import useApiService from "@/hooks/useApiService";
-import { ICustomer, eContactMethod } from "@/models/interface/Customer";
-import { ICustomerResponse } from "@/models/interface/Response";
+import { eContactMethod, eCustomerStatus } from "@/models/interface/Customer";
 import { __initialValues__Customer } from "@/utils/Constant";
 import { FormikHelpers, useFormik } from "formik";
 import { FC } from "react";
 import * as yup from "yup";
 import "yup-phone";
-import { Input } from "../common/Input";
-import { CustomPhoneInput } from "../common/PhoneInput";
 import { Select } from "../common/Select";
-import { notifySuccess } from "@/services/toaster";
+import { Customer } from "@/types/custom";
+import { submitForm } from "@/lib/operations";
+import { toast } from "sonner";
+import { Button, Input, SelectItem } from "@nextui-org/react";
+import CustomSelect from "../next-ui/custom-select";
 export const CustomerForm: FC<{ tourId: number }> = ({ tourId }) => {
-  const { loading, onSubmitForm } = useApiService();
   const handleSubmitForm = async (
-    values: ICustomer,
-    formikHelpers: FormikHelpers<ICustomer>
+    values: Customer,
+    formikHelpers: FormikHelpers<Customer>
   ) => {
-    values.tourId = tourId;
-    var result = (await onSubmitForm(values)) as ICustomerResponse;
+    values.tour_id = tourId;
+    var result = await submitForm(values);
 
     if (result.success) {
-      notifySuccess("سيتم التواصل معك في أقرب وقت");
+      toast.success("سيتم التواصل معك في أقرب وقت");
       formikHelpers.resetForm();
     }
   };
 
   const formik = useFormik({
-    initialValues: __initialValues__Customer,
+    initialValues: {
+      tour_id: tourId,
+      status: eCustomerStatus.Pending,
+    },
     onSubmit: handleSubmitForm,
     validateOnChange: true,
     validationSchema: Schema,
@@ -34,35 +36,53 @@ export const CustomerForm: FC<{ tourId: number }> = ({ tourId }) => {
 
   const { values, handleBlur, handleChange, touched, errors } = formik;
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit} className="grid gap-y-5">
       <Input
         type="text"
-        placeholder="الإسم"
+        placeholder="يرجى إدخال الإسم"
         label="الإسم"
+        variant="bordered"
         value={values.name}
         name="name"
         onBlur={handleBlur}
         onChange={handleChange}
-        error={!!touched.name && !!errors.name}
-        helperText={touched.name && errors.name}
-        dir="rtl"
-        additionalClass="md:text-16 md:text-14 text-right"
+        isInvalid={!!touched.name && !!errors.name}
+        errorMessage={touched.name && errors.name}
+        labelPlacement="outside"
       />
-      <CustomPhoneInput
-        country={"jo"}
-        value={values.phoneNumber}
-        inputClass="text-16 md:text:14 phone-padding w-100"
-        onChange={(phone) => formik.setFieldValue("phoneNumber", phone)}
+      <Input
+        variant="bordered"
+        value={values.phone_number}
+        onChange={(phone) =>
+          formik.setFieldValue("phone_number", phone.target.value)
+        }
         label="رقم الهاتف"
-        error={!!touched.phoneNumber && !!errors.phoneNumber}
-        helperText={touched.phoneNumber && errors.phoneNumber}
+        placeholder="يرجى ادخال رقم الهاتف"
+        isInvalid={!!touched.phone_number && !!errors.phone_number}
+        errorMessage={touched.phone_number && errors.phone_number}
+        classNames={{
+          input: "placeholder:text-right",
+        }}
+        dir="ltr"
+        labelPlacement="outside"
       />
-      <Select
-        type="text"
+      <CustomSelect
+        variant="bordered"
         placeholder="طريقة التواصل المفضلة"
         label="طريقة التواصل المفضلة"
-        additionalClass="md:text-16 md:text-14 text-right"
-        options={[
+        value={values.contact_method}
+        name="contactMethod"
+        selectorIcon={<></>}
+        onBlur={handleBlur}
+        className="text-right"
+        classNames={{
+          value: "text-right",
+        }}
+        onChange={handleChange}
+        labelPlacement="outside"
+        dir="rtl"
+      >
+        {[
           {
             label: "Whatsapp",
             value: eContactMethod.WhatsApp,
@@ -71,13 +91,15 @@ export const CustomerForm: FC<{ tourId: number }> = ({ tourId }) => {
             label: "Call",
             value: eContactMethod.Call,
           },
-        ]}
-        value={values.contactMethod}
-        name="contactMethod"
-        onBlur={handleBlur}
-        onChange={handleChange}
-      />
+        ].map((x) => (
+          <SelectItem key={x.value} value={x.value}>
+            {x.label}
+          </SelectItem>
+        ))}
+      </CustomSelect>
       <Input
+        variant="bordered"
+        labelPlacement="outside"
         type="text"
         placeholder="ملاحظات أخرى"
         label="ملاحظات أخرى"
@@ -86,24 +108,11 @@ export const CustomerForm: FC<{ tourId: number }> = ({ tourId }) => {
         onBlur={handleBlur}
         onChange={handleChange}
         dir="rtl"
-        additionalClass="md:text-16 md:text-14 text-right"
       />
-      <div className="mt-10">
-        <button
-          className="mainSearch__submit button -dark-1 py-10 px-5 col-12 rounded-4 bg-blue-1 text-white text-16"
-          type="submit"
-        >
-          {loading ? (
-            <span
-              className="spinner-border spinner-border-sm mr-10"
-              role="status"
-              aria-hidden="true"
-            ></span>
-          ) : (
-            <div className="bi bi-arrow-up-left mr-15 "></div>
-          )}
-          {loading ? "جاري الإرسال" : "إرســال"}
-        </button>
+      <div className="mt-2">
+        <Button color="primary" type="submit">
+          {"إرســال"}
+        </Button>
       </div>
     </form>
   );

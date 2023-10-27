@@ -1,15 +1,16 @@
-import { useAppSelector } from "@/hooks/useStoreService";
-import { ITourType } from "@/models/interface/Tour";
+import { getTourTypes } from "@/lib/operations";
 import Image from "next/image";
 import Link from "next/link";
+import { useQuery } from "react-query";
 
 const Footer = () => {
-  const types = useAppSelector(
-    (o) => o.Store.TourTypesReducer?.TourTypes ?? []
-  );
+  const { data } = useQuery("Types", async () => await getTourTypes(), {
+    refetchInterval: false,
+    refetchOnWindowFocus: false,
+  });
   return (
-    <div className="footer-area overflowHidden">
-      <div className="footer-main-wrapper">
+    <div className="footer-area overflow-hidden">
+      <div className="footer-main-wrapper pt-10">
         <div className="footer-vactor">
           <Image
             src="/assets/img/banner/footer-bg.png"
@@ -18,31 +19,24 @@ const Footer = () => {
             height={568}
           />
         </div>
-        <div className="container overflowHidden">
-          <div className="row justify-content-center  flex-row-reverse row-footer">
-            <div className="col-lg-4 text-white">
+        <div className="container mx-auto sm:px-4 overflow-hidden">
+          <div className="grid grid-cols-2 md:grid-cols-4 justify-items-start justify-center gap-x-8 gap-y-10 lg:px-0 px-5">
+            <div className="text-white">
               <div className="footer-widget">
-                <h4 className="footer-widget-title text-right text-16 ">
-                  عن أبريل تورز
-                </h4>
-                <div
-                  className="footer-about text-lg-start text-center"
-                  style={{ paddingTop: "12px" }}
-                >
-                  <p className="text-white text-right text-14 " dir="rtl">
+                <h4 className="text-right text-base ">عن أبريل تورز</h4>
+                <div className="footer-about pt-3 text-center">
+                  <p className="text-white text-right text-sm">
                     شركة إبريل تورز هي وكالة سفريات كاملة الخدمات في مدينة القدس
                     تقوم بتوفير جميع خدمات السفر لجميع أنحاء العالم، ايضاً باقات
                     سياحية صادرة بخدمات فاخرة ومستوى عالي من القيم.
                   </p>
                   <div className="footer-social-wrap">
-                    <h5 className="text-right text-16 " dir="rtl">
-                      تابعنا على :
-                    </h5>
-                    <ul className="footer-social-links justify-content-lg-end justify-content-center">
+                    <h5 className="text-right text-base">تابعنا على :</h5>
+                    <ul className="footer-social-links flex justify-start gap-x-2">
                       <li>
                         <a href="https://www.instagram.com/apriltours1/">
                           <i
-                            className="bx bxl-instagram text-22"
+                            className="bx bxl-instagram text-base"
                             style={{ marginTop: "1px" }}
                           ></i>
                         </a>
@@ -50,7 +44,7 @@ const Footer = () => {
                       <li>
                         <a href="https://www.facebook.com/apriltours1/">
                           <i
-                            className="bx bxl-facebook text-22"
+                            className="bx bxl-facebook text-base"
                             style={{ marginTop: "1px" }}
                           ></i>
                         </a>
@@ -58,7 +52,7 @@ const Footer = () => {
                       <li>
                         <a href="wa.me/972544476226">
                           <i
-                            className="bx bxl-whatsapp text-22"
+                            className="bx bxl-whatsapp text-base"
                             style={{ marginTop: "1px" }}
                           ></i>
                         </a>
@@ -68,89 +62,83 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-2 col-md-4">
+            <div className="">
               <div className="footer-widget">
-                <h4 className="footer-widget-title text-right text-16 ">
-                  روابط مهمة
-                </h4>
+                <h4 className="text-right text-base ">روابط مهمة</h4>
                 <ul className="footer-links text-right">
-                  <li className="text-14 ">
+                  <li className="text-sm">
                     <Link href="about-us">عن أبريل تورز</Link>
                   </li>
-                  <li className="text-14 ">
-                    <Link href="tours-list">الوجهات السياحية</Link>
+                  <li className="text-sm">
+                    <Link href="tour-listing">الوجهات السياحية</Link>
                   </li>
                 </ul>
               </div>
             </div>
-            <div className="col-lg-2 col-md-4">
+            <div className="">
               <div className="footer-widget">
-                <h4 className="footer-widget-title text-right text-16 ">
-                  أنواع الرحلات
-                </h4>
+                <h4 className="text-right text-base">أنواع الرحلات</h4>
                 <ul className="footer-links text-right">
-                  {types.map((i: ITourType, index) => (
-                    <li className="text-14 " key={index}>
+                  {data?.results?.map((i, index) => (
+                    <li className="text-sm" key={index}>
                       <Link
                         scroll={false}
-                        href={`/tours-list?types=${i.type.replaceAll(
-                          " ",
-                          "+"
-                        )}`}
+                        href={`/tour-listing?types=${i.name}`}
                       >
-                        {i.type}
+                        {i.name}
                       </Link>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
-            <div className="col-lg-4 col-md-8">
+            <div className="">
               <div className="footer-widget">
-                <h4 className="footer-widget-title text-center text-16 ">
+                <h4 className="text-center text-base ">
                   زور صفحتنا على الإنستجرام
                 </h4>
                 {/* <div className="footer-gallary-grid">
-                  <div className="footer-gallary-item">
-                    <a href="assets/images/gallary/fg-1.png">
-                      <img src="//placehold.co/400x400" alt="" />
-                    </a>
-                  </div>
-                  <div className="footer-gallary-item">
-                    <a href="//placehold.co/400x400">
-                      <img src="//placehold.co/400x400" alt="" />
-                    </a>
-                  </div>
-                  <div className="footer-gallary-item">
-                    <a href="assets/images/gallary/fg-3.png">
-                      <img src="//placehold.co/400x400" alt="" />
-                    </a>
-                  </div>
-                  <div className="footer-gallary-item">
-                    <a href="assets/images/gallary/fg-4.png">
-                      <img src="//placehold.co/400x400" alt="" />
-                    </a>
-                  </div>
-                  <div className="footer-gallary-item">
-                    <a href="assets/images/gallary/fg-5.png">
-                      <img src="//placehold.co/400x400" alt="" />
-                    </a>
-                  </div>
-                  <div className="footer-gallary-item">
-                    <a href="assets/images/gallary/fg-6.png">
-                      <img src="//placehold.co/400x400" alt="" />
-                    </a>
-                  </div>
-                </div> */}
+                <div className="footer-gallary-item">
+                  <a href="assets/images/gallary/fg-1.png">
+                    <img src="//placehold.co/400x400" alt="" />
+                  </a>
+                </div>
+                <div className="footer-gallary-item">
+                  <a href="//placehold.co/400x400">
+                    <img src="//placehold.co/400x400" alt="" />
+                  </a>
+                </div>
+                <div className="footer-gallary-item">
+                  <a href="assets/images/gallary/fg-3.png">
+                    <img src="//placehold.co/400x400" alt="" />
+                  </a>
+                </div>
+                <div className="footer-gallary-item">
+                  <a href="assets/images/gallary/fg-4.png">
+                    <img src="//placehold.co/400x400" alt="" />
+                  </a>
+                </div>
+                <div className="footer-gallary-item">
+                  <a href="assets/images/gallary/fg-5.png">
+                    <img src="//placehold.co/400x400" alt="" />
+                  </a>
+                </div>
+                <div className="footer-gallary-item">
+                  <a href="assets/images/gallary/fg-6.png">
+                    <img src="//placehold.co/400x400" alt="" />
+                  </a>
+                </div>
+              </div> */}
               </div>
             </div>
           </div>
+
           <div className="footer-contact-wrapper flex-row-reverse">
-            <h5 className="text-16 ">تواصل معنا</h5>
-            <ul className="footer-contact-list">
+            <h5 className="text-base ">تواصل معنا</h5>
+            <ul className="flex flex-wrap gap-x-8 justify-center">
               <li className="text-14 ">
                 <i className="bi bi-telephone-x"></i>{" "}
-                <a href="tel:+9726727957" className="english-font">
+                <a href="tel:+9726727957" dir="ltr">
                   +972 672 7957
                 </a>
               </li>
@@ -173,28 +161,20 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="footer-bottom">
-        <div className="container">
-          <div className="row align-items-center justify-content-center">
-            <div className="col-lg-4 col-md-6 order-lg-1 order-3 ">
+      <div className="footer-bottom  ">
+        <div className="container mx-auto sm:px-4">
+          <div className="flex flex-wrap  items-center justify-center">
+            <div className="">
               <div className="copyright-link text-lg-start text-center">
                 <p className="text-14 ">Copyright 2023 AprilTours</p>
               </div>
             </div>
-            <div className="col-lg-4  order-lg-2 order-1">
-              <div className="footer-logo text-center">
-                <a href="index.html">
-                  {/* <img
-                    src="/assets/img/logo/main-logo.png"
-                    className="w-50"
-                    alt=""
-                  /> */}
-                </a>
-              </div>
+            <div className="">
+              <div className="footer-logo text-center"></div>
             </div>
-            <div className="col-lg-4 col-md-6 order-lg-3 order-2">
+            <div className=" ">
               <div className="policy-links">
-                <ul className="policy-list justify-content-lg-end justify-content-center">
+                <ul className="policy-list lg:justify-end justify-center">
                   <li className="text-14 ">
                     <a href="#">شروط الإستخدام</a>
                   </li>

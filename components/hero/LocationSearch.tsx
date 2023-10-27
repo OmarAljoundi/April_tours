@@ -22,7 +22,6 @@ const LocationSearch: FC<{ formik: FormikProps<HeaderSearch> }> = ({
               isRtl
               options={countriesForSearch}
               onChange={(e) => formik.setFieldValue("countries", e)}
-              isMulti
               isSearchable
               isClearable
               styles={ReactSelectStyle}

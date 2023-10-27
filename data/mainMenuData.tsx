@@ -1,15 +1,15 @@
 export const homeItems = [
   {
-    name: "عن ابريل تورز",
-    routePath: "/about-us",
+    name: "الرئيسية",
+    routePath: "/",
   },
   {
     name: "الوجهات السياحية",
-    routePath: "/tours-list",
+    routePath: "/tour-listing",
   },
   {
-    name: "الرئيسية",
-    routePath: "/",
+    name: "عن ابريل تورز",
+    routePath: "/about-us",
   },
 ];
 
@@ -20,7 +20,7 @@ export const MobileHomeItems = [
   },
   {
     name: "الوجهات السياحية",
-    routePath: "/tours-list",
+    routePath: "/tour-listing",
   },
   {
     name: "عن ابريل تورز",

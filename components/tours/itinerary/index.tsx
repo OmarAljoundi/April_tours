@@ -1,17 +1,12 @@
 import { FC } from "react";
 import AccordionContent from "./ItineraryContent";
-import { ITourSections } from "@/models/interface/Tour";
+import { TourSection } from "@/types/custom";
 
-const Itinerary: FC<{ tourStories: ITourSections[] }> = ({ tourStories }) => {
+const Itinerary: FC<{ tourStories: TourSection[] }> = ({ tourStories }) => {
   return (
-    <div className="row y-gap-30">
-      <div className="col-12">
-        <div className="relative">
-          <div className="border-test" />
-          <div className="accordion -map row y-gap-20" id="itineraryContent">
-            <AccordionContent tourStories={tourStories} />
-          </div>
-        </div>
+    <div className="relative px-2 md:px-0 ">
+      <div className="accordion -map grid gap-y-5" id="itineraryContent">
+        <AccordionContent tourStories={tourStories} />
       </div>
     </div>
   );

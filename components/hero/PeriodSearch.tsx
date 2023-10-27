@@ -19,7 +19,6 @@ const PeriodSearch: FC<{ formik: FormikProps<HeaderSearch> }> = ({
         getOptionValue={(o) => o.label}
         value={formik.values.period}
         onChange={(e) => formik.setFieldValue("period", e)}
-        isMulti
         isSearchable
         isClearable
         noOptionsMessage={() => <h6>لايوجد نتائج لبحثك</h6>}

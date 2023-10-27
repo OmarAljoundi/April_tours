@@ -8,6 +8,11 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
+    domains: [
+      "cdlxkuzvjlyvwgzgcdro.supabase.co",
+      "kxoneskwkgrjredodsfx.supabase.co",
+      "flagcdn.com",
+    ],
     remotePatterns: [
       {
         protocol: "https",
@@ -30,6 +35,12 @@ const nextConfig = {
         hostname: "placehold.co",
         port: "",
         pathname: "/*",
+      },
+      {
+        protocol: "https",
+        hostname: "placekitten.com",
+        port: "",
+        pathname: "/*/**",
       },
       {
         protocol: "https",
