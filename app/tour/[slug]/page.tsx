@@ -1,6 +1,6 @@
 import TourInfo from "@/components/tours/TourInfo";
 import { getTours } from "@/lib/operations";
-import { Metadata } from "next";
+import { Metadata } from "next/types";
 
 export async function generateStaticParams() {
   const response = await getTours();

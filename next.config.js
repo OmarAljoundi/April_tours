@@ -1,19 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
     ignoreBuildErrors: true,
   },
   images: {
-    domains: [
-      "cdlxkuzvjlyvwgzgcdro.supabase.co",
-      "kxoneskwkgrjredodsfx.supabase.co",
-      "flagcdn.com",
-    ],
     remotePatterns: [
+      {
+        hostname: "cdlxkuzvjlyvwgzgcdro.supabase.co",
+      },
+      {
+        hostname: "kxoneskwkgrjredodsfx.supabase.co",
+      },
+      {
+        hostname: "flagcdn.com",
+      },
       {
         protocol: "https",
         hostname: "mundo-tours.s3.eu-central-1.amazonaws.com",

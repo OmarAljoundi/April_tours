@@ -97,7 +97,7 @@ export const columns: ColumnDef<TourType>[] = [
             type: "Promise",
             action: async () => {
               const { data, error } = await supabaseClient
-                .from("tour")
+                .from("tour_type")
                 .delete()
                 .eq("id", row.original.id!);
               if (error) {

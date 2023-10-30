@@ -39,7 +39,7 @@ export default async function DashboardLayout({
                 <ClientProvider types={response.results || []}>
                   <SidebarNav />
                   <SubSidebarNav />
-                  <main className="flex flex-col flex-1 w-full overflow-x-hidden bg-scale-200">
+                  <main className="flex flex-col flex-1 w-full overflow-x-hidden bg-scale-200 overflow-visible">
                     <Navbar />
                     {children}
                   </main>

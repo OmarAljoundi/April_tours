@@ -25,6 +25,7 @@ export default async function TourTypePage() {
       <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
         <div className="flex items-center justify-between space-y-2">
           <div>
+            <h1 className="text-xl">Tour Types </h1>
             <p className="text-muted-foreground">
               Here&apos;s a list of your tour types!
             </p>

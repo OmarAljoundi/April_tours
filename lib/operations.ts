@@ -63,8 +63,6 @@ export async function getTourTypes(): Promise<Response<TourType>> {
 
 export async function createTour(tour: Tour) {
   const _tour = { ...tour };
-  delete _tour.tour_hotels;
-
   const { data, error } = await supabaseClient
     .from("tour")
     .insert(_tour as any)
@@ -76,32 +74,13 @@ export async function createTour(tour: Tour) {
     throw new Error(error.message);
   }
 
-  if (tour.tour_hotels) {
-    const { data: data_tour_hotels, error: error_tour_hotels } =
-      await supabaseClient.from("tour_hotels").insert([
-        ...tour.tour_hotels.map((x) => {
-          return {
-            hotel_id: x.hotel_id!,
-            tour_id: data.id!,
-          };
-        }),
-      ]);
-
-    if (error_tour_hotels) {
-      console.log("Errors in creating tour hotels.. ", error);
-      throw new Error(error_tour_hotels.message);
-    }
-  }
-
   return data;
 }
 
 export async function updateTour(tour: Tour) {
-  const _tour = { ...tour };
-  delete _tour.tour_hotels;
   const { data, error } = await supabaseClient
     .from("tour")
-    .update(_tour as any)
+    .update(tour as any)
     .eq("id", tour.id!)
     .select("*")
     .single();
@@ -109,41 +88,6 @@ export async function updateTour(tour: Tour) {
   if (error) {
     console.log("Errors in updating tour.. ", error);
     throw new Error(error.message);
-  }
-
-  //Delete old tour_hotels first
-
-  const { error: errors_deleting_tour_hotels } = await supabaseClient
-    .from("tour_hotels")
-    .delete()
-    .eq("tour_id", tour.id!);
-
-  if (errors_deleting_tour_hotels) {
-    console.log(
-      `Errors while deleting tour hotel for id ${tour.id!}.. `,
-      error
-    );
-    throw new Error(errors_deleting_tour_hotels.message);
-  }
-
-  //End Deleting tour_hotels
-
-  if (tour.tour_hotels && tour.tour_hotels.length > 0) {
-    const { error: error_tour_hotels } = await supabaseClient
-      .from("tour_hotels")
-      .insert([
-        ...tour.tour_hotels.map((x) => {
-          return {
-            hotel_id: x.hotel_id!,
-            tour_id: tour.id!,
-          };
-        }),
-      ]);
-
-    if (error_tour_hotels) {
-      console.log("Errors in updating tour hotels.. ", error_tour_hotels);
-      throw new Error(error_tour_hotels.message);
-    }
   }
 
   return data;
@@ -355,7 +299,7 @@ export async function updateHotel(hotel: Hotel) {
 
 export const getContentData = async () => {
   const { data, error } = await supabaseClient.storage
-    .from("mundo_tours")
+    .from("April")
     .list(SETTING_PATH);
 
   let responseData: Setting | undefined;

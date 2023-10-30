@@ -24,6 +24,7 @@ export default async function TourPage() {
       <div className=" h-full flex-1 flex-col space-y-8 p-8 flex">
         <div className="flex items-center justify-between space-y-2">
           <div>
+            <h1 className="text-xl">Tours </h1>
             <p className="text-muted-foreground">
               Here&apos;s a list of your products!
             </p>

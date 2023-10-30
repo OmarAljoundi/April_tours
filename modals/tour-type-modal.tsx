@@ -22,7 +22,7 @@ export const TourTypeModal = () => {
       toast.promise(updateTourType(formData), {
         loading: "Loading, Updating your type...",
         error(error) {
-          return error;
+          return error.message;
         },
         async success(data) {
           await http(`/api/revalidate?tag=${REVALIDATE_TOUR_TYPE}`).get();
@@ -36,7 +36,7 @@ export const TourTypeModal = () => {
       toast.promise(createTourType(formData), {
         loading: "Loading, Creating your type...",
         error(error) {
-          return error;
+          return error.message;
         },
         async success(data) {
           await http(`/api/revalidate?tag=${REVALIDATE_TOUR_TYPE}`).get();

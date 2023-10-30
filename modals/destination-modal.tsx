@@ -36,7 +36,7 @@ const DestinationModal = () => {
       toast.promise(updateDestination(formData), {
         loading: "Loading, Updating your destination...",
         error(error) {
-          return error;
+          return error.message;
         },
         async success(data) {
           await http(`/api/revalidate?tag=${REVALIDATE_LOCATION_LIST}`).get();
@@ -50,7 +50,7 @@ const DestinationModal = () => {
       toast.promise(createDestination(formData), {
         loading: "Loading, Creating your destination...",
         error(error) {
-          return error;
+          return error.message;
         },
         async success(data) {
           await http(`/api/revalidate?tag=${REVALIDATE_LOCATION_LIST}`).get();

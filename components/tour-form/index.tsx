@@ -67,7 +67,8 @@ const TourForm: FunctionComponent<TourFormProps> = ({ data }) => {
       toast.promise(updateTour(formData), {
         loading: "Loading, Updating your tour...",
         error(error) {
-          return error;
+          console.log(error);
+          return error.message;
         },
         async success(data) {
           await http(`/api/revalidate?tag=${REVALIDATE_TOUR_LIST}`).get();
@@ -79,7 +80,8 @@ const TourForm: FunctionComponent<TourFormProps> = ({ data }) => {
       toast.promise(createTour(formData), {
         loading: "Loading, Creating your tour...",
         error(error) {
-          return error;
+          console.log(error);
+          return error.message;
         },
         async success(data) {
           await http(`/api/revalidate?tag=${REVALIDATE_TOUR_LIST}`).get();
