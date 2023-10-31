@@ -9,6 +9,7 @@ import { Filters } from "@/hooks/use-filter-modal";
 import { TourType } from "@/types/custom";
 import { Avatar } from "@nextui-org/react";
 import { REVALIDATE_TOUR_TYPE } from "@/lib/keys";
+import { SelectOptionsProps } from "@/hooks/use-select-options-modal";
 
 export const columns: ColumnDef<TourType>[] = [
   {
@@ -119,5 +120,11 @@ export const columns: ColumnDef<TourType>[] = [
     ),
   },
 ];
-
+export const selectOptions: SelectOptionsProps[] = [
+  {
+    requireSelections: false,
+    title: "Create New Tour Type",
+    action: "onOpenTourType",
+  },
+];
 export const filterOptions: Filters[] = [];

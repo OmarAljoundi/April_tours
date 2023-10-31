@@ -21,9 +21,13 @@ import { useModal } from "@/hooks/use-modal";
 import { useRouter } from "next/navigation";
 import { Plus, SearchIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { cn } from "@/lib/utils";
-import { createDestinationAttr, getTours } from "@/lib/operations";
+import {
+  createDestinationAttr,
+  deleteLocationAttr,
+  getTours,
+} from "@/lib/operations";
 import { toast } from "sonner";
 import { REVALIDATE_LOCATION_LIST } from "@/lib/keys";
 import { http } from "@/services/httpService";
@@ -31,6 +35,7 @@ import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const DestinationToursModal = () => {
+  const queryClient = useQueryClient();
   const [selected, setSelectedKey] = useState<string>("");
   const [groupSelected, setGroupSelected] = React.useState<string[]>([]);
   const [query, setQuery] = useState<string>("");
@@ -49,22 +54,28 @@ const DestinationToursModal = () => {
   const { onClose, isOpenDestinationTours, data } = modal;
 
   const handleSubmitForm = async (formData: LocationAttributes[]) => {
-    const promises = formData.map((element) => {
-      return createDestinationAttr(element);
-    });
-
-    toast.promise(Promise.all(promises), {
-      loading: `Loading destination tours...`,
-      async success(data) {
-        await http(`/api/revalidate?tag=${REVALIDATE_LOCATION_LIST}`).get();
-        router.refresh();
-        onClose();
-        return `Destination tours has been saved successfully`;
-      },
-      error(error) {
-        return `Error whlie saving destination tours : ` + error;
-      },
-    });
+    try {
+      await deleteLocationAttr(modal?.data?.id);
+      const promises = formData.map((element) => {
+        return createDestinationAttr(element);
+      });
+      toast.promise(Promise.all(promises), {
+        loading: `Loading destination tours...`,
+        async success(data) {
+          await http(`/api/revalidate?tag=${REVALIDATE_LOCATION_LIST}`).get();
+          await queryClient.refetchQueries({
+            queryKey: [REVALIDATE_LOCATION_LIST],
+          });
+          onClose();
+          return `Destination tours has been saved successfully`;
+        },
+        error(error) {
+          return `Error whlie saving destination tours : ` + error;
+        },
+      });
+    } catch (ex) {
+      toast.error("Error: ", ex);
+    }
   };
 
   const formik = useFormik<LocationAttributes[]>({

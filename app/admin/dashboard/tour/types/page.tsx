@@ -1,6 +1,6 @@
 import { DataTable } from "@/components/table/data-table";
 import { FunctionComponent } from "react";
-import { columns, filterOptions } from "./columns";
+import { columns, filterOptions, selectOptions } from "./columns";
 import { Response, TourType } from "@/types/custom";
 import { SearchQuery } from "@/types/search";
 import { REVALIDATE_TOUR_TYPE } from "@/lib/keys";
@@ -36,7 +36,7 @@ export default async function TourTypePage() {
           columns={columns}
           filters={filterOptions}
           trigger="onOpenTourType"
-          selects={[]}
+          selects={selectOptions}
         />
       </div>
     </div>

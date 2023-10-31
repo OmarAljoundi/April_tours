@@ -20,6 +20,7 @@ import { AlertCircle, CheckCircle, Edit, Plane, Trash } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FunctionComponent } from "react";
+import { useQueryClient } from "react-query";
 import { toast } from "sonner";
 
 const CardDetails: FunctionComponent<Location> = ({
@@ -34,7 +35,7 @@ const CardDetails: FunctionComponent<Location> = ({
 }) => {
   const modal = useModal();
   const route = useRouter();
-
+  const queryClient = useQueryClient();
   const deleteDestination = async () => {
     const { data, error } = await supabaseClient
       .from("location")
@@ -65,7 +66,9 @@ const CardDetails: FunctionComponent<Location> = ({
       },
       async success(data) {
         await http(`/api/revalidate?tag=${REVALIDATE_LOCATION_LIST}`).get();
-        route.refresh();
+        await queryClient.refetchQueries({
+          queryKey: [REVALIDATE_LOCATION_LIST],
+        });
         return `Destination ${name} has been updated`;
       },
     });
@@ -79,7 +82,9 @@ const CardDetails: FunctionComponent<Location> = ({
       },
       async success(data) {
         await http(`/api/revalidate?tag=${REVALIDATE_LOCATION_LIST}`).get();
-        route.refresh();
+        await queryClient.refetchQueries({
+          queryKey: [REVALIDATE_LOCATION_LIST],
+        });
         return `Destination ${name} has been deleted`;
       },
     });

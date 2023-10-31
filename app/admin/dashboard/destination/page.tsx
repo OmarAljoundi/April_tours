@@ -1,24 +1,16 @@
+"use client";
 import { REVALIDATE_LOCATION_LIST } from "@/lib/keys";
-import { http } from "@/services/httpService";
-import { Location, Response } from "@/types/custom";
-import { Order, SearchQuery } from "@/types/search";
 import { Separator } from "@/components/ui/separator";
 import CardAdd from "@/shared/card-add";
 import CardDetails from "./card-detalis";
+import { useQuery } from "react-query";
+import { getDestination } from "@/lib/operations";
 
-const DestinationPage = async () => {
-  var _SQ: SearchQuery = {
-    FilterByOptions: [],
-    OrderByOptions: [{ MemberName: "created_at", SortOrder: Order.DESC }],
-    PageIndex: 0,
-    PageSize: 1000,
-    Select: "*,location_attributes(*,location_tours(*))",
-    Table: "location",
-  };
-  const data = await http<Response<Location>>("/api/search", {
-    revalidate: 86400,
-    tags: [REVALIDATE_LOCATION_LIST],
-  }).post(_SQ);
+const DestinationPage = () => {
+  const { data } = useQuery(
+    [REVALIDATE_LOCATION_LIST],
+    async () => await getDestination()
+  );
   return (
     <div className=" lg:px-4 ">
       <div className=" h-full flex-1 flex-col space-y-8 p-8 flex">
@@ -35,9 +27,11 @@ const DestinationPage = async () => {
             trigger="onOpenDestination"
             title="Click to create new customer destination"
           />
-          {data?.results.map((location) => (
-            <CardDetails {...location} key={location.id} />
-          ))}
+          {data?.results
+            ?.sort((a, b) => a.image?.order - b.image?.order)
+            .map((location) => (
+              <CardDetails {...location} key={location.id} />
+            ))}
         </div>
         <Separator />
       </div>

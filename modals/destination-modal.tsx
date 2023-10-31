@@ -22,8 +22,10 @@ import { REVALIDATE_LOCATION_LIST } from "@/lib/keys";
 import { useRouter } from "next/navigation";
 import { http } from "@/services/httpService";
 import SingleImageForm from "@/shared/single-image-form";
+import { useQueryClient } from "react-query";
 
 const DestinationModal = () => {
+  const queryClient = useQueryClient();
   const modal = useModal();
   const router = useRouter();
   const { onClose, data } = modal;
@@ -40,7 +42,9 @@ const DestinationModal = () => {
         },
         async success(data) {
           await http(`/api/revalidate?tag=${REVALIDATE_LOCATION_LIST}`).get();
-          router.refresh();
+          await queryClient.refetchQueries({
+            queryKey: [REVALIDATE_LOCATION_LIST],
+          });
           resetForm();
           onClose();
           return "Destination updated successfully";
@@ -54,7 +58,9 @@ const DestinationModal = () => {
         },
         async success(data) {
           await http(`/api/revalidate?tag=${REVALIDATE_LOCATION_LIST}`).get();
-          router.refresh();
+          await queryClient.refetchQueries({
+            queryKey: [REVALIDATE_LOCATION_LIST],
+          });
           resetForm();
           onClose();
           router.push(`/admin/dashboard/destination`);
