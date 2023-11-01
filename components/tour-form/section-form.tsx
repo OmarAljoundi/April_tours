@@ -1,38 +1,51 @@
-import { Tour, TourSection } from '@/types/custom'
-import { Accordion, AccordionItem, Avatar, Button, Card, CardBody, CardFooter, CardHeader, Input, Textarea } from '@nextui-org/react'
-import { FormikProps, useFormik } from 'formik'
-import { FunctionComponent, useEffect } from 'react'
-import ImageForm from '../shared/multiple-image-form'
-import { Button as ShcdnButton } from '../ui/button'
-import { Delete, Edit, Plus, RecycleIcon, Trash, X } from 'lucide-react'
-import { useSectionModal } from '@/hooks/use-section-modal'
-import { ScrollArea } from '../ui/scroll-area'
+import { Tour, TourSection } from "@/types/custom";
+import {
+  Avatar,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+} from "@nextui-org/react";
+import { FormikProps } from "formik";
+import { FunctionComponent } from "react";
+import { Edit, Plus, Trash } from "lucide-react";
+import { useSectionModal } from "@/hooks/use-section-modal";
+import { ScrollArea } from "../ui/scroll-area";
 interface SectionFormProps {
-  formik: FormikProps<Tour>
+  formik: FormikProps<Tour>;
 }
 
 const SectionForm: FunctionComponent<SectionFormProps> = ({ formik }) => {
-  const sectionModal = useSectionModal()
+  const sectionModal = useSectionModal();
 
   const handleDelete = (uuid: string) => {
-    const { setValues, values } = formik
+    const { setValues, values } = formik;
     setValues({
       ...values,
       tour_sections: values.tour_sections?.filter((x) => x.uuid !== uuid) ?? [],
-    })
-  }
+    });
+  };
 
   const CardComponent = (data: TourSection) => {
-    const { description, title, image, uuid } = data
+    const { description, title, image, uuid } = data;
     return (
       <Card className="w-full max-h-64 h-64">
         <CardHeader className="justify-between">
           <div className="flex gap-5 ">
             <div className="w-8 h-8">
-              <Avatar isBordered radius="full" size="md" src={image} fallback="No image" />
+              <Avatar
+                isBordered
+                radius="full"
+                size="md"
+                src={image}
+                fallback="No image"
+              />
             </div>
             <div className="flex flex-col gap-1 items-start justify-center  ">
-              <h4 className="text-small font-semibold  text-default-600 text-ellipsis overflow-hidden line-clamp-1 leading-5">{title}</h4>
+              <h4 className="text-small font-semibold  text-default-600 text-ellipsis overflow-hidden line-clamp-1 leading-5">
+                {title}
+              </h4>
             </div>
           </div>
         </CardHeader>
@@ -68,10 +81,10 @@ const SectionForm: FunctionComponent<SectionFormProps> = ({ formik }) => {
           </div>
         </CardFooter>
       </Card>
-    )
-  }
+    );
+  };
   return (
-    <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8  mt-4 gap-x-4 gap-y-6">
+    <div className="grid md:grid-cols-3 2xl:grid-cols-6  mt-4 gap-x-4 gap-y-6">
       <Card className="w-full max-h-64 h-64">
         <CardBody className="px-3 py-0 text-small text-default-400 flex items-center justify-center min-h-[160px] h-40">
           <Button
@@ -91,7 +104,7 @@ const SectionForm: FunctionComponent<SectionFormProps> = ({ formik }) => {
         <CardComponent key={section.title} {...section} />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default SectionForm
+export default SectionForm;

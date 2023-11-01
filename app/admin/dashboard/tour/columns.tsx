@@ -17,7 +17,7 @@ import { DataTableDateFilter } from "@/components/table/data-table-date-filter";
 import { DataTableFacetedFilter } from "@/components/table/data-table-faceted-filter";
 import { DAYS } from "@/lib/constants";
 import { REVALIDATE_TOUR_LIST } from "@/lib/keys";
-import { AlertCircle, ExternalLink } from "lucide-react";
+import { AlertCircle, CopyPlus, Edit, ExternalLink, Trash } from "lucide-react";
 
 export const columns: ColumnDef<Tour>[] = [
   {
@@ -42,11 +42,7 @@ export const columns: ColumnDef<Tour>[] = [
       <DataTableColumnHeader column={column} title="Tour Name" />
     ),
     cell: ({ row }) => {
-      return (
-        <div className="w-32 flex items-center justify-between">
-          <span className="max-w-[6rem] truncate">{row.getValue("name")}</span>
-        </div>
-      );
+      return <span>{row.getValue("name")}</span>;
     },
     filterFn: (row, id, value) => {
       return row.original.name?.includes(value) || false;
@@ -260,10 +256,18 @@ export const columns: ColumnDef<Tour>[] = [
             label: "Edit",
             link: `/admin/dashboard/tour/edit/${row.original.id}`,
             type: "Link",
+            icon: Edit,
+          },
+          {
+            label: "Dublicate",
+            link: `/admin/dashboard/tour/dublicate/${row.original.id}`,
+            type: "Link",
+            icon: CopyPlus,
           },
           {
             label: "Delete",
             type: "Promise",
+            icon: Trash,
             action: async () => {
               const { data, error } = await supabaseClient
                 .from("tour")
@@ -347,5 +351,10 @@ export const filterOptions: Filters[] = [
     },
   },
 ];
-
-export const selectOptions: SelectOptionsProps[] = [];
+export const selectOptions: SelectOptionsProps[] = [
+  {
+    requireSelections: false,
+    title: "Create New Tour",
+    link: "/admin/dashboard/tour/create-new",
+  },
+];

@@ -1,34 +1,46 @@
-import { Tour, TourSection } from '@/types/custom'
-import { Avatar, Button, Card, CardBody, CardFooter, CardHeader } from '@nextui-org/react'
-import { FormikProps } from 'formik'
-import { FunctionComponent } from 'react'
-import { Edit, Plus, Trash } from 'lucide-react'
-import { ScrollArea } from '../ui/scroll-area'
-import { useFeatureModal } from '@/hooks/use-feature-modal'
+import { Tour, TourSection } from "@/types/custom";
+import {
+  Avatar,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+} from "@nextui-org/react";
+import { FormikProps } from "formik";
+import { FunctionComponent } from "react";
+import { Edit, Plus, Trash } from "lucide-react";
+import { ScrollArea } from "../ui/scroll-area";
+import { useFeatureModal } from "@/hooks/use-feature-modal";
 
 interface AdditionalServiceFormProps {
-  formik: FormikProps<Tour>
+  formik: FormikProps<Tour>;
 }
 
-const AdditionalServiceForm: FunctionComponent<AdditionalServiceFormProps> = ({ formik }) => {
-  const featureModal = useFeatureModal()
+const AdditionalServiceForm: FunctionComponent<AdditionalServiceFormProps> = ({
+  formik,
+}) => {
+  const featureModal = useFeatureModal();
 
   const handleDelete = (uuid: string) => {
-    const { setValues, values } = formik
+    const { setValues, values } = formik;
     setValues({
       ...values,
-      additional_service: values.additional_service?.filter((x) => x.uuid !== uuid) ?? [],
-    })
-  }
+      additional_service:
+        values.additional_service?.filter((x) => x.uuid !== uuid) ?? [],
+    });
+  };
 
   const CardComponent = (data: TourSection) => {
-    const { description, title, image, uuid } = data
+    const { description, title, image, uuid } = data;
     return (
       <Card className="w-full max-h-64 h-64">
         <CardHeader className="justify-between">
           <div className="flex gap-5 ">
             <div className="flex flex-col gap-1 items-start justify-center  ">
-              <h4 className="text-small font-semibold  text-default-600 text-ellipsis overflow-hidden line-clamp-1 leading-5">{title}</h4>
+              <h4 className="text-small font-semibold  text-default-600 text-ellipsis overflow-hidden line-clamp-1 leading-5">
+                {title}
+              </h4>
             </div>
           </div>
         </CardHeader>
@@ -45,7 +57,9 @@ const AdditionalServiceForm: FunctionComponent<AdditionalServiceFormProps> = ({ 
                 className="text-default-900/60 data-[hover]:bg-foreground/10 -translate-y-2 translate-x-2"
                 radius="full"
                 variant="light"
-                onPress={() => featureModal.onOpen(formik, 'additional_service', data)}
+                onPress={() =>
+                  featureModal.onOpen(formik, "additional_service", data)
+                }
               >
                 <Edit />
               </Button>
@@ -64,10 +78,10 @@ const AdditionalServiceForm: FunctionComponent<AdditionalServiceFormProps> = ({ 
           </div>
         </CardFooter>
       </Card>
-    )
-  }
+    );
+  };
   return (
-    <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8  mt-4 gap-x-4 gap-y-6">
+    <div className="grid md:grid-cols-3 2xl:grid-cols-6  mt-4 gap-x-4 gap-y-6">
       <Card className="w-full max-h-64 h-64">
         <CardBody className="px-3 py-0 text-small text-default-400 flex items-center justify-center min-h-[160px] h-40">
           <Button
@@ -76,7 +90,7 @@ const AdditionalServiceForm: FunctionComponent<AdditionalServiceFormProps> = ({ 
             className="text-default-900/60 data-[hover]:bg-foreground/10 border"
             radius="full"
             variant="light"
-            onPress={() => featureModal.onOpen(formik, 'additional_service')}
+            onPress={() => featureModal.onOpen(formik, "additional_service")}
           >
             <Plus />
           </Button>
@@ -87,7 +101,7 @@ const AdditionalServiceForm: FunctionComponent<AdditionalServiceFormProps> = ({ 
         <CardComponent key={section.title} {...section} />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default AdditionalServiceForm
+export default AdditionalServiceForm;

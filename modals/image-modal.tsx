@@ -77,11 +77,10 @@ export const ImageModal = () => {
 
   return (
     <Modal
-      size="5xl"
+      size="4xl"
       title="Images Library"
       isOpen={imageModal.isOpen}
       onClose={imageModal.onClose}
-      dialogClass="max-w-[1000px] max-h-[800px] h-full"
       renderFooter={FooterComponent}
     >
       <Tabs defaultValue="upload_new_imagess" className="w-full mt-8">

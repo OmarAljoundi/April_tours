@@ -5,7 +5,7 @@ import { UserNav } from "./user-nav";
 
 const Navbar = () => {
   return (
-    <div>
+    <div className="fixed  bg-white w-[calc(100%-200px)] z-50">
       <div className="flex h-12 max-h-12 items-center px-4 border-b relative">
         <a className="block" href="/admin/dashboard">
           <Image

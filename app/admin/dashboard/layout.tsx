@@ -21,14 +21,9 @@ export default async function DashboardLayout({
 
   return (
     <div id="__next">
-      <div className="min-h-full flex flex-col">
+      <div className="min-h-full block h-full">
         <div>
-          <div
-            style={{
-              height: "calc((100vh - 0px) - 0px)",
-              maxHeight: "calc((100vh - 0px) - 0px)",
-            }}
-          >
+          <div className="h-full">
             <ReactQueryProvider>
               <ThemeProvider
                 attribute="class"
@@ -37,11 +32,10 @@ export default async function DashboardLayout({
               >
                 <ModalProvider />
                 <ClientProvider types={response.results || []}>
-                  <SidebarNav />
                   <SubSidebarNav />
-                  <main className="flex flex-col flex-1 w-full overflow-x-hidden bg-scale-200 overflow-visible">
+                  <main className="flex flex-col flex-1 w-full  bg-scale-200 overflow-visible ml-[200px]">
                     <Navbar />
-                    {children}
+                    <div className="pt-12">{children}</div>
                   </main>
                 </ClientProvider>
               </ThemeProvider>

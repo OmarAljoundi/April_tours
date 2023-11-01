@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from "uuid";
 import { TourSection } from "@/types/custom";
 import { useFormik } from "formik";
 import { useState } from "react";
+import SingleImageForm from "@/shared/single-image-form";
+import { X } from "lucide-react";
 
 export const SectionModal = () => {
   const sectionModal = useSectionModal();
@@ -42,6 +44,7 @@ export const SectionModal = () => {
       uuid: uniqueId,
       description: "",
       title: "",
+      image: "",
     },
     onSubmit: handleSubmitSection,
     enableReinitialize: true,
@@ -69,7 +72,7 @@ export const SectionModal = () => {
       isOpen={sectionModal.isOpen}
       onClose={sectionModal.onClose}
       dialogClass="px-2"
-      title="Create new section"
+      title={`${sectionModal.data ? "Update section" : "Create new section"}`}
       renderFooter={() => {
         return (
           <ModalFooter>
@@ -79,7 +82,7 @@ export const SectionModal = () => {
               type="button"
               onClick={() => handleSubmit()}
             >
-              Add new section
+              Save
             </Button>
           </ModalFooter>
         );
@@ -88,6 +91,28 @@ export const SectionModal = () => {
       <form className="grid space-y-4 mt-4 gap-x-4">
         <div className="space-y-4">
           <div className="grid gap-y-4">
+            <SingleImageForm formik={sectionFormik} field="image" maxNumber={1}>
+              {values.image && (
+                <div className="image-item  border rounded-xl relative dark:bg-white w-28 mt-5">
+                  <img
+                    src={`${values.image}`}
+                    alt=""
+                    className=" rounded-xl w-28 h-auto"
+                  />
+                  <Button
+                    type="button"
+                    isIconOnly
+                    variant={"ghost"}
+                    className="absolute -top-2 -right-2 bg-white w-6 h-6 rounded-full border border-red-600"
+                    onClick={() => {
+                      setFieldValue("image", undefined);
+                    }}
+                  >
+                    <X className="w-4 h-4 text-red-600" />
+                  </Button>
+                </div>
+              )}
+            </SingleImageForm>
             <Input
               label="Section Title"
               labelPlacement="outside"

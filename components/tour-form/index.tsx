@@ -58,7 +58,14 @@ const TourForm: FunctionComponent<TourFormProps> = ({ data }) => {
   const router = useRouter();
 
   const handleSubmitData = async (formData: Tour) => {
-    debugger;
+    formData.price_double =
+      formData.price_double?.toString().trim() == ""
+        ? null
+        : formData.price_double;
+    formData.price_single =
+      formData.price_single?.toString().trim() == ""
+        ? null
+        : formData.price_single;
     if (!formData.slug) {
       formData.slug = formData.name?.trim().replaceAll(" ", "-");
     }

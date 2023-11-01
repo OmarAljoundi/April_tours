@@ -10,6 +10,7 @@ import { TourType } from "@/types/custom";
 import { Avatar } from "@nextui-org/react";
 import { REVALIDATE_TOUR_TYPE } from "@/lib/keys";
 import { SelectOptionsProps } from "@/hooks/use-select-options-modal";
+import { Edit, Trash } from "lucide-react";
 
 export const columns: ColumnDef<TourType>[] = [
   {
@@ -92,9 +93,11 @@ export const columns: ColumnDef<TourType>[] = [
             label: "Edit",
             action: "onOpenTourType",
             type: "Trigger",
+            icon: Edit,
           },
           {
             label: "Delete",
+            icon: Trash,
             type: "Promise",
             action: async () => {
               const { data, error } = await supabaseClient

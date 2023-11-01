@@ -8,14 +8,11 @@ import {
   CheckboxGroup,
   Chip,
   Input,
-  Tooltip,
   User,
 } from "@nextui-org/react";
-
 import { getTours } from "@/lib/operations";
 import { REVALIDATE_TOUR_LIST } from "@/lib/keys";
 import { useEffect, useState } from "react";
-
 import { cn } from "@/lib/utils";
 import { useQuery } from "react-query";
 import { FunctionComponent } from "react";
@@ -24,7 +21,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useSetting } from "@/hooks/use-setting";
 import { PushJsonFile } from "@/lib/storage-operations";
 import { toast } from "sonner";
-import ToursSeoForm from "@/app/admin/dashboard/setting/best-tours/tours-seo-form";
 import SeoForm from "@/shared/seo-form";
 
 interface BestToursFormProps {}

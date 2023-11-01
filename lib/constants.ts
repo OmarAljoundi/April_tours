@@ -1,4 +1,12 @@
-import { Brush, Contact2, Hotel, MapPin, Plane, Settings } from "lucide-react";
+import {
+  Brush,
+  BusFront,
+  Contact2,
+  Hotel,
+  MapPin,
+  Plane,
+  Settings,
+} from "lucide-react";
 import { FunctionKeys } from "./utils";
 import { ModalProps } from "@/hooks/use-modal";
 
@@ -25,26 +33,11 @@ export const MenuItems: MenuItemsProps[] = [
     label: "Tours",
     icon: Plane,
     href: "/admin/dashboard/tour",
-    subMenu: [
-      {
-        label: "Tours List",
-        href: "/admin/dashboard/tour",
-        button: {
-          label: "Create new",
-          type: "link",
-          href: "/admin/dashboard/tour/create-new",
-        },
-      },
-      {
-        label: "Tour Types",
-        href: "/admin/dashboard/tour/types",
-        button: {
-          label: "Create new",
-          type: "trigger",
-          action: "onOpenTourType",
-        },
-      },
-    ],
+  },
+  {
+    label: "Tour Types",
+    icon: BusFront,
+    href: "/admin/dashboard/tour/types",
   },
   {
     label: "Destination",
@@ -60,39 +53,6 @@ export const MenuItems: MenuItemsProps[] = [
     label: "Settings",
     icon: Settings,
     href: "/admin/dashboard/setting",
-    subMenu: [
-      {
-        label: "Home Setting",
-        href: "/admin/dashboard/setting",
-        button: {
-          label: "Create new",
-          type: "link",
-          href: "/admin/dashboard/setting/create-new",
-        },
-      },
-      {
-        label: "Visa Setting",
-        href: "/admin/dashboard/setting/visa",
-        button: {
-          label: "Create new",
-          type: "link",
-          href: "/admin/dashboard/setting/visa/create-new",
-        },
-      },
-      {
-        label: "FAQ Setting",
-        href: "/admin/dashboard/setting/faq",
-        button: {
-          label: "Create new",
-          type: "link",
-          href: "/admin/dashboard/setting/faq/create-new",
-        },
-      },
-      {
-        label: "Best Tours",
-        href: "/admin/dashboard/setting/best-tours",
-      },
-    ],
   },
 ];
 

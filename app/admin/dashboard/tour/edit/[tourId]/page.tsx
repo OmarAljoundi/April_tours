@@ -38,7 +38,7 @@ export default async function EditTourPage({
         <h1 className="text-3xl mt-16">
           {" "}
           {formatDistance(
-            subDays(new Date(response.result!.created_at!), 3),
+            subDays(new Date(response.result!.created_at!), 0),
             new Date(),
             { addSuffix: true }
           )}

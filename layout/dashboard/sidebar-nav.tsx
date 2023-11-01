@@ -13,7 +13,7 @@ interface SidebarNavProps {}
 const SidebarNav: FunctionComponent<SidebarNavProps> = () => {
   const pathname = usePathname();
   return (
-    <div className="flex w-14 flex-col justify-start overflow-hidden  border-r dark:border-dark bg-body border-scale-500 ">
+    <div className="h-screen fixed w-[280px] transition-all text-white dark:border-dark bg-body border-scale-500 ">
       <div
         className="dark:border-dark flex max-h-12 items-center border-b px-6"
         style={{ minHeight: "3rem" }}
