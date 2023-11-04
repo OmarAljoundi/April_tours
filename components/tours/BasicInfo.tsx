@@ -13,6 +13,32 @@ const BasicInfo: FunctionComponent<BasicInfoProps> = ({ tour }) => {
       <div className="py-2 col-span-2">
         <div className="flex items-center gap-4 ">
           <div className="grid items-center ">
+            <span>السعر للغرفة المزدوجة</span>
+            <span className="text-primary ">{tour?.price_double} USD</span>
+          </div>
+        </div>
+      </div>
+      <div className="py-2 col-span-2">
+        <div className="flex items-center gap-4 ">
+          <div className="grid items-center ">
+            <span>السعر للغرفة المنفردة</span>
+            <span className="text-primary ">{tour?.price_single} USD</span>
+          </div>
+        </div>
+      </div>
+      <div className="py-2 col-span-2">
+        <div className="flex items-center gap-4 ">
+          <div className="grid items-center ">
+            <span>الدول</span>
+            <span className="text-primary ">
+              {tour?.tour_countries?.map((i) => i)?.join(" - ")}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className="py-2 col-span-2">
+        <div className="flex items-center gap-4 ">
+          <div className="grid items-center ">
             <span>الدول</span>
             <span className="text-primary ">
               {tour?.tour_countries?.map((i) => i)?.join(" - ")}

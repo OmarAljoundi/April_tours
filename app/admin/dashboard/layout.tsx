@@ -1,7 +1,7 @@
 import Navbar from "@/layout/dashboard/navbar";
 import SidebarNav from "@/layout/dashboard/sidebar-nav";
 import SubSidebarNav from "@/layout/dashboard/sub-sidebar-nav";
-import { getTourTypes } from "@/lib/operations";
+import { getContentData, getTourTypes } from "@/lib/operations";
 import ClientProvider from "@/provider/client-provider";
 import { ReactNode } from "react";
 import { Metadata } from "next";
@@ -18,7 +18,6 @@ export default async function DashboardLayout({
   children: ReactNode;
 }) {
   const response = await getTourTypes();
-
   return (
     <div id="__next">
       <div className="min-h-full block h-full">

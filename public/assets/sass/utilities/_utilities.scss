@@ -387,26 +387,26 @@
 //   background-color: var(--color-yellow-1);
 // }
 
-// .slider-scrollbar {
-//   width: 100%;
-//   border-radius: 4px;
-//   height: 3px;
+.slider-scrollbar {
+  width: 100%;
+  border-radius: 4px;
+  height: 3px;
 
-//   .swiper-scrollbar-drag {
-//     cursor: grab;
-//     background-color: var(--color-yellow-1);
+  .swiper-scrollbar-drag {
+    cursor: grab;
+    background-color: var(--color-yellow-1);
 
-//     &:active:hover {
-//       cursor: grabbing;
-//     }
-//   }
+    &:active:hover {
+      cursor: grabbing;
+    }
+  }
 
-//   &.-light {
-//     .swiper-scrollbar-drag {
-//       background-color: var(--color-white);
-//     }
-//   }
-// }
+  &.-light {
+    .swiper-scrollbar-drag {
+      background-color: var(--color-white);
+    }
+  }
+}
 
 // .pointer {
 //   cursor: pointer;

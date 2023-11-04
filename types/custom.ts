@@ -20,7 +20,7 @@ export type Tour = {
   tour_excludes?: TourFeature[] | null;
   tour_includes?: TourFeature[] | null;
   tour_sections?: TourSection[] | null;
-  tour_hotels?: TourHotels[] | null;
+  tour_hotels?: string[] | null;
   type_id?: number | null;
   tour_type?: TourType | null;
   slug?: string | null;

@@ -13,7 +13,7 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: "0.2",
+      padding: "0.2rem",
       screens: {
         "2xl": "1400px",
       },
@@ -23,6 +23,7 @@ const config: Config = {
         primary: ["var(--font-primary)"],
         secondary: ["var(--font-secondary)"],
         english: ["var(--font-english)"],
+        weird: ["var(--font-weird)"],
       },
       boxShadow: {
         card: "var(--card-shadow)",

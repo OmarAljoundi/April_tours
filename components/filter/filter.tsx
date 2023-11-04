@@ -159,7 +159,7 @@ const Filter: FC<FilterOptions> = ({ onChange }) => {
       <div
         className={cn(
           "p-3 sm:p-4 lg:py-6 lg:px-8 bg-white  shadow-card  grid gap-2  grid-cols-1",
-          onChange ? "md:grid-cols-2" : "lg:grid-cols-2"
+          onChange ? "md:grid-cols-2" : "lg:grid-cols-3"
         )}
       >
         {onChange && (
@@ -189,7 +189,7 @@ const Filter: FC<FilterOptions> = ({ onChange }) => {
         />
 
         {!onChange && (
-          <section>
+          <section className={cn(!onChange ? "lg:col-span-3" : "")}>
             <Link href={getUrl()}>
               <Button className="w-full" size={"sm"}>
                 <SearchIcon className="text-white" />

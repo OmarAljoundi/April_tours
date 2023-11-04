@@ -9,8 +9,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 import "swiper/css/effect-cards";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/es/integration/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Footer from "@/components/footer";
 import { Toaster } from "react-hot-toast";
@@ -18,19 +16,29 @@ import { usePathname } from "next/navigation";
 import NextTopLoader from "nextjs-toploader";
 import "@/public/assets/sass/main.scss";
 import { FunctionComponent } from "react";
+import { useSetting } from "@/hooks/use-setting";
+import { Setting } from "@/types/custom";
+import TopHeader from "@/components/header/TopHeader";
 
 interface CustomerProviderProps {
   children: ReactNode;
+  settingData?: Setting;
 }
 
 const CustomerProvider: FunctionComponent<CustomerProviderProps> = ({
   children,
+  settingData,
 }) => {
+  const setting = useSetting();
   useEffect(() => {
     Aos.init({
       duration: 1200,
       once: true,
     });
+
+    if (settingData) {
+      setting.onCreate(settingData);
+    }
   }, []);
 
   useLayoutEffect(() => {
@@ -53,6 +61,7 @@ const CustomerProvider: FunctionComponent<CustomerProviderProps> = ({
       <Toaster />
       <QueryClientProvider client={new QueryClient()}>
         <div id="__next">
+          <TopHeader />
           <Header />
           <NextTopLoader
             color="var(--color-yellow-1)"

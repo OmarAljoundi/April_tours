@@ -38,6 +38,9 @@ export const CustomerForm: FC<{ tourId: number }> = ({ tourId }) => {
   return (
     <form onSubmit={formik.handleSubmit} className="grid gap-y-5">
       <Input
+        classNames={{
+          label: "right-0",
+        }}
         type="text"
         placeholder="يرجى إدخال الإسم"
         label="الإسم"
@@ -62,6 +65,7 @@ export const CustomerForm: FC<{ tourId: number }> = ({ tourId }) => {
         errorMessage={touched.phone_number && errors.phone_number}
         classNames={{
           input: "placeholder:text-right",
+          label: "right-0",
         }}
         dir="ltr"
         labelPlacement="outside"
@@ -77,6 +81,7 @@ export const CustomerForm: FC<{ tourId: number }> = ({ tourId }) => {
         className="text-right"
         classNames={{
           value: "text-right",
+          label: "right-0",
         }}
         onChange={handleChange}
         labelPlacement="outside"
@@ -98,6 +103,9 @@ export const CustomerForm: FC<{ tourId: number }> = ({ tourId }) => {
         ))}
       </CustomSelect>
       <Input
+        classNames={{
+          label: "right-0",
+        }}
         variant="bordered"
         labelPlacement="outside"
         type="text"

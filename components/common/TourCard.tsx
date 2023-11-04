@@ -41,7 +41,7 @@ export const TourCard: FC<{ tour: Tour }> = ({ tour }) => {
         </p>
       </div>
       <div className="tourCard__content mt-3 px-2 py-1 relative">
-        <p className="card-lavel-type">
+        <p className="card-lavel-type p-0">
           <div className="grid p-1" style={{ justifyItems: "center" }}>
             <div>
               <Image

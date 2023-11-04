@@ -71,7 +71,7 @@ const ImageSlides: FC<{ tourImages: string[]; mainImage?: string }> = ({
             ))}
           </Splide>
 
-          <div className="mt-20">
+          <div className="mt-4">
             <Splide
               options={thumbnailOptions}
               className="thumbnail-slider"

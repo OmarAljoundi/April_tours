@@ -9,6 +9,7 @@ import { Tour } from "@/types/custom";
 import TourSameTypes from "./TourSameTypes";
 import BasicInfo from "./BasicInfo";
 import SectionTitle from "../common/section-title";
+import TourHotels from "./TourHotels";
 
 export default function TourInfo({ tour }: { tour: Tour }) {
   const data = [
@@ -25,48 +26,47 @@ export default function TourInfo({ tour }: { tour: Tour }) {
     <div className="md:overflow-hidden container">
       <TopBreadCrumb breads={data} />
 
-      <section className="pt-5">
-        <div className="w-full px-2 flex flex-row items-center pb-5  justify-between ">
+      <section className="pt-5 border-t">
+        <div className="w-full  flex flex-row items-center pb-5  justify-between ">
           <h1 className="text-2xl fw-600 text-right">{tour?.name}</h1>
         </div>
       </section>
 
-      <section className="js-pin-container">
-        <div className="grid grid-cols-12 gap-x-10 px-2 items-start">
-          <div className=" col-span-4 sidebar-sticky content-center gap-y-5 hidden lg:grid">
-            <div className="w-full" style={{ height: "fit-content" }}>
-              <SidebarRight tour={tour} />
-            </div>
-            <div className="w-full" style={{ height: "fit-content" }}>
-              <TourSameTypes tour={tour} />
-            </div>
-          </div>
-          <div className="col-span-12 lg:col-span-8">
-            <div className="relative flex justify-end overflow-hidden js-section-slider w-100">
-              <ImageSlides
-                tourImages={tour?.images}
-                mainImage={
-                  tour?.images && tour?.images.length ? tour?.images[0] : ""
-                }
-              />
-            </div>
-
-            <BasicInfo tour={tour} />
-            <Overview tour={tour} />
+      <div className="grid grid-cols-12 lg:gap-x-10  items-start">
+        <div className="col-span-4 sidebar-sticky content-center gap-y-5 hidden lg:grid">
+          <div className="w-full" style={{ height: "fit-content" }}>
+            <SidebarRight tour={tour} />
           </div>
         </div>
-      </section>
+        <div className="col-span-12 lg:col-span-8">
+          <div className="relative flex justify-end overflow-hidden js-section-slider w-100">
+            <ImageSlides
+              tourImages={tour?.images}
+              mainImage={
+                tour?.images && tour?.images.length ? tour?.images[0] : ""
+              }
+            />
+          </div>
 
-      <section className="border-top-light mt-10 px-2">
-        <h3 className="text-xl lg:text-3xl fw-500 mb-5 text-right pr-2">
-          برنامج الرحلة
-        </h3>
-        <Itinerary tourStories={tour?.tour_sections} />
-      </section>
+          <BasicInfo tour={tour} />
+        </div>
+      </div>
+      <div className="flex flex-col-reverse">
+        <Overview tour={tour} />
+        <section className="border-top-light mt-10">
+          <Itinerary tourStories={tour?.tour_sections} />
+        </section>
+      </div>
+
+      {tour?.tour_hotels && tour?.tour_hotels.length > 0 && (
+        <section className="border-top-light mt-10">
+          <TourHotels tour={tour} />
+        </section>
+      )}
 
       <section className="mt-2 overflow-hidden">
         <SectionTitle title="رحلات أخرى قد تعجبك؟" />
-        <Tours />
+        <Tours fetchProcess="same-type" typeId={tour.type_id} />
       </section>
     </div>
   );
