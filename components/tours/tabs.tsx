@@ -1,8 +1,6 @@
 "use client";
 import { Tabs as TabUi, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRouter } from "next/navigation";
-
-import { Separator } from "../ui/separator";
 import { LocationAttributes } from "@/types/custom";
 import { cn } from "@/lib/utils";
 const Tabs: React.FC<{
@@ -12,8 +10,8 @@ const Tabs: React.FC<{
   const route = useRouter();
   return (
     <>
-      <h1 className="text-center text-5xl font-secondary text-secondary my-10">
-        أختار نوع البرناج
+      <h1 className="text-center text-4xl font-secondary text-black font-bold my-10">
+        أختر نوع البرنامج
       </h1>
 
       <TabUi
@@ -35,7 +33,7 @@ const Tabs: React.FC<{
           )}
         >
           {tabList
-            ?.sort((a, b) => b.order - a.order)
+            ?.sort((a, b) => a.order - b.order)
             ?.map((item) => (
               <TabsTrigger
                 value={item.title!.toString()}

@@ -23,7 +23,9 @@ const ExcludeForm: FunctionComponent<ExcludeFormProps> = ({ formik }) => {
     const { setValues, values } = formik;
     setValues({
       ...values,
-      tour_sections: values.tour_excludes?.filter((x) => x.uuid !== uuid) ?? [],
+      tour_excludes: [
+        ...(values.tour_excludes?.filter((x) => x.uuid !== uuid) ?? []),
+      ],
     });
   };
 

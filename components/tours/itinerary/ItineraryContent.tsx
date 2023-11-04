@@ -1,7 +1,14 @@
 import BlurImageV2 from "@/components/common/BlurImageV2";
 import { TourSection } from "@/types/custom";
 import { DaysArranged } from "@/utils/Constant";
-import { Accordion, AccordionItem, Badge, Card } from "@nextui-org/react";
+import {
+  Accordion,
+  AccordionItem,
+  Avatar,
+  Badge,
+  Card,
+  Chip,
+} from "@nextui-org/react";
 import { FC } from "react";
 
 const ItineraryContent: FC<{ tourStories: TourSection[] }> = ({
@@ -14,24 +21,31 @@ const ItineraryContent: FC<{ tourStories: TourSection[] }> = ({
           classNames={{
             title: "text-right",
           }}
+          startContent={
+            <Chip color="secondary" className="text-white" radius="lg">
+              {(index + 1).toString()}
+            </Chip>
+          }
           className="text-right"
           key={item.uuid}
           dir="rtl"
-          title={item.title}
+          title={DaysArranged[index]}
         >
-          <div className="accordion__item ">
+          <div className="accordion__item flex justify-between overflow-hidden">
             <div className="w-full">
-              <div className="">{DaysArranged[index]}</div>
+              <div className="text-bold">{item.title}</div>
               <p className="text-black text-sm">{item.description}</p>
             </div>
             <div>
               {item.image && (
                 <BlurImageV2
                   alt=""
+                  loading="eager"
+                  priority={true}
                   src={item.image}
-                  width={100}
-                  height={50}
-                  className="max-w-[100px] w-full"
+                  width={600}
+                  height={300}
+                  className="max-w-[300px] w-full rounded-md"
                 />
               )}
             </div>

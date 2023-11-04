@@ -5,7 +5,7 @@ interface TopHeaderProps {}
 
 const TopHeader: FunctionComponent<TopHeaderProps> = () => {
   return (
-    <header className="bg-primary py-3 px-4 ">
+    <header className="bg-[#3093d02b] py-3 px-4 ">
       <div className="container">
         <div className="flex justify-center lg:justify-end">
           <div className="flex justify-between">

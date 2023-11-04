@@ -23,7 +23,9 @@ const IncludeForm: FunctionComponent<IncludeFormProps> = ({ formik }) => {
     const { setValues, values } = formik;
     setValues({
       ...values,
-      tour_sections: values.tour_includes?.filter((x) => x.uuid !== uuid) ?? [],
+      tour_includes: [
+        ...(values.tour_includes?.filter((x) => x.uuid !== uuid) ?? []),
+      ],
     });
   };
 

@@ -32,7 +32,7 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-12 sm:col-span-6 lg:col-span-2">
+            <div className="col-span-6 lg:col-span-2">
               <div className="footer-widget">
                 <h4 className="text-right text-base ">روابط مهمة</h4>
                 <ul className="footer-links text-right pt-3">
@@ -52,7 +52,7 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="col-span-12 sm:col-span-6 lg:col-span-2">
+            <div className="col-span-6 lg:col-span-2">
               <div className="footer-widget">
                 <h4 className="text-right text-base">أنواع الرحلات</h4>
                 <ul className="footer-links text-right pt-3">
@@ -60,7 +60,7 @@ const Footer = () => {
                     <li className="text-sm" key={index}>
                       <Link
                         scroll={false}
-                        href={`/tour-listing?types=${i.name}`}
+                        href={`/tour-listing?type=${i.name}`}
                       >
                         {i.name}
                       </Link>
@@ -85,14 +85,20 @@ const Footer = () => {
       <div className="bg-[#3093d02b] text-black py-2">
         <div className="container">
           <div className="flex flex-wrap justify-center ">
-            <h1 className="px-4">القدس - بيت صفافا - شارع التوحيد 10</h1>
+            <h1 className="px-4 font-semibold">
+              القدس - بيت صفافا - شارع التوحيد 10
+            </h1>
 
-            <h1 dir="ltr" className="px-4">
+            <a dir="ltr" className="px-4 font-semibold" href="tel:+97226727957">
               +972 2 672 7957
-            </h1>
-            <h1 dir="ltr" className="px-4">
+            </a>
+            <a
+              dir="ltr"
+              className="px-4 font-semibold"
+              href="mailto:info@apriltours.com"
+            >
               info@apriltours.com
-            </h1>
+            </a>
           </div>
         </div>
       </div>

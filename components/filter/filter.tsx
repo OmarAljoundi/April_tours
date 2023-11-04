@@ -151,7 +151,7 @@ const Filter: FC<FilterOptions> = ({ onChange }) => {
   return (
     <div>
       {onChange && (
-        <h1 className="text-center text-3xl lg:text-5xl font-secondary text-secondary my-5">
+        <h1 className="text-center text-4xl font-secondary text-black font-bold my-10">
           الى أين تود الذهاب؟
         </h1>
       )}

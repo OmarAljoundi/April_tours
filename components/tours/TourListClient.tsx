@@ -65,7 +65,7 @@ const TourListingClient: FunctionComponent<TourListingClientProps> = ({
             </div>
           ))}
           {currentTours.length == 0 && (
-            <div className="d-grid lg:flex  items-center justify-between">
+            <div className="grid   items-center justify-star">
               <div className="text-right"></div>
               <div className="text-right xl:w-1/2 sm:w-full">
                 <h4>لا توجد نتائج لبحثك</h4>

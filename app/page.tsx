@@ -40,7 +40,7 @@ const Home = () => {
       </section>
 
       <section className="container mt-10 lg:mt-14">
-        <div className="flex gap-y-5 flex-col lg:grid lg:grid-cols-12 gap-x-5  justify-between items-center lg:items-start">
+        <div className="flex gap-y-5 flex-col-reverse lg:grid lg:grid-cols-12 gap-x-5  justify-between items-center lg:items-start">
           <div className="pr-4 pl-4 lg:col-span-6 xl:col-span-4">
             <p className="font-weird text-3xl">
               أستمتعوا بلحظات السعادة في رحلة شهر العسل التي لا تنسى معنا ، حيث
@@ -71,9 +71,6 @@ const Home = () => {
               className="w-full"
             />
           </div>
-          {/* <div className="pr-4 pl-4 ">
-            <Counter />
-          </div> */}
         </div>
       </section>
 

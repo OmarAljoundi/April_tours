@@ -5,24 +5,22 @@ import Link from "next/link";
 
 const MobileMenu = ({ classes = "", handleOpen }) => {
   return (
-    <nav className="w-full">
-      <ul className={cn("flex", classes)}>
+    <nav className="w-full py-2 ">
+      <div className="flex-col space-y-2 divide-y-2 w-full">
         {homeItems.map((o: any, index) => (
           <Button
-            as={"li"}
+            as={Link}
             size="sm"
-            dir="rtl"
-            color="secondary"
-            className="text-right w-full text-white"
+            variant="bordered"
+            className="text-right w-full text-black bg-white"
             key={index}
+            href={o.routePath}
             onClick={handleOpen}
           >
-            <Link href={o.routePath}>
-              <span className="mr-0">{o.name}</span>
-            </Link>
+            {o.name}
           </Button>
         ))}
-      </ul>
+      </div>
     </nav>
   );
 };

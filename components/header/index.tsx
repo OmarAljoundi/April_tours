@@ -24,7 +24,7 @@ const Header = () => {
     <header className={`container`} style={{ position: "relative" }}>
       <div className="flex items-center justify-between">
         <div
-          className={`flex justify-between sm:justify-start gap-x-2 items-center`}
+          className={`flex flex-row-reverse lg:flex-row justify-between sm:justify-start gap-x-2 items-center`}
         >
           <Link className="block" href={"/"}>
             <Image
@@ -46,7 +46,8 @@ const Header = () => {
               <Popover
                 placement="bottom"
                 classNames={{
-                  base: "w-[250px]",
+                  base: "w-[250px] ",
+                  content: "bg-secondary",
                 }}
                 showArrow={true}
                 offset={10}
@@ -61,10 +62,7 @@ const Header = () => {
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent>
-                  <MobileMenu
-                    classes="flex-col gap-y-1 divide-y-2 w-full"
-                    handleOpen={handleOpen}
-                  />
+                  <MobileMenu classes="" handleOpen={handleOpen} />
                 </PopoverContent>
               </Popover>
             </div>
@@ -72,15 +70,21 @@ const Header = () => {
         </div>
         <div className="flex-col gap-y-1 sm:flex-row md:flex-col xl:flex-row flex justify-end gap-x-4">
           <div className="flex justify-end items-center gap-x-2">
-            <span dir="ltr" className="font-serif text-xs sm:text-sm">
+            <a
+              dir="ltr"
+              className="font-semibold text-xs sm:text-sm"
+              href="tel:+97226727957"
+            >
               +972 672 7957
-            </span>
+            </a>
             <IconProvider>
               <BsTelephoneInboundFill />
             </IconProvider>
           </div>
-          <div className="flex justify-end font-serif items-center gap-x-2">
-            <span className="text-xs sm:text-sm">info@apriltours.com</span>
+          <div className="flex justify-end font-semibold items-center gap-x-2">
+            <a className="text-xs sm:text-sm" href="mailto:info@apriltours.com">
+              info@apriltours.com
+            </a>
             <IconProvider>
               <FiMail />
             </IconProvider>
