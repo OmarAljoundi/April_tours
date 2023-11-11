@@ -37,7 +37,10 @@ const Counter = () => {
     <div className="grid grid-cols-12 gap-4">
       {blockContent.map((item) => (
         <div
-          className={cn("w-full pr-4 pl-4 shadow-card", item.classItem ?? "")}
+          className={cn(
+            "w-full pr-4 pl-4 shadow-medium rounded-medium ",
+            item.classItem ?? ""
+          )}
           key={item.id}
           data-aos="fade"
           data-aos-delay={item.delayAnim}
@@ -53,7 +56,7 @@ const Counter = () => {
             >
               {({ countUpRef, start }) => (
                 <span
-                  className="text-xl lg:text-lg text-black"
+                  className="text-xl lg:text-lg text-black font-bold"
                   ref={countUpRef}
                 >
                   {item.number}

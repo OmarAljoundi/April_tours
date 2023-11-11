@@ -41,25 +41,33 @@ const Home = () => {
 
       <section className="container mt-10 lg:mt-14">
         <div className="flex gap-y-5 flex-col-reverse lg:grid lg:grid-cols-12 gap-x-5  justify-between items-center lg:items-start">
-          <div className="pr-4 pl-4 lg:col-span-6 xl:col-span-4">
-            <p className="font-weird text-3xl">
-              أستمتعوا بلحظات السعادة في رحلة شهر العسل التي لا تنسى معنا ، حيث
-              نصنع لكم ذكريات تبقى للأبد في أجمل وجهات العالم
-            </p>
-            <p className="font-weird  text-3xl">
-              اكتشفوا الرومانسية والإثارة في كل زاوية تقصدونها مع ابريل تورز..
-            </p>
-            <div className="flex justify-center my-4 ">
-              <Button
-                as={Link}
-                href="/tour-listing?type=رحلات شهر العسل"
-                color="primary"
-                endContent={<ArrowLeft />}
-              >
-                تفاصيل أكثر
-              </Button>
+          <div className="pr-4 pl-4 flex flex-col-reverse lg:block lg:col-span-6 xl:col-span-4">
+            <div className="mb-8">
+              <Counter />
             </div>
-            <Counter />
+
+            <div className="flex flex-col lg:pt-8">
+              <div className="text-center lg:text-right">
+                <p className="font-weird text-3xl">
+                  أستمتعوا بلحظات السعادة في رحلة شهر العسل التي لا تنسى معنا ،
+                  حيث نصنع لكم ذكريات تبقى للأبد في أجمل وجهات العالم
+                </p>
+                <p className="font-weird  text-3xl">
+                  اكتشفوا الرومانسية والإثارة في كل زاوية تقصدونها مع ابريل
+                  تورز..
+                </p>
+              </div>
+              <div className="flex justify-center my-8 ">
+                <Button
+                  as={Link}
+                  href="/tour-listing?type=رحلات شهر العسل"
+                  color="primary"
+                  endContent={<ArrowLeft />}
+                >
+                  تفاصيل أكثر
+                </Button>
+              </div>
+            </div>
           </div>
           <div className="pr-4 pl-4 lg:col-span-6 xl:col-span-8 lg:-mt-[25px]">
             <BlurImageV2
@@ -79,7 +87,9 @@ const Home = () => {
           sub_title="رفيق سفرك في رحلة لا تنسى"
           title="ابريل تورز"
         />
-        <BlockGuide />
+        <div className="mt-8">
+          <BlockGuide />
+        </div>
       </section>
     </div>
   );

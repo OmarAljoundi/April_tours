@@ -57,6 +57,7 @@ export const MenuItems: MenuItemsProps[] = [
 ];
 
 export const COUNTRIES = [
+  { label: "سلوفاكيا", countryCode: "SK" },
   { label: "المانيا", countryCode: "DE" },
   { label: "النمسا", countryCode: "AT" },
   { label: "سويسرا", countryCode: "CH" },

@@ -1,6 +1,6 @@
 "use client";
 import { Fragment, useState, useEffect, FC } from "react";
-import { QueryString, cn, europeanCountries, queryString } from "@/lib/utils";
+import { QueryString, cn, queryString } from "@/lib/utils";
 import { Plus, Check, X } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Button } from "../ui/button";
@@ -17,6 +17,7 @@ import {
 import { Separator } from "../ui/separator";
 import Image from "next/image";
 import qs from "query-string";
+import { COUNTRIES } from "@/lib/constants";
 
 const CountryDropdown: FC<{
   setSearch: (search: QueryString) => void;
@@ -36,7 +37,7 @@ const CountryDropdown: FC<{
     if (typeof query.country == "string") query.country = [query.country];
     if (query.country && query.country.length > 0) {
       const labelSet = new Set(query.country);
-      const filteredObjects = europeanCountries.filter((obj) =>
+      const filteredObjects = COUNTRIES.filter((obj) =>
         labelSet.has(obj.label)
       );
       setSelected(filteredObjects);
@@ -82,9 +83,8 @@ const CountryDropdown: FC<{
                     <X className="border  rounded-lg w-4 h-4 mr-2 text-white bg-red-500/70" />
                   </Badge>
                 ) : (
-                  europeanCountries
-                    .filter((option) => selected.includes(option))
-                    .map((option) => (
+                  COUNTRIES.filter((option) => selected.includes(option)).map(
+                    (option) => (
                       <Badge
                         variant="secondary"
                         key={option.label}
@@ -96,7 +96,8 @@ const CountryDropdown: FC<{
                         {option.label}
                         <X className="border  rounded-lg w-4 h-4 mr-2 text-white bg-red-500/70" />
                       </Badge>
-                    ))
+                    )
+                  )
                 )}
               </div>
             </>
@@ -109,7 +110,7 @@ const CountryDropdown: FC<{
           <CommandList>
             <CommandEmpty>لاتوجد نتائج</CommandEmpty>
             <CommandGroup>
-              {europeanCountries.map((option) => {
+              {COUNTRIES.map((option) => {
                 return (
                   <CommandItem
                     key={option.label}

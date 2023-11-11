@@ -20,12 +20,19 @@ const Footer = () => {
           <div className="grid grid-cols-12 justify-items-start justify-center gap-x-8 gap-y-10 lg:px-0 px-5">
             <div className="text-black col-span-12 sm:col-span-6">
               <div className="footer-widget">
-                <h4 className="text-right text-base ">عن أبريل تورز</h4>
+                <Link href={"/about-us"}>
+                  <h4 className="text-right text-base hover:underline duration-300 transition-all">
+                    عن أبريل تورز
+                  </h4>
+                </Link>
                 <div className="footer-about pt-3 text-center">
-                  <p className="text-black text-right text-sm">
-                    شركة إبريل تورز هي وكالة سفريات كاملة الخدمات في مدينة القدس
-                    تقوم بتوفير جميع خدمات السفر لجميع أنحاء العالم، ايضاً باقات
-                    سياحية صادرة بخدمات فاخرة ومستوى عالي من القيم.
+                  <p className="text-black text-right text-sm lg:pl-16">
+                    شركة ابريل تورز هي شركة مقرها مدينة القدس، تأسست عام 2018
+                    وتعتبر واحدة من الشركات البارزة في مجال السياحة والسفر في
+                    المدينة. تهدف لتقديم خدمات سياحة وسفر متكاملة لعملائها
+                    للعديد من الوجهات السياحية حول العالم. تتميز الشركة بتقديم
+                    مجموعة واسعة من الخدمات والعروض السياحية التي تناسب احتياجات
+                    العملاء المتنوعة.
                   </p>
                 </div>
                 <div className="mt-4">

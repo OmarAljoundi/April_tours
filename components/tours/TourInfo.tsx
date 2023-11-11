@@ -10,7 +10,9 @@ import TourSameTypes from "./TourSameTypes";
 import BasicInfo from "./BasicInfo";
 import SectionTitle from "../common/section-title";
 import TourHotels from "./TourHotels";
-
+import IconProvider from "@/provider/icon-provider";
+import { GrShareOption } from "react-icons/gr";
+import { Button } from "@nextui-org/react";
 export default function TourInfo({ tour }: { tour: Tour }) {
   const data = [
     {
@@ -22,6 +24,17 @@ export default function TourInfo({ tour }: { tour: Tour }) {
       current: true,
     },
   ];
+
+  async function share() {
+    try {
+      await navigator.share({
+        text: "في صحبة الأصدقاء ، كل طريق يؤدي الى اكتشاف جديد!",
+        url: window.location.href,
+      });
+    } catch (error) {
+      console.log("Sharing failed!", error);
+    }
+  }
   return (
     <div className="md:overflow-hidden container">
       <TopBreadCrumb breads={data} />
@@ -29,6 +42,11 @@ export default function TourInfo({ tour }: { tour: Tour }) {
       <section className="pt-5 border-t">
         <div className="w-full  flex flex-row items-center pb-5  justify-between ">
           <h1 className="text-2xl fw-600 text-right">{tour?.name}</h1>
+          <div onClick={() => share()}>
+            <IconProvider>
+              <GrShareOption />
+            </IconProvider>
+          </div>
         </div>
       </section>
 

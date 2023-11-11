@@ -152,7 +152,7 @@ const Filter: FC<FilterOptions> = ({ onChange }) => {
     <div>
       {onChange && (
         <h1 className="text-center text-4xl font-secondary text-black font-bold my-10">
-          الى أين تود الذهاب؟
+          ماهي وجهتك السياحية؟
         </h1>
       )}
 

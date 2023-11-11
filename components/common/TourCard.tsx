@@ -15,6 +15,12 @@ export const TourCard: FC<{ tour: Tour }> = ({ tour }) => {
 
   if (!mount) return null;
 
+  const getStartDay = (day: string) => {
+    if (day == "كل يوم") {
+      return "يومياً";
+    }
+    return day;
+  };
   return (
     <Card className="package-card-alpha">
       <div className="package-thumb relative">
@@ -36,68 +42,29 @@ export const TourCard: FC<{ tour: Tour }> = ({ tour }) => {
         </Link>
 
         <p className="card-lavel">
-          <span className=""> أيام +{tour?.number_of_days}</span>
+          <span className=""> {tour?.number_of_days} أيام</span>
           <i className="bi bi-clock"></i>{" "}
         </p>
       </div>
       <div className="tourCard__content mt-3 px-2 py-1 relative">
-        <p className="card-lavel-type p-0">
-          <div className="grid p-1" style={{ justifyItems: "center" }}>
-            <div>
-              <Image
-                src={tour.tour_type?.image}
-                alt={tour.tour_type?.name}
-                width={40}
-                height={40}
-                quality={100}
-                loading="eager"
-                fetchPriority="low"
-              />
-            </div>
-            <div className="text-10">{tour.tour_type?.name}</div>
-          </div>
-        </p>
         <div className="w-full p-3">
           <div className="grid ">
             <div className="text-ellipsis overflow-hidden line-clamp-1 max-w-[calc(100%-40px)]">
-              <span className="text-base">{tour?.name}</span>
+              <span className="text-lg font-bold">{tour?.name}</span>
             </div>
-            <div className="flex items-center lh-14 justify-start mb-1">
-              <div className="text-14 text-light-1">
-                {tour?.tour_type?.name}
-              </div>
+            <div className="text-ellipsis overflow-hidden line-clamp-1 max-w-[calc(100%-40px)]">
+              <span className="text-slate-400 text-xs">
+                {tour.tour_countries?.join(" ، ")}
+              </span>
             </div>
-            <div className="mt-3">
-              <div className="flex justify-start gap-2 mt-2">
-                {(!tour.start_day || tour.start_day.length == 0) && (
-                  <Chip color="primary" className="rounded-md">
-                    كل يوم
-                  </Chip>
-                )}
-                {tour.start_day?.map((i, index) => (
-                  <Chip color="primary" className="rounded-md" key={index}>
-                    {i}
-                  </Chip>
-                ))}
-              </div>
-              <div className="flex justify-start gap-2 mt-3 flex-wrap">
-                {tour.tour_countries.slice(0, 2).map((i, index) => (
-                  <Chip
-                    key={index}
-                    className="rounded-md"
-                    size="md"
-                    color="secondary"
-                  >
-                    {i}
-                  </Chip>
-                ))}
-                {tour.tour_countries.length > 2 && (
-                  <Chip className="rounded-md" size="md" color="secondary">
-                    {tour.tour_countries.length - 2} +
-                  </Chip>
-                )}
-              </div>
+            <div className="text-right  mt-2  mb-2">
+              <span className="font-bold">
+                إبتداء من USD {tour?.price_double}
+              </span>
+              <span className=" text-slate-400"> / </span>
+              <span className="text-xs text-slate-400">للغرفة المزدوجة</span>
             </div>
+
             <div className="flex justify-between items-end">
               <div className="mb-3">
                 <Button
@@ -109,12 +76,22 @@ export const TourCard: FC<{ tour: Tour }> = ({ tour }) => {
                   عرض التفاصيل
                 </Button>
               </div>
-              <div className="text-right  mt-2  mb-2">
-                <div className="text-12 text-light-1 ">إبتداء من </div>
-                <div className="text-18  lh-12 fw-600  mt-1">
-                  USD {tour?.price_double}
+              <div
+                className="grid justify-items-center p-2 rounded-medium shadow-medium bg-[#3093d02b]"
+                style={{ justifyItems: "center" }}
+              >
+                <div>
+                  <Image
+                    src={tour.tour_type?.image}
+                    alt={tour.tour_type?.name}
+                    width={40}
+                    height={40}
+                    quality={100}
+                    loading="eager"
+                    fetchPriority="low"
+                  />
                 </div>
-                <div className="text-14 text-light-1 ">للغرفة المزدوجة</div>
+                <div className="text-10">{tour.tour_type?.name}</div>
               </div>
             </div>
           </div>

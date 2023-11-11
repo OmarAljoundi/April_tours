@@ -65,7 +65,7 @@ const PopularDestinations = () => {
             slidesPerView: 3,
           },
           1200: {
-            slidesPerView: 4,
+            slidesPerView: 3,
           },
         }}
       >
@@ -90,27 +90,25 @@ const PopularDestinations = () => {
               <div
                 className="citiesCard__image ratio aspect-[3/4] h-full w-full before:w-full  
                    before:absolute before:h-full before:bottom-0 before:left-0 before:bg-gradient-to-t 
-                 before:from-black/75 before:z-10  
-                  before:to-black/10"
+                  before:z-10  
+                  "
               >
                 <BlurImageV2
                   src={item?.image?.url || ""}
                   loading="eager"
                   alt=""
+                  quality={100}
                   fill
                   className="object-cover rounded-none"
                 />
-                <figcaption
-                  className="absolute z-20  justify-center items-center   p-3 bottom-0 left-0 right-0 mx-auto  rounded-none  flex  text-white    
-                    sm:py-4 sm:px-6"
+                <div
+                  className="text-center absolute z-40 bottom-5 right-0 left-0 max-w-[75%] mx-auto bg-white/75 rounded-xl shadow-lg p-2
+                 shadow-black/5 saturate-200 backdrop-blur-sm"
                 >
-                  <div className="text-center">
-                    <h1 className="text-base text-white ">{item.name}</h1>
-                    <p className="text-base mt-2 text-white ">
-                      {getTotalTours(item)} رحلة ضمن البرنامج
-                    </p>
-                  </div>
-                </figcaption>
+                  <h1 className="text-xs md:text-xl text-black font-bold ">
+                    {item.name}
+                  </h1>
+                </div>
               </div>
             </Link>
           </SwiperSlide>

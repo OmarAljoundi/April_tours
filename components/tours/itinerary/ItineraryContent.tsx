@@ -34,7 +34,7 @@ const ItineraryContent: FC<{ tourStories: TourSection[] }> = ({
           <div className="accordion__item flex justify-between overflow-hidden">
             <div className="w-full">
               <div className="text-bold">{item.title}</div>
-              <p className="text-black text-sm">{item.description}</p>
+              <p className="text-black text-sm mt-4">{item.description}</p>
             </div>
             <div>
               {item.image && (
