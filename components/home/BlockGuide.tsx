@@ -3,27 +3,22 @@ import Image from "next/image";
 const BlockGuide = () => {
   const blockContent = [
     {
-      id: 1,
-      icon: "/assets/img/icons/1.png",
-      title: "أسعار تنافسية",
-      text: `أحجز ب أرخص الأسعار وأجود الخدمات`,
-      delayAnim: "100",
+      id: 3,
+      icon: "/assets/img/custom/icon-reward.png",
+      text: `رحلات بأفضل الاسعار والخدمات`,
+      delayAnim: "300",
     },
     {
       id: 2,
-      icon: "/assets/img/icons/2.png",
-      title: "احجز بسرعة وبسهولة",
-      text: `<a class="d-flex justify-center  w-50 m-auto btn -md -blue-1 bg-dark-1 text-white" style="align-items:center;"><i class="bx bxs-phone mr-10 text-18" ></i>
-      <span>أحجز الآن</span>
-      </a>`,
+      icon: "/assets/img/custom/icon-easy.png",
+      text: `تخطيط سهل وسريع للرحلات`,
       delayAnim: "200",
     },
     {
-      id: 3,
-      icon: "/assets/img/icons/3.png",
-      title: "خدمة عملاء على مدار الساعة",
-      text: `تواصل معنا.. تجدنا`,
-      delayAnim: "300",
+      id: 1,
+      icon: "/assets/img/custom/icon-support.png",
+      text: `خدمة عملاء على مدار الساعة`,
+      delayAnim: "100",
     },
   ];
   return (
@@ -47,13 +42,7 @@ const BlockGuide = () => {
               />
             </div>
             <div className="text-center mt-30">
-              <h4 className="text-18 fw-500">{item.title}</h4>
-              <p
-                className="text-15 mt-2"
-                dangerouslySetInnerHTML={{
-                  __html: item.text,
-                }}
-              />
+              <h4 className="text-base md:text-lg mt-2">{item.text}</h4>
             </div>
           </div>
         </div>

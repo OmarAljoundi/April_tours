@@ -16,6 +16,36 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
+.parent {
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.parent[data-isOpen="true"] {
+  height: auto;
+  padding: 32px;
+}
+.parent[data-isOpen="true"] .child {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.parent[data-isOpen="true"] .child .visa-image {
+  max-width: 50px;
+}
+
+.parent[data-isOpen="true"] .child .visa-title {
+  font-size: 25px;
+}
+
+.child {
+  height: auto;
+  position: absolute;
+  width: 100%;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

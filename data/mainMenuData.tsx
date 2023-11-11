@@ -11,17 +11,17 @@ export const homeItems = [
     renderMenu: DestinationMenu,
   },
   {
-    name: "التأشيرات السياحية",
-    routePath: "/visa",
+    name: "خدماتنا",
+    routePath: "/our-services",
+  },
+  {
+    name: "عن ابريل تورز",
+    routePath: "/about-us",
   },
   {
     name: "آراء العملاء",
     routePath: "https://g.page/r/CWgTbqzP98c9EAI/review",
     external: true,
-  },
-  {
-    name: "عن ابريل تورز",
-    routePath: "/about-us",
   },
 ];
 
@@ -35,16 +35,16 @@ export const MobileHomeItems = [
     routePath: "/tour-listing",
   },
   {
-    name: "التأشيرات السياحية",
-    routePath: "/visa",
+    name: "خدماتنا",
+    routePath: "/our-services",
+  },
+  {
+    name: "عن ابريل تورز",
+    routePath: "/about-us",
   },
   {
     name: "آراء العملاء",
     routePath: "https://g.page/r/CWgTbqzP98c9EAI/review",
     external: true,
-  },
-  {
-    name: "عن ابريل تورز",
-    routePath: "/about-us",
   },
 ];

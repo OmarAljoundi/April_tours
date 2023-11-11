@@ -33,7 +33,6 @@ const PopularDestinations = () => {
   return (
     <>
       <Swiper
-        dir="ltr"
         spaceBetween={30}
         className="overflow-visible-important"
         scrollbar={{
@@ -43,8 +42,8 @@ const PopularDestinations = () => {
         initialSlide={4}
         modules={[Scrollbar, Navigation]}
         navigation={{
-          nextEl: ".js-destination-next",
-          prevEl: ".js-destination-prev",
+          nextEl: ".js-destination-prev",
+          prevEl: ".js-destination-next",
         }}
         breakpoints={{
           300: {

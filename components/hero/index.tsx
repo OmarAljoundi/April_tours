@@ -8,7 +8,6 @@ import { motion } from "framer-motion";
 import BlurImageV2 from "../common/BlurImageV2";
 const Hero = () => {
   const setting = useSetting((x) => x.setting?.home?.sliders ?? []);
-  console.log("setting", setting);
   return (
     <div className="relative">
       <Swiper

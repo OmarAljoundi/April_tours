@@ -75,7 +75,10 @@ const Home = () => {
       </section>
 
       <section className="container  mt-10 lg:mt-14 mb-7">
-        <SectionTitle title="رفيق سفرك في رحلة لا تنسى" />
+        <SectionTitle
+          sub_title="رفيق سفرك في رحلة لا تنسى"
+          title="ابريل تورز"
+        />
         <BlockGuide />
       </section>
     </div>

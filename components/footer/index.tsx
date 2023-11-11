@@ -7,6 +7,7 @@ import { useQuery } from "react-query";
 import { RiVisaLine } from "react-icons/ri";
 import { FaCcMastercard } from "react-icons/fa";
 import MediaIcons from "../common/MediaIcons";
+import BlurImageV2 from "../common/BlurImageV2";
 const Footer = () => {
   const { data } = useQuery("Types", async () => await getTourTypes(), {
     refetchInterval: false,
@@ -69,15 +70,16 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="col-span-12 sm:col-span-6 lg:col-span-2">
-              <div className="flex flex-wrap flex-1 gap-2">
-                <IconProvider bgColor="white" isRounded={false} size="50px">
-                  <RiVisaLine />
-                </IconProvider>
-                <IconProvider bgColor="white" isRounded={false} size="50px">
-                  <FaCcMastercard />
-                </IconProvider>
-              </div>
+            <div className="col-span-12 sm:col-span-6 lg:col-span-2 grid items-end">
+              <BlurImageV2
+                src={"/assets/img/custom/payment-options.png"}
+                alt="april tours payment options"
+                width={1141}
+                height={260}
+                quality={100}
+                loading="lazy"
+                className="max-w-[200px]"
+              />
             </div>
           </div>
         </div>
