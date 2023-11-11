@@ -66,22 +66,24 @@ const DestinationDropdown: FC<{
           <CommandList>
             <CommandEmpty>لاتوجد نتائج</CommandEmpty>
             <CommandGroup>
-              {locations?.map((option) => {
-                return (
-                  <Link href={`/tour-listing/${option.slug}`} key={option.id}>
-                    <CommandItem>
-                      <Check
-                        className={cn(
-                          "ml-2 text-green-600 flex h-4 w-4 items-center justify-center opacity-0 transition-all duration-500",
-                          select == option.slug ? "opacity-100" : "opacity-0"
-                        )}
-                      />
+              {locations
+                ?.filter((x) => x.is_active)
+                .map((option) => {
+                  return (
+                    <Link href={`/tour-listing/${option.slug}`} key={option.id}>
+                      <CommandItem>
+                        <Check
+                          className={cn(
+                            "ml-2 text-green-600 flex h-4 w-4 items-center justify-center opacity-0 transition-all duration-500",
+                            select == option.slug ? "opacity-100" : "opacity-0"
+                          )}
+                        />
 
-                      <span>{option.name}</span>
-                    </CommandItem>
-                  </Link>
-                );
-              })}
+                        <span>{option.name}</span>
+                      </CommandItem>
+                    </Link>
+                  );
+                })}
             </CommandGroup>
           </CommandList>
         </Command>

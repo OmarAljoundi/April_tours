@@ -2,7 +2,6 @@ import { getDestination, getTours } from "@/lib/operations";
 import { Tour } from "@/types/custom";
 import { redirect } from "next/navigation";
 import TourListingClient from "./TourListClient";
-import Tabs from "@/components/tours/tabs";
 
 export default async function TourList({
   destination,
@@ -23,7 +22,7 @@ export default async function TourList({
       (x) => x.title == decodeURIComponent(tab.replaceAll("-", " "))
     );
 
-    let response = await getTours();
+    let response = (await getTours()).filter((x) => x.is_active);
 
     tours = response?.filter((m) =>
       attr?.location_tours?.map((x) => x.tour_id!).includes(m.id!)
@@ -48,11 +47,11 @@ export default async function TourList({
       ];
     });
 
-    let response = await getTours();
+    let response = (await getTours()).filter((x) => x.is_active);
 
     tours = response?.filter((m) => tours_ids.includes(m.id!));
   } else {
-    tours = await getTours();
+    tours = (await getTours()).filter((x) => x.is_active);
   }
 
   return (

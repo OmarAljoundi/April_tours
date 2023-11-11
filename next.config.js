@@ -1,9 +1,13 @@
 /** @type {import('next').NextConfig} */
+/** @type {import('next-sitemap').IConfig} */
 const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  swcMinify: true,
   images: {
+    minimumCacheTTL: 86400,
+    deviceSizes: [640, 1080, 1200],
     remotePatterns: [
       {
         hostname: "cdlxkuzvjlyvwgzgcdro.supabase.co",

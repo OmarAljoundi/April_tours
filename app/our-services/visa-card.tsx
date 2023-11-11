@@ -19,8 +19,8 @@ const VisaCard: FunctionComponent<VisaCardProps> = ({ visa }) => {
   return (
     <div
       className={cn(
-        "grid items-center justify-items-center cursor-pointer  duration-300 transition-all",
-        isOpen ? "" : "hover:scale-105"
+        "grid items-center justify-items-center cursor-pointer  duration-300 transition-all ",
+        isOpen ? "" : "lg:hover:scale-105"
       )}
     >
       <motion.div
@@ -39,7 +39,7 @@ const VisaCard: FunctionComponent<VisaCardProps> = ({ visa }) => {
               className="max-w-[75px] object-cover visa-image"
               quality={100}
             />
-            <span className="text-3xl visa-title transition-all duration-300">
+            <span className="text-xl lg:text-3xl visa-title transition-all duration-300">
               {title}
             </span>
           </div>

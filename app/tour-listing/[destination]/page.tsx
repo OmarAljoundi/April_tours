@@ -4,13 +4,16 @@ import TourList from "@/components/tours/TourList";
 import { Suspense } from "react";
 import { TourListLoading } from "@/components/tours/tourList-loading";
 import TopBreadCrumb from "@/components/tours/TopBreadCrumb";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   const response = await getDestination();
   if (response.success && response.results && response.results.length > 0) {
-    return response.results.map((dest) => ({
-      destination: `${dest.slug}`,
-    }));
+    return response.results
+      .filter((x) => x.is_active)
+      .map((dest) => ({
+        destination: `${dest.slug}`,
+      }));
   }
   return [];
 }
@@ -23,7 +26,7 @@ export async function generateMetadata({
   const slug = params.destination;
   const response = await getDestination();
   const destination = response?.results?.find(
-    (x) => x.slug == decodeURIComponent(slug)
+    (x) => x.slug == decodeURIComponent(slug) && x.is_active
   );
   if (destination) {
     return {
@@ -52,15 +55,18 @@ export default async function DestinationPage({
   searchParams: any;
 }) {
   const destination = (await getDestination()).results?.find(
-    (x) => x.slug == decodeURIComponent(params.destination)
+    (x) => x.slug == decodeURIComponent(params.destination) && x.is_active
   );
+  if (!destination) {
+    return notFound();
+  }
   const data = [
     {
       title: "الرحلات السياحية",
       href: "/tour-listing",
     },
     {
-      title: destination.name,
+      title: destination?.name,
       current: true,
     },
   ];

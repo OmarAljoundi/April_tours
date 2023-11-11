@@ -36,10 +36,6 @@ html {
   max-width: 50px;
 }
 
-.parent[data-isOpen="true"] .child .visa-title {
-  font-size: 25px;
-}
-
 .child {
   height: auto;
   position: absolute;

@@ -4,22 +4,25 @@ import Tabs from "@/components/tours/tabs";
 import { TourListLoading } from "@/components/tours/tourList-loading";
 import { getDestination } from "@/lib/operations";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 export async function generateStaticParams() {
   const response = await getDestination();
   var results: { destination: string; tab: string }[] = [];
 
-  response?.results?.map((dest) => {
-    if (dest.location_attributes && dest.location_attributes.length > 1) {
-      dest.location_attributes?.map((attr) => {
-        results.push({
-          destination: dest.slug!,
-          tab: attr.title!.replaceAll(" ", "-"),
+  response?.results
+    ?.filter((x) => x.is_active)
+    .map((dest) => {
+      if (dest.location_attributes && dest.location_attributes.length > 1) {
+        dest.location_attributes?.map((attr) => {
+          results.push({
+            destination: dest.slug!,
+            tab: attr.title!.replaceAll(" ", "-"),
+          });
         });
-      });
-    }
-  });
+      }
+    });
 
   return results;
 }
@@ -32,7 +35,7 @@ export async function generateMetadata({
   const destinationSlug = params.destination;
   const response = await getDestination();
   const destination = response?.results?.find(
-    (x) => x.slug == decodeURIComponent(destinationSlug)
+    (x) => x.slug == decodeURIComponent(destinationSlug) && x.is_active
   );
   const tab = destination?.location_attributes?.find(
     (x) => x.title?.replaceAll(" ", "-") == decodeURIComponent(params.tab)
@@ -62,8 +65,12 @@ export default async function TabPage({
 }) {
   const _destination = await getDestination();
   const currentDest = _destination.results?.find(
-    (x) => x.slug == decodeURIComponent(params.destination)
+    (x) => x.slug == decodeURIComponent(params.destination) && x.is_active
   );
+
+  if (!currentDest) {
+    return notFound();
+  }
 
   const data = [
     {
@@ -71,8 +78,8 @@ export default async function TabPage({
       href: "/tour-listing",
     },
     {
-      title: currentDest.name,
-      href: `/tour-listing/${currentDest.slug}`,
+      title: currentDest?.name,
+      href: `/tour-listing/${currentDest?.slug}`,
     },
     {
       title: decodeURIComponent(params.tab).replaceAll("-", " "),

@@ -21,7 +21,13 @@ const DestinationMenu: FunctionComponent<DestinationMenuProps> = () => {
   const { data } = useQuery(
     [REVALIDATE_LOCATION_LIST],
     async () => await getDestination(),
-    { refetchInterval: false, refetchOnWindowFocus: false }
+    {
+      refetchInterval: false,
+      refetchOnWindowFocus: false,
+      select(data) {
+        return data?.results?.filter((x) => x.is_active);
+      },
+    }
   );
   const [open, setOpen] = useState(false);
   return (
@@ -58,7 +64,7 @@ const DestinationMenu: FunctionComponent<DestinationMenuProps> = () => {
           base: "gap-4",
         }}
       >
-        {data?.results?.map((location) => (
+        {data?.map((location) => (
           <DropdownItem
             as={Link}
             href={`/tour-listing/${location.slug}`}

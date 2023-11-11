@@ -52,7 +52,7 @@ const Home = () => {
             <div className="flex justify-center my-4 ">
               <Button
                 as={Link}
-                href="/about-us"
+                href="/tour-listing?type=رحلات شهر العسل"
                 color="primary"
                 endContent={<ArrowLeft />}
               >
@@ -63,11 +63,11 @@ const Home = () => {
           </div>
           <div className="pr-4 pl-4 lg:col-span-6 xl:col-span-8 lg:-mt-[25px]">
             <BlurImageV2
-              src={"/assets/img/custom/3845483.jpg"}
+              src={"/assets/img/custom/main-image.jpg"}
               alt=""
-              width={750}
-              height={500}
-              quality={90}
+              width={1500}
+              height={1000}
+              quality={100}
               className="w-full"
             />
           </div>

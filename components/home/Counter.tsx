@@ -3,6 +3,7 @@ import React from "react";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
 import VisibilitySensor from "react-visibility-sensor";
+import { cn } from "@/lib/utils";
 
 const Counter = () => {
   const blockContent = [
@@ -12,6 +13,7 @@ const Counter = () => {
       number_2: 100,
       meta: "برامج سياحية",
       delayAnim: "100",
+      classItem: "col-span-6",
     },
     {
       id: 2,
@@ -20,6 +22,7 @@ const Counter = () => {
       meta: "دولة حول العالم",
 
       delayAnim: "200",
+      classItem: "col-span-6",
     },
     {
       id: 3,
@@ -27,18 +30,19 @@ const Counter = () => {
       number_2: 2000,
       meta: "عملاء راضيين",
       delayAnim: "300",
+      classItem: "col-span-12",
     },
   ];
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-12 gap-4">
       {blockContent.map((item) => (
         <div
-          className="w-full pr-4 pl-4 shadow-card"
+          className={cn("w-full pr-4 pl-4 shadow-card", item.classItem ?? "")}
           key={item.id}
           data-aos="fade"
           data-aos-delay={item.delayAnim}
         >
-          <div className="py-14 sm:py-7 text-center">
+          <div className="py-6  sm:py-7 text-center">
             +
             <CountUp
               start={0}
