@@ -33,7 +33,7 @@ const ItineraryContent: FC<{ tourStories: TourSection[] }> = ({
         >
           <div className="accordion__item flex justify-between overflow-hidden">
             <div className="w-full">
-              <div className="text-bold">{item.title}</div>
+              <div className="font-bold">{item.title}</div>
               <p className="text-black text-sm mt-4">{item.description}</p>
             </div>
             <div>
@@ -41,6 +41,7 @@ const ItineraryContent: FC<{ tourStories: TourSection[] }> = ({
                 <BlurImageV2
                   alt=""
                   loading="eager"
+                  quality={80}
                   priority={true}
                   src={item.image}
                   width={600}

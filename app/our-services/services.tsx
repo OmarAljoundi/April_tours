@@ -3,6 +3,7 @@ import { FunctionComponent } from "react";
 import ServiceCard from "./services-card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
+import { Separator } from "@/components/ui/separator";
 
 interface ServicesProps {}
 
@@ -42,63 +43,16 @@ const data = [
 const Services: FunctionComponent<ServicesProps> = () => {
   return (
     <div className="mt-10">
-      <div className="text-right px-2 md:px-8 mb-10">
-        <h1 className="text-secondary  text-5xl">خدمـاتنا</h1>
-        <p className="whitespace-pre-line text-xl text-slate-500">
-          نقدّم في ابريل تورز مجموعة شاملة من الخدمات التي تلبي احتياجات ورغبات
-          العملاء السياحية بشكل متكامل.
-        </p>
+      <div className="text-center px-2 md:px-8 mb-10">
+        <h1 className="text-black  text-3xl">خدمـاتنا</h1>
+        <Separator className="bg-secondary h-1.5 w-[50%] mx-auto mt-3 rounded-medium" />
       </div>
-      <Swiper
-        dir="ltr"
-        spaceBetween={30}
-        modules={[Navigation, Pagination]}
-        navigation={{
-          nextEl: ".js-service-next",
-          prevEl: ".js-service-prev",
-        }}
-        pagination={{
-          el: ".js-service-pag",
-          clickable: true,
-        }}
-        breakpoints={{
-          300: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-
-          1024: {
-            slidesPerView: 3,
-          },
-          1200: {
-            slidesPerView: 4,
-          },
-        }}
-      >
+      <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {data?.map((item, index) => (
-          <SwiperSlide key={item.title}>
-            <div data-aos="fade" data-aos-delay={"100"}>
-              <ServiceCard data={item} />
-            </div>
-          </SwiperSlide>
+          <div data-aos="fade" data-aos-delay={"100"} key={index}>
+            <ServiceCard data={item} />
+          </div>
         ))}
-      </Swiper>
-      <div className="w-auto">
-        <div className="flex gap-x-4 items-center justify-center mt-5">
-          <div className="w-auto">
-            <button className="flex items-center text-xl arrow-right-hover js-service-prev">
-              <i className="icon icon-arrow-right" />
-            </button>
-          </div>
-          <div className="w-auto">
-            <div className="pagination -dots text-border js-service-pag" />
-          </div>
-          <div className="w-auto">
-            <button className="flex items-center text-xl arrow-left-hover  js-service-next">
-              <i className="icon icon-arrow-left" />
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );

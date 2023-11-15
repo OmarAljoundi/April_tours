@@ -43,15 +43,23 @@ const Hero = () => {
               }}
             >
               <div className="relative h-full group overflow-hidden ">
-                <BlurImageV2
-                  src={item.image}
-                  alt="Hero Image"
-                  quality={100}
-                  fill
-                  fetchPriority={index == 0 ? "high" : "auto"}
-                  loading={index == 0 ? "eager" : "lazy"}
-                  className="bg-gray-400 mx-auto max-w-full object-cover object-right-top md:object-center"
-                />
+                <picture>
+                  {item.image_mobile && (
+                    <source
+                      media="(max-width: 768px)"
+                      srcSet={item.image_mobile}
+                    />
+                  )}
+                  <BlurImageV2
+                    src={item.image}
+                    alt="Hero Image"
+                    quality={100}
+                    fill
+                    fetchPriority={index == 0 ? "high" : "auto"}
+                    loading={index == 0 ? "eager" : "lazy"}
+                    className="bg-gray-400 mx-auto max-w-full object-cover object-right-top md:object-center"
+                  />
+                </picture>
                 <section className="relative bg-[var(--bg-1)] border-t lg:border-t-0">
                   <div className="pt-[70px] sm:pt-[100px] md:pt-[150px] xl:pt-[180px] pb-16  px-3 bg-no-repeat bg-cover bg-[#3093d02b] relative h-[500px]">
                     <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed bg-[#3093d02b] ">

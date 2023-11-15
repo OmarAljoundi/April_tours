@@ -28,7 +28,8 @@ export default function TourInfo({ tour }: { tour: Tour }) {
   async function share() {
     try {
       await navigator.share({
-        text: "في صحبة الأصدقاء ، كل طريق يؤدي الى اكتشاف جديد!",
+        text: "اكتشف المغامرات الجديدة مع ابريل تورز، واحجز رحلتك الآن!",
+        title: "أبريل تورز",
         url: window.location.href,
       });
     } catch (error) {
@@ -39,16 +40,7 @@ export default function TourInfo({ tour }: { tour: Tour }) {
     <div className="md:overflow-hidden container">
       <TopBreadCrumb breads={data} />
 
-      <section className="pt-5 border-t">
-        <div className="w-full  flex flex-row items-center pb-5  justify-between ">
-          <h1 className="text-2xl fw-600 text-right">{tour?.name}</h1>
-          <div onClick={() => share()}>
-            <IconProvider>
-              <GrShareOption />
-            </IconProvider>
-          </div>
-        </div>
-      </section>
+      <section className="pt-5 border-t"></section>
 
       <div className="grid grid-cols-12 lg:gap-x-10  items-start">
         <div className="col-span-4 sidebar-sticky content-center gap-y-5 hidden lg:grid">
@@ -57,6 +49,16 @@ export default function TourInfo({ tour }: { tour: Tour }) {
           </div>
         </div>
         <div className="col-span-12 lg:col-span-8">
+          <div className="relative flex justify-end overflow-hidden js-section-slider w-100">
+            <div className="w-full  flex flex-row items-center pb-5 px-2 lg:px-0  justify-between ">
+              <h1 className="text-2xl font-bold text-right">{tour?.name}</h1>
+              <div onClick={() => share()}>
+                <IconProvider>
+                  <GrShareOption />
+                </IconProvider>
+              </div>
+            </div>
+          </div>
           <div className="relative flex justify-end overflow-hidden js-section-slider w-100">
             <ImageSlides
               tourImages={tour?.images}

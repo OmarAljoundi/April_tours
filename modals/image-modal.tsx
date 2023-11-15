@@ -83,7 +83,7 @@ export const ImageModal = () => {
       onClose={imageModal.onClose}
       renderFooter={FooterComponent}
     >
-      <Tabs defaultValue="upload_new_imagess" className="w-full mt-8">
+      <Tabs defaultSelectedKey="upload_new_imagess" className="w-full mt-8">
         <Tab className="w-full" title={"Upload New Images"}>
           <UploadNewImages
             selectedImages={selectedImages}

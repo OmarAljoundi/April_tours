@@ -55,7 +55,7 @@ const ImageSlides: FC<{ tourImages: string[]; mainImage?: string }> = ({
   return (
     <div style={{ width: "100%" }}>
       {tourImages?.length == 1 ? (
-        <BlurImage image={mainImage} height={400} />
+        <BlurImage image={mainImage} height={400} q={100} loading="eager" />
       ) : (
         <>
           <Splide
@@ -66,7 +66,7 @@ const ImageSlides: FC<{ tourImages: string[]; mainImage?: string }> = ({
           >
             {tourImages?.map((o, i) => (
               <SplideSlide key={i}>
-                <BlurImage image={o} height={300} />
+                <BlurImage image={o} height={300} q={100} />
               </SplideSlide>
             ))}
           </Splide>

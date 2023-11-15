@@ -26,7 +26,7 @@ const Footer = () => {
                   </h4>
                 </Link>
                 <div className="footer-about pt-3 text-center">
-                  <p className="text-black text-right text-sm lg:pl-16">
+                  <p className="text-black  text-sm lg:pl-16 text-justify">
                     شركة ابريل تورز هي شركة مقرها مدينة القدس، تأسست عام 2018
                     وتعتبر واحدة من الشركات البارزة في مجال السياحة والسفر في
                     المدينة. تهدف لتقديم خدمات سياحة وسفر متكاملة لعملائها

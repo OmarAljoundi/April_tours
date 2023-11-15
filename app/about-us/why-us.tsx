@@ -46,60 +46,21 @@ const data = [
 ];
 const WhyUs: FunctionComponent<WhyUsProps> = () => {
   return (
-    <div className="px-2 md:px-8 mt-10 mb-10">
+    <div className="px-2 md:px-8 mt-10 !mb-10">
       <h1 className="text-3xl font-bold text-center mb-4">
-        لماذا <span className="text-secondary">ابريل تورز؟ </span>
+        لماذا <span className="text-secondary ">ابريل تورز؟ </span>
       </h1>
-      <Swiper
-        dir="ltr"
-        spaceBetween={30}
-        modules={[Navigation, Pagination]}
-        navigation={{
-          nextEl: ".js-whyUs-next",
-          prevEl: ".js-whyUs-prev",
-        }}
-        pagination={{
-          el: ".js-whyUs-pag",
-          clickable: true,
-        }}
-        breakpoints={{
-          300: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-
-          1024: {
-            slidesPerView: 3,
-          },
-          1200: {
-            slidesPerView: 4,
-          },
-        }}
-      >
+      <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {data?.map((item, index) => (
-          <SwiperSlide key={item.title}>
-            <div data-aos="fade" data-aos-delay={"100"}>
-              <ServiceCard data={item} />
-            </div>
-          </SwiperSlide>
+          <div
+            data-aos="fade"
+            data-aos-delay={"100"}
+            className="h-full"
+            key={index}
+          >
+            <ServiceCard data={item} />
+          </div>
         ))}
-      </Swiper>
-      <div className="w-auto">
-        <div className="flex gap-x-4 items-center justify-center mt-5">
-          <div className="w-auto">
-            <button className="flex items-center text-xl arrow-right-hover js-whyUs-prev">
-              <i className="icon icon-arrow-right" />
-            </button>
-          </div>
-          <div className="w-auto">
-            <div className="pagination -dots text-border js-whyUs-pag" />
-          </div>
-          <div className="w-auto">
-            <button className="flex items-center text-xl arrow-left-hover  js-whyUs-next">
-              <i className="icon icon-arrow-left" />
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );

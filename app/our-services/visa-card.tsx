@@ -1,42 +1,47 @@
 import BlurImageV2 from "@/components/common/BlurImageV2";
 import { VisaType } from "@/types/custom";
-import { Button } from "@nextui-org/react";
+import { Button, Modal, ModalBody, ModalContent } from "@nextui-org/react";
 import { FunctionComponent, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import IconProvider from "@/provider/icon-provider";
 import { BsPlusLg } from "react-icons/bs";
-import { AiOutlineMinus, AiOutlineQuestion } from "react-icons/ai";
+import {
+  AiFillDollarCircle,
+  AiOutlineMinus,
+  AiOutlineQuestion,
+} from "react-icons/ai";
 import { cn } from "@/lib/utils";
+import { IoDocumentTextSharp } from "react-icons/io5";
+import { FaCheckCircle, FaClipboardCheck } from "react-icons/fa";
 interface VisaCardProps {
   visa: VisaType;
+  isOpen: string;
+  setIsOpen: (b: string) => void;
 }
 
-const VisaCard: FunctionComponent<VisaCardProps> = ({ visa }) => {
-  const [isOpen, setIsOpen] = useState(true);
+const VisaCard: FunctionComponent<VisaCardProps> = ({
+  visa,
+  isOpen,
+  setIsOpen,
+}) => {
   const { image, note, period, price, requirements, sub_title, title, uuid } =
     visa;
   return (
-    <div
-      className={cn(
-        "grid items-center justify-items-center cursor-pointer  duration-300 transition-all ",
-        isOpen ? "" : "lg:hover:scale-105"
-      )}
-    >
+    <>
       <motion.div
-        layout
-        data-isOpen={isOpen}
-        className="parent w-full relative shadow-medium rounded-none grid justify-items-start space-y-12"
-        onClick={() => setIsOpen(!isOpen)}
+        layoutId={uuid}
+        className=" w-full relative shadow-medium  grid justify-items-start space-y-12  rounded-medium"
+        onClick={() => (isOpen === uuid ? setIsOpen("") : setIsOpen(uuid))}
       >
-        <motion.div layout className="child flex items-center justify-between">
-          <div className="flex justify-start items-center">
+        <div className="flex items-center justify-between">
+          <div className="flex justify-start items-center gap-x-2 px-4">
             <BlurImageV2
               src={image}
               alt=""
               width={300}
               height={150}
-              className="max-w-[75px] object-cover visa-image"
+              className="max-w-[50px] object-cover visa-image"
               quality={100}
             />
             <span className="text-xl lg:text-3xl visa-title transition-all duration-300">
@@ -45,64 +50,71 @@ const VisaCard: FunctionComponent<VisaCardProps> = ({ visa }) => {
           </div>
           <div className="pl-4">
             <IconProvider>
-              {!isOpen ? <BsPlusLg /> : <AiOutlineMinus />}
+              {isOpen == uuid ? <AiOutlineMinus /> : <BsPlusLg />}
             </IconProvider>
           </div>
-        </motion.div>
-
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0, display: "none" }}
-            >
-              <div className="flex justify-start gap-x-2 items-center">
-                <IconProvider>
-                  <AiOutlineQuestion />
-                </IconProvider>
-                <h1 className="text-secondary text-lg">المتطلبات الرئيسية</h1>
-              </div>
-              <ul className="list-inside list-disc pr-3 mt-4" dir="rtl">
-                {requirements.map((i) => (
-                  <li key={i}>{i}</li>
-                ))}
-              </ul>
-              <Separator className="my-2" />
-              <div className="flex justify-start gap-x-2 items-center">
-                <IconProvider>
-                  <AiOutlineQuestion />
-                </IconProvider>
-                <h1 className="text-secondary text-lg">مدة التاشيرة</h1>
-              </div>
-              <div className="mt-4 pr-3" dir="rtl">
-                <h4>{period}</h4>
-              </div>
-              <Separator className="my-2" />
-              <div className="flex justify-start gap-x-2 items-center">
-                <IconProvider>
-                  <AiOutlineQuestion />
-                </IconProvider>
-                <h1 className="text-secondary text-lg">سعر التأشيرة</h1>
-              </div>
-              <div className="mt-4 pr-3" dir="rtl">
-                <h4>{price}</h4>
-              </div>
-              <Separator className="my-2" />
-              <div className="flex justify-start gap-x-2 items-center">
-                <IconProvider>
-                  <AiOutlineQuestion />
-                </IconProvider>
-                <h1 className="text-secondary text-lg">ملاحظة مهمة</h1>
-              </div>
-              <div className="mt-4 pr-3" dir="rtl">
-                <h4>{note}</h4>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        </div>
       </motion.div>
-    </div>
+      <AnimatePresence>
+        {isOpen == uuid && (
+          <motion.div layoutId={isOpen}>
+            <Modal
+              isOpen={true}
+              placement={"auto"}
+              onOpenChange={() => setIsOpen("")}
+            >
+              <ModalContent>
+                <ModalBody>
+                  <div className="flex justify-start gap-x-2 items-center">
+                    <IconProvider>
+                      <IoDocumentTextSharp />
+                    </IconProvider>
+                    <h1 className="text-black text-lg font-bold">
+                      المستندات المطلوبة
+                    </h1>
+                  </div>
+                  <ul
+                    className="list-inside list-disc pr-3 mt-4 space-y-1"
+                    dir="rtl"
+                  >
+                    {requirements.map((i) => (
+                      <li key={i}>{i}</li>
+                    ))}
+                  </ul>
+                  <Separator className="my-2" />
+                  <div className="flex justify-start gap-x-2 items-center">
+                    <IconProvider>
+                      <AiFillDollarCircle />
+                    </IconProvider>
+                    <h1 className="text-black text-lg font-bold">التكلفة</h1>
+                  </div>
+                  <div className="mt-4 pr-3" dir="rtl">
+                    <ul
+                      className="list-inside list-disc pr-3 mt-4 space-y-1"
+                      dir="rtl"
+                    >
+                      <li>{price}</li>
+                      <li>{price}</li>
+                      <li>{price}</li>
+                    </ul>
+                  </div>
+                  <Separator className="my-2" />
+                  <div className="flex justify-start gap-x-2 items-center">
+                    <IconProvider>
+                      <FaClipboardCheck />
+                    </IconProvider>
+                    <h1 className="text-black text-lg font-bold">ملاحظات</h1>
+                  </div>
+                  <div className="mt-4 pr-3" dir="rtl">
+                    <h4>{note}</h4>
+                  </div>
+                </ModalBody>
+              </ModalContent>
+            </Modal>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

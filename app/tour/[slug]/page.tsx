@@ -27,11 +27,11 @@ export async function generateMetadata({
   );
   if (tour) {
     return {
-      title: tour?.seo?.title,
-      description: tour?.seo?.description,
+      title: tour?.seo?.title ?? tour.name,
+      description: tour?.seo?.description ?? tour.name,
       openGraph: {
-        title: tour?.seo?.title || "",
-        description: tour?.seo?.description || "",
+        title: tour?.seo?.title || tour.name,
+        description: tour?.seo?.description || tour.name,
         type: "website",
         images: tour.images ?? [],
         siteName: "April Tours",

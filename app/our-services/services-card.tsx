@@ -1,4 +1,5 @@
 import BlurImageV2 from "@/components/common/BlurImageV2";
+import { cn } from "@/lib/utils";
 import { FunctionComponent } from "react";
 
 interface ServiceCardProps {
@@ -8,21 +9,20 @@ interface ServiceCardProps {
 const ServiceCard: FunctionComponent<ServiceCardProps> = ({ data }) => {
   const { description, image, title } = data;
   return (
-    <div className="grid space-y-2 justify-items-center items-center justify-center">
+    <div className="grid space-y-2 content-baseline justify-items-center items-center justify-center shadow-medium p-4 rounded-medium h-full">
       <BlurImageV2
         src={image}
         alt={title}
         width={300}
         height={150}
-        quality={80}
+        quality={100}
         fetchPriority="high"
-        className="max-w-[100px]"
+        className="max-w-[50px]"
         loading="eager"
       />
-      <h1 className="text-xl font-bold text-primary">{title}</h1>
-      <p className="whitespace-pre-line text-sm lg:text-base text-center max-w-[70%] mx-auto">
-        {" "}
-        {description}{" "}
+      <h1 className="text-xl  text-black font-bold text-right">{title}</h1>
+      <p className="whitespace-pre-line text-sm lg:text-base text-center px-2 mx-auto ">
+        {description}
       </p>
     </div>
   );

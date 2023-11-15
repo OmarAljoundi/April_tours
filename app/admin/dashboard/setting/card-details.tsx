@@ -23,6 +23,7 @@ const CardDetails: FunctionComponent<Slider> = ({
   title,
   uuid,
   call_to_action_link,
+  image_mobile,
 }) => {
   const config = useSetting();
   const modal = useModal();
@@ -94,6 +95,7 @@ const CardDetails: FunctionComponent<Slider> = ({
                   call_to_action,
                   image,
                   sub_title,
+                  image_mobile,
                   title,
                   uuid,
                   call_to_action_link,

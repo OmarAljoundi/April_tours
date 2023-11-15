@@ -172,6 +172,7 @@ export type VisaType = {
 export type Slider = {
   uuid: string;
   image: string;
+  image_mobile: string;
   title: string;
   sub_title: string;
   call_to_action: string;
