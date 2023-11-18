@@ -233,7 +233,7 @@ export const generate = async (tour: Tour) => {
       };
 
       fetch(
-        "https://mundo-tours.s3.eu-central-1.amazonaws.com/assets/mundo-logo.png",
+        "https://kxoneskwkgrjredodsfx.supabase.co/storage/v1/object/public/admin-only/main-logo.png",
         {
           headers: { "Cache-Control": "no-cache" },
           next: {
@@ -279,7 +279,7 @@ export const generate = async (tour: Tour) => {
       });
     } catch (error) {
       console.error("Error:", error);
-      throw error; // You can choose to throw or handle the error as needed
+      throw error;
     }
   };
 

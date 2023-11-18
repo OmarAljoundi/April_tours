@@ -1,16 +1,26 @@
 "use client";
 import { useImageModal } from "@/hooks/use-image-modal";
-import { Button, ModalFooter, Select, Tab, Tabs } from "@nextui-org/react";
+import {
+  Button,
+  Chip,
+  ModalFooter,
+  Select,
+  Tab,
+  Tabs,
+} from "@nextui-org/react";
 import { Modal } from "../shared/modal";
 import { useState } from "react";
 import { DeleteImageFromTour } from "@/lib/storage-operations";
 import FromLibrary from "@/components/uploader/images/from-libray";
 import UploadNewImages from "@/components/uploader/images/new-images";
+import { cn } from "@/lib/utils";
+import { useQueryClient } from "react-query";
 
 export const ImageModal = () => {
   const imageModal = useImageModal();
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
   const [loadingDelete, setLoadingDelete] = useState(false);
+  const queryClient = useQueryClient();
 
   const UploadImages = () => {
     if (imageModal.maxNumber! > 1) {
@@ -41,21 +51,40 @@ export const ImageModal = () => {
 
     imageModal.onClose();
   };
+  function extractLastPart(url: string): string {
+    const lastSlashIndex = url.lastIndexOf("/");
+    const lastPart = url.substring(lastSlashIndex + 1);
+
+    return `tour_images/${lastPart}`;
+  }
 
   const DeleteImages = async () => {
     setLoadingDelete(true);
-    const { success, error } = await DeleteImageFromTour(selectedImages);
+    const { success, error } = await DeleteImageFromTour(
+      selectedImages.map((x) => extractLastPart(x))
+    );
     if (!success) {
       return;
     }
+    await queryClient.invalidateQueries();
     setLoadingDelete(false);
     setSelectedImages([]);
   };
 
   const FooterComponent = () => {
     return (
-      <ModalFooter>
-        <div className="flex gap-x-4">
+      <ModalFooter
+        className={cn(
+          selectedImages.length == 0
+            ? "hidden"
+            : "flex justify-between items-center"
+        )}
+      >
+        <h1 className="text-xl">
+          Selected Images <Chip color="primary"> {selectedImages.length}</Chip>
+        </h1>
+
+        <div className={"flex gap-x-4"}>
           <Button
             color="danger"
             onClick={DeleteImages}
@@ -77,7 +106,7 @@ export const ImageModal = () => {
 
   return (
     <Modal
-      size="4xl"
+      size="5xl"
       title="Images Library"
       isOpen={imageModal.isOpen}
       onClose={imageModal.onClose}

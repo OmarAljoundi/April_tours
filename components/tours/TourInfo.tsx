@@ -1,19 +1,41 @@
 "use client";
 import TopBreadCrumb from "@/components/tours/TopBreadCrumb";
-import SidebarRight from "@/components/tours/SidebarRight";
 import Overview from "@/components/tours/Overview";
 import Itinerary from "@/components/tours/itinerary";
 import Tours from "@/components/tours/Tours";
 import ImageSlides from "./ImageSlides";
 import { Tour } from "@/types/custom";
-import TourSameTypes from "./TourSameTypes";
 import BasicInfo from "./BasicInfo";
 import SectionTitle from "../common/section-title";
 import TourHotels from "./TourHotels";
 import IconProvider from "@/provider/icon-provider";
 import { GrShareOption } from "react-icons/gr";
-import { Button } from "@nextui-org/react";
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  useDisclosure,
+} from "@nextui-org/react";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { CustomerForm } from "./CustomerForm";
+
+const variants = {
+  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 25 },
+};
+
 export default function TourInfo({ tour }: { tour: Tour }) {
+  const [hidden, setHidden] = useState(true);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setHidden(false);
+    }, 4000);
+  }, []);
+
   const data = [
     {
       title: "الرحلات السياحية",
@@ -42,17 +64,33 @@ export default function TourInfo({ tour }: { tour: Tour }) {
 
       <section className="pt-5 border-t"></section>
 
+      <motion.div
+        className="fixed left-0 w-full bottom-0 bg-secondary/50 z-50 backdrop-saturate-150 backdrop-blur-lg"
+        variants={variants}
+        animate={hidden ? "hidden" : "visible"}
+        transition={{ ease: [0.1, 0.25, 0.3, 1], duration: 0.6 }}
+      >
+        <div className="p-2 flex flex-grow justify-between items-center lg:hidden">
+          <h1 className="text-xl text-black">أبدأ تجربتك المثالية اليوم</h1>
+          <Button color="primary" size="sm" onPress={onOpen}>
+            تواصل معنا
+          </Button>
+        </div>
+      </motion.div>
       <div className="grid grid-cols-12 lg:gap-x-10  items-start">
         <div className="col-span-4 sidebar-sticky content-center gap-y-5 hidden lg:grid">
           <div className="w-full" style={{ height: "fit-content" }}>
-            <SidebarRight tour={tour} />
+            <CustomerForm tourId={tour.id} moblieView={false} />
           </div>
         </div>
         <div className="col-span-12 lg:col-span-8">
           <div className="relative flex justify-end overflow-hidden js-section-slider w-100">
             <div className="w-full  flex flex-row items-center pb-5 px-2 lg:px-0  justify-between ">
               <h1 className="text-2xl font-bold text-right">{tour?.name}</h1>
-              <div onClick={() => share()}>
+              <div
+                onClick={() => share()}
+                className="cursor-pointer hover:opacity-50 duration-500 transition-opacity"
+              >
                 <IconProvider>
                   <GrShareOption />
                 </IconProvider>
@@ -61,6 +99,7 @@ export default function TourInfo({ tour }: { tour: Tour }) {
           </div>
           <div className="relative flex justify-end overflow-hidden js-section-slider w-100">
             <ImageSlides
+              image_desc={tour?.images_description ?? []}
               tourImages={tour?.images}
               mainImage={
                 tour?.images && tour?.images.length ? tour?.images[0] : ""
@@ -88,6 +127,23 @@ export default function TourInfo({ tour }: { tour: Tour }) {
         <SectionTitle title="رحلات أخرى قد تعجبك؟" />
         <Tours fetchProcess="same-type" typeId={tour.type_id} />
       </section>
+
+      <Modal
+        isOpen={isOpen}
+        placement={"bottom-center"}
+        onOpenChange={onOpenChange}
+        classNames={{
+          closeButton: "!right-auto left-3",
+        }}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <ModalBody>
+              <CustomerForm tourId={tour.id} moblieView={true} />
+            </ModalBody>
+          )}
+        </ModalContent>
+      </Modal>
     </div>
   );
 }

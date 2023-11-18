@@ -47,7 +47,7 @@ export const ListAllImagesInBucket = async (
   var _SO: any = {
     limit: limit,
     offset: offest,
-    sortBy: { column: "name", order: "asc" },
+    sortBy: { column: "created_at", order: "desc" },
   };
   if (search) {
     _SO["search"] = search;
@@ -89,7 +89,9 @@ export const DeleteImageFromTour = async (images: string[]) => {
   const { data, error } = await supabaseClient.storage
     .from("April")
     .remove(images);
+  console.log("error", error);
   if (error) {
+    console.log("error", error);
     return {
       success: false,
       error: error.message,

@@ -100,6 +100,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@types/aos": "^3.0.4",
     "@types/bootstrap": "^5.2.6",
+    "@types/file-saver": "^2.0.7",
     "@types/lodash": "^4.14.194",
     "@types/nprogress": "^0.2.0",
     "@types/react-helmet": "^6.1.8",

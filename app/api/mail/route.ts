@@ -1,13 +1,13 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from "next/server";
 
-import { MailerSend, EmailParams, Sender, Recipient } from 'mailersend'
+import { MailerSend, EmailParams, Sender, Recipient } from "mailersend";
 
 export async function POST(req: NextRequest) {
   const mailerSend = new MailerSend({
     apiKey: process.env.NEXT_PUBLIC_API_MILL!,
-  })
+  });
 
-  const body = await req.json()
+  const body = await req.json();
 
   const personalization = [
     {
@@ -16,17 +16,19 @@ export async function POST(req: NextRequest) {
         ...body,
       },
     },
-  ]
+  ];
 
-  const sentFrom = new Sender('no-reply@mundo-tours.com', 'no-reply')
-  const recipients = [new Recipient(process.env.NEXT_PUBLIC_API_SENT_TO!, 'Mohammed Shaker')]
+  const sentFrom = new Sender("no-reply@mundo-tours.com", "no-reply");
+  const recipients = [
+    new Recipient(process.env.NEXT_PUBLIC_API_SENT_TO!, "May Al-bakri"),
+  ];
   const emailParams = new EmailParams()
     .setFrom(sentFrom)
     .setTo(recipients)
     .setReplyTo(sentFrom)
-    .setTemplateId('yzkq340pq66ld796')
-    .setPersonalization(personalization)
+    .setTemplateId("3vz9dle1o164kj50")
+    .setPersonalization(personalization);
 
-  await mailerSend.email.send(emailParams)
-  return NextResponse.json({ message: 'SENT' })
+  await mailerSend.email.send(emailParams);
+  return NextResponse.json({ message: "SENT" });
 }

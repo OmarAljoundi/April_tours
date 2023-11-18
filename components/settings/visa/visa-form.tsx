@@ -4,6 +4,7 @@ import { FormikProps } from "formik";
 import { FunctionComponent } from "react";
 import ImageForm from "./image-form";
 import RequirementForm from "./requirement-form";
+import PriceForm from "./price-from";
 
 interface VisaFormProps {
   formik: FormikProps<VisaType>;
@@ -13,7 +14,7 @@ const VisaForm: FunctionComponent<VisaFormProps> = ({ formik }) => {
   const { errors, values, handleBlur, handleChange, touched } = formik;
 
   return (
-    <div className="grid grid-cols-6 space-y-4 mt-4 gap-x-4">
+    <div className="grid grid-cols-6 space-y-4 mt-8 gap-x-8 ">
       <div className="col-span-3 xl:col-span-4 space-y-4">
         <div className="grid grid-cols-2 gap-x-4 gap-y-6">
           <div className="col-span-2 lg:col-span-1">
@@ -58,19 +59,6 @@ const VisaForm: FunctionComponent<VisaFormProps> = ({ formik }) => {
 
           <div className="col-span-2 lg:col-span-1">
             <Input
-              label="Visa price"
-              labelPlacement="outside"
-              placeholder="Enter visa price"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.price || ""}
-              name="price"
-              isClearable
-              isInvalid={touched.price && !!errors.price}
-            />
-          </div>
-          <div className="col-span-2 lg:col-span-1">
-            <Input
               label="Visa note"
               labelPlacement="outside"
               placeholder="Enter visa note"
@@ -85,6 +73,7 @@ const VisaForm: FunctionComponent<VisaFormProps> = ({ formik }) => {
         </div>
         <div className="grid grid-cols-2 gap-x-4 gap-y-6">
           <RequirementForm formik={formik} />
+          <PriceForm formik={formik} />
         </div>
       </div>
       <ImageForm formik={formik} />

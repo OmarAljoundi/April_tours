@@ -1,5 +1,4 @@
-import { ICustomer, eCustomerStatus } from "@/models/interface/Customer";
-import { CountriesSearch } from "@/models/interface/HeaderSearch";
+import { Customer } from "@/types/custom";
 
 export const layoutConstant = {
   topbarHeight: 30,
@@ -42,7 +41,7 @@ export const navbarNavigations = [
   },
 ];
 
-export const countriesForSearch: CountriesSearch[] = [
+export const countriesForSearch: any[] = [
   {
     label: "المانيا",
     value: "المانيا",
@@ -315,18 +314,10 @@ export const DaysArranged = [
   "اليوم الثالث والعشرون",
 ];
 
-export const __initialValues__Customer: ICustomer = {
-  assignedTo: null,
-  contactMethod: null,
-  createdDate: null,
-  email: "",
-  id: 0,
-  modifiedDate: null,
+export const __initialValues__Customer: Customer = {
+  contact_method: null,
   name: "",
   notes: "",
-  phoneNumber: "",
-  status: eCustomerStatus.Pending,
-  tourId: 0,
-  tour: null,
-  user: null,
+  phone_number: "",
+  status: 1,
 };

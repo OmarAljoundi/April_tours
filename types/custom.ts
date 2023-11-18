@@ -23,9 +23,14 @@ export type Tour = {
   tour_hotels?: string[] | null;
   type_id?: number | null;
   tour_type?: TourType | null;
+  images_description?: ImageDescription[] | null;
   slug?: string | null;
 };
 
+export type ImageDescription = {
+  image_url: string;
+  text: string;
+};
 export type ExternalFile = {
   name?: string;
   path?: string;
@@ -164,7 +169,7 @@ export type VisaType = {
   image?: string;
   period?: string;
   requirements?: string[];
-  price?: string;
+  price?: string[];
   note?: string;
   uuid?: string;
 };
@@ -178,3 +183,15 @@ export type Slider = {
   call_to_action: string;
   call_to_action_link: string;
 };
+
+export enum eCustomerStatus {
+  All = 0,
+  Pending = 1,
+  Completed = 2,
+  No_Answer = 3,
+}
+
+export enum eContactMethod {
+  WhatsApp = 1,
+  Call = 2,
+}

@@ -16,17 +16,6 @@ interface VisaCreationProps {
   id?: string;
 }
 
-const options = [
-  {
-    title: "Visa Info",
-    component: VisaForm,
-  },
-  {
-    title: "Search Engine",
-    component: SeoForm,
-  },
-];
-
 const VisaCreation: FunctionComponent<VisaCreationProps> = ({ id }) => {
   const [uuid, _] = useState(v4());
   const config = useSetting();
@@ -87,13 +76,7 @@ const VisaCreation: FunctionComponent<VisaCreationProps> = ({ id }) => {
     <div className="flex w-full flex-col">
       <Divider className="my-4" />
       <form onSubmit={formik.handleSubmit} className="relative">
-        <Tabs aria-label="Options">
-          {options.map((i) => (
-            <Tab key={i.title} title={i.title}>
-              <i.component formik={formik} />
-            </Tab>
-          ))}
-        </Tabs>
+        <VisaForm formik={formik} />
         <div className="absolute right-0 top-0">
           <div className="flex gap-x-4">
             <Button

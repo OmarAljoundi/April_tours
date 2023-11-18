@@ -5,29 +5,26 @@ import { FormikProps } from "formik";
 import { Plus, Trash } from "lucide-react";
 import { FunctionComponent, useState } from "react";
 
-interface RequirementFormProps {
+interface PriceFormProps {
   formik: FormikProps<VisaType>;
 }
 
-const RequirementForm: FunctionComponent<RequirementFormProps> = ({
-  formik,
-}) => {
+const PriceForm: FunctionComponent<PriceFormProps> = ({ formik }) => {
   const [title, setTitle] = useState<string>();
   const { values, setValues } = formik;
 
-  const AddRequirement = () => {
+  const AddPrice = () => {
     setValues({
       ...values,
-
-      requirements: [...(values.requirements ?? []), title!],
+      price: [...(values.price ?? []), title!],
     });
     setTitle("");
   };
 
-  const RemoveRequirement = (_index: number) => {
+  const RemovePrice = (_index: number) => {
     setValues({
       ...values,
-      requirements: values.requirements?.filter((x, index) => index !== _index),
+      price: [...values.price?.filter((x, index) => index !== _index)],
     });
   };
 
@@ -35,29 +32,25 @@ const RequirementForm: FunctionComponent<RequirementFormProps> = ({
     <div className="col-span-1">
       <div className="flex gap-x-2 items-end">
         <Input
-          label="Requirement"
+          label="Price"
           labelPlacement="outside"
-          placeholder="Enter requirement here"
+          placeholder="Enter price detalis here"
           onChange={(e) => setTitle(e.target.value)}
           value={title || ""}
         />
-        <Button
-          isIconOnly
-          isDisabled={!!!title}
-          onPress={() => AddRequirement()}
-        >
+        <Button isIconOnly isDisabled={!!!title} onPress={() => AddPrice()}>
           <Plus />
         </Button>
       </div>
       <Separator className="my-2" />
       <div className="grid gap-y-4">
-        {values.requirements?.map((k, index) => (
-          <div className="flex gap-x-2 " key={k}>
+        {values.price?.map((k, index) => (
+          <div className="flex gap-x-2 " key={`xxx-${index}`}>
             <Input isDisabled key={k} value={k || ""} />
             <Button
               color="danger"
               isIconOnly
-              onPress={() => RemoveRequirement(index)}
+              onPress={() => RemovePrice(index)}
             >
               <Trash />
             </Button>
@@ -68,4 +61,4 @@ const RequirementForm: FunctionComponent<RequirementFormProps> = ({
   );
 };
 
-export default RequirementForm;
+export default PriceForm;

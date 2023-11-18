@@ -4,6 +4,8 @@ import { FunctionComponent } from "react";
 import { Button } from "../ui/button";
 import CommonImageForm from "../../shared/multiple-image-form";
 import { X } from "lucide-react";
+import { Image } from "@nextui-org/react";
+import AssignImageLabel from "./assign-image-label";
 
 interface ImageFormProps {
   formik: FormikProps<Tour>;
@@ -20,13 +22,23 @@ const ImageForm: FunctionComponent<ImageFormProps> = ({ formik }) => {
   return (
     <div className="col-span-3  xl:col-span-2">
       <CommonImageForm formik={formik} field="images" maxNumber={5}>
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-3 gap-4 my-4">
           {formik.values.images?.map((image, index) => (
             <div
               key={index}
-              className="image-item  border rounded-xl relative dark:bg-white"
+              className="image-item  border  relative dark:bg-white "
             >
-              <img src={image} alt="" className="w-full rounded-xl " />
+              <Image
+                loading="lazy"
+                isBlurred
+                src={image}
+                alt=""
+                classNames={{
+                  zoomedWrapper: "rounded-b-none",
+                }}
+                className="w-52 rounded-none h-52 object-contain"
+              />
+              <AssignImageLabel formik={formik} imageUrl={image} />
               <Button
                 type="button"
                 size={"icon"}

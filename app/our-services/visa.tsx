@@ -9,15 +9,8 @@ import { AiFillDollarCircle, AiOutlineMinus } from "react-icons/ai";
 import { BsPlusLg } from "react-icons/bs";
 import { FaClipboardCheck } from "react-icons/fa";
 import { IoDocumentTextSharp } from "react-icons/io5";
-import { IoIosClose } from "react-icons/io";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import VisaCard from "@/components/common/VisaCard";
+
 interface VisaProps {}
 
 const Visa: FunctionComponent<VisaProps> = () => {
@@ -139,65 +132,7 @@ const Visa: FunctionComponent<VisaProps> = () => {
                           </div>
                         </header>
 
-                        <motion.div
-                          className="flex flex-1 flex-col gap-3 px-6 py-2 overflow-y-auto"
-                          id=":raf:"
-                        >
-                          <div className="flex justify-start gap-x-2 items-center">
-                            <IconProvider>
-                              <IoDocumentTextSharp />
-                            </IconProvider>
-                            <h1 className="text-black text-lg font-bold">
-                              المستندات المطلوبة
-                            </h1>
-                          </div>
-                          <ul
-                            className="list-inside list-disc pr-3 mt-0 space-y-1"
-                            dir="rtl"
-                          >
-                            {item.requirements.map((i) => (
-                              <li key={i}>{i}</li>
-                            ))}
-                          </ul>
-                          <Separator className="my-2" />
-                          <div className="flex justify-start gap-x-2 items-center">
-                            <IconProvider>
-                              <AiFillDollarCircle />
-                            </IconProvider>
-                            <h1 className="text-black text-lg font-bold">
-                              التكلفة
-                            </h1>
-                          </div>
-                          <div className="mt-0 " dir="rtl">
-                            <ul
-                              className="list-inside list-disc pr-3 mt-0 space-y-1"
-                              dir="rtl"
-                            >
-                              <li>{item.price}</li>
-                              <li>{item.price}</li>
-                              <li>{item.price}</li>
-                            </ul>
-                          </div>
-                          <Separator className="my-2" />
-                          <div className="flex justify-start gap-x-2 items-center">
-                            <IconProvider>
-                              <AiFillDollarCircle />
-                            </IconProvider>
-                            <h1 className="text-black text-lg font-bold">
-                              ملاحظات
-                            </h1>
-                          </div>
-                          <div className="mt-0 " dir="rtl">
-                            <ul
-                              className="list-inside list-disc pr-3 mt-0 space-y-1"
-                              dir="rtl"
-                            >
-                              {item.note?.split(",").map((i, index) => (
-                                <li key={index}>{i}</li>
-                              ))}
-                            </ul>
-                          </div>
-                        </motion.div>
+                        <VisaCard visa={item} />
                       </motion.div>
                     </>
                   )

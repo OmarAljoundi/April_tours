@@ -7,10 +7,12 @@ import {
   Setting,
   Tour,
   TourType,
+  eContactMethod,
 } from "@/types/custom";
 import { supabaseClient } from "./supabaseClient";
 import {
   CONFIG_PATH,
+  REVALIDATE_CUSTOMER_LIST,
   REVALIDATE_HOTEL_LIST,
   REVALIDATE_LOCATION_LIST,
   REVALIDATE_TOUR_LIST,
@@ -22,6 +24,7 @@ import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/types/supabase";
 import { cookies } from "next/headers";
 import { http } from "@/services/httpService";
+import { format, formatDistance, subDays } from "date-fns";
 
 export async function updateTourStatus(
   status: boolean,
@@ -315,4 +318,103 @@ export async function submitForm(formData: Customer) {
       success: false,
     };
   }
+
+  var currentDate = format(new Date(data.created_at), "dd/MM/yyyy");
+  await http<Response<any>>("/api/mail", { revalidate: 0 }).post({
+    note: data.notes,
+    tour_name: data.tour?.name,
+    created_at: currentDate,
+    customer_name: data.name,
+    contact_option:
+      Number(data.contact_method) == eContactMethod.WhatsApp
+        ? "WhatsApp"
+        : "Call",
+    customer_number: data.phone_number,
+  });
+
+  await http<Response<any>>(`/api/revalidate?tag=${REVALIDATE_CUSTOMER_LIST}`, {
+    revalidate: 0,
+  }).get();
+  return {
+    success: true,
+  };
+}
+
+export async function getImagePlacecs(imagePrefix: string) {
+  let total = 0;
+  var results = new Map();
+  const tour_result = supabaseClient
+    .from("tour")
+    .select("*")
+    .containedBy("images", [`${imagePrefix}`]);
+
+  const location_result = supabaseClient
+    .from("location")
+    .select("id,name,image")
+    .eq("image ->> url", imagePrefix);
+
+  const types_result = supabaseClient
+    .from("tour_type")
+    .select("*")
+    .eq("image", imagePrefix);
+
+  const content = getContentData();
+
+  const [a1, a2, a3, a4] = await Promise.all([
+    tour_result,
+    location_result,
+    types_result,
+    content,
+  ]);
+
+  const sliders_result = a4.home?.sliders?.filter(
+    (x) => x.image_mobile == imagePrefix || x.image == imagePrefix
+  );
+  const visaes_result = a4.visa?.visa_types.filter(
+    (x) => x.image == imagePrefix
+  );
+
+  if (a1.data && a1.data.length > 0) {
+    total += a1.data.length;
+    results.set("Tours", a1.data);
+  }
+
+  if (a2.data && a2.data.length > 0) {
+    total += a2.data?.length;
+    results.set("Destinations", a2.data);
+  }
+
+  if (a3.data && a3.data.length > 0) {
+    total += a3.data?.length;
+    results.set("Tour Types", a3.data);
+  }
+
+  if (sliders_result.length > 0) {
+    total += sliders_result.length;
+    results.set(
+      "Home Sliders",
+      sliders_result.map((s) => {
+        return {
+          name: s.title,
+        };
+      })
+    );
+  }
+
+  if (visaes_result.length > 0) {
+    total += visaes_result.length;
+    results.set(
+      "Visa",
+      visaes_result.map((v) => {
+        return {
+          name: v.title,
+        };
+      })
+    );
+  }
+
+  return {
+    results,
+    total,
+  };
 }

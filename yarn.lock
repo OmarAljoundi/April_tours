@@ -2760,6 +2760,11 @@
   resolved "https://registry.npmjs.org/@types/estree/-/estree-1.0.3.tgz"
   integrity sha512-CS2rOaoQ/eAgAfcTfq6amKG7bsN+EMcgGY4FAFQdvSj2y1ixvOZTUA9mOtCai7E1SYu283XNw7urKK30nP3wkQ==
 
+"@types/file-saver@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.npmjs.org/@types/file-saver/-/file-saver-2.0.7.tgz"
+  integrity sha512-dNKVfHd/jk0SkR/exKGj2ggkB45MAkzvWCaqLUUgkyjITkGNzH8H+yUwr+BLJUBjZOe9w8X3wgmXhZDRg1ED6A==
+
 "@types/google-libphonenumber@^7.4.23":
   version "7.4.23"
   resolved "https://registry.npmjs.org/@types/google-libphonenumber/-/google-libphonenumber-7.4.23.tgz"

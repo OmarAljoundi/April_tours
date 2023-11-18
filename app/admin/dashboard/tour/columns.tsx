@@ -17,7 +17,15 @@ import { DataTableDateFilter } from "@/components/table/data-table-date-filter";
 import { DataTableFacetedFilter } from "@/components/table/data-table-faceted-filter";
 import { DAYS } from "@/lib/constants";
 import { REVALIDATE_TOUR_LIST } from "@/lib/keys";
-import { AlertCircle, CopyPlus, Edit, ExternalLink, Trash } from "lucide-react";
+import {
+  AlertCircle,
+  CopyPlus,
+  Edit,
+  ExternalLink,
+  File,
+  Trash,
+} from "lucide-react";
+import { generate } from "@/lib/word-helper";
 
 export const columns: ColumnDef<Tour>[] = [
   {
@@ -263,6 +271,18 @@ export const columns: ColumnDef<Tour>[] = [
             link: `/admin/dashboard/tour/dublicate/${row.original.id}`,
             type: "Link",
             icon: CopyPlus,
+          },
+          {
+            label: "Generate Word File",
+            type: "Promise",
+            action: async () => {
+              await generate(row.original);
+              return {
+                success: true,
+                message: "File Generated Successfully",
+              };
+            },
+            icon: File,
           },
           {
             label: "Delete",

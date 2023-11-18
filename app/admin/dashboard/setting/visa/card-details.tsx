@@ -1,4 +1,6 @@
 "use client";
+import BlurImageV2 from "@/components/common/BlurImageV2";
+import VisaCard from "@/components/common/VisaCard";
 import { useSetting } from "@/hooks/use-setting";
 import { PushJsonFile } from "@/lib/storage-operations";
 import { VisaType } from "@/types/custom";
@@ -22,6 +24,10 @@ const CardDetails: FunctionComponent<VisaType> = ({
   requirements,
   title,
   uuid,
+  note,
+  period,
+  price,
+  sub_title,
 }) => {
   const config = useSetting();
   const route = useRouter();
@@ -55,24 +61,36 @@ const CardDetails: FunctionComponent<VisaType> = ({
 
   return (
     <Card className="pt-4">
-      <CardHeader className="pt-2 px-4 flex items-center justify-between pb-2">
-        <h4 className="font-bold text-large text-right">{title}</h4>
-      </CardHeader>
-      <CardBody className="overflow-visible py-2 border-t pb-4">
-        <Image
-          alt="Card background"
-          className="object-cover rounded-xl max-h-28"
-          src={image ?? ""}
-          width={1000}
-          height={500}
-        />
-        <div className="flex justify-end flex-wrap mt-4 gap-x-2 gap-y-4">
-          {requirements?.map((x) => (
-            <Chip color="primary" key={x}>
-              {x}
-            </Chip>
-          ))}
+      <CardHeader className="pt-2 px-4 flex items-center justify-end text-right pb-2">
+        <div className="flex justify-end gap-x-2">
+          <div className="flex justify-start items-center gap-x-2 mb-4">
+            <span className="text-xl lg:text-3xl visa-title transition-all duration-300">
+              {title}
+            </span>
+            <BlurImageV2
+              src={image}
+              alt=""
+              width={300}
+              height={150}
+              className="max-w-[31px] object-cover visa-image"
+              quality={100}
+            />
+          </div>
         </div>
+      </CardHeader>
+      <CardBody className="overflow-visible py-2 border-t pb-4" dir="rtl">
+        <VisaCard
+          visa={{
+            image,
+            requirements,
+            title,
+            uuid,
+            note,
+            period,
+            price,
+            sub_title,
+          }}
+        />
       </CardBody>
       <CardFooter className="pt-2 p-0 border-t">
         <div className="flex gap-1 justify-between items-center w-full pt-3 pb-1 px-4">

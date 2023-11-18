@@ -34,8 +34,8 @@ export default async function EditTourPage({
   return (
     <div className="px-8">
       <div className="flex justify-between">
-        <h1 className="text-3xl mt-16"> {response?.result?.name}</h1>
-        <h1 className="text-3xl mt-16">
+        <h1 className="text-3xl mt-4"> {response?.result?.name}</h1>
+        <h1 className="text-3xl mt-4">
           {" "}
           {formatDistance(
             subDays(new Date(response.result!.created_at!), 0),

@@ -21,23 +21,25 @@ const ImageForm: FunctionComponent<ImageFormProps> = ({ formik }) => {
     <div className="col-span-3  xl:col-span-2">
       <SingleImageForm formik={formik} field="image" maxNumber={1}>
         {formik.values.image && (
-          <div className="image-item  border rounded-xl relative dark:bg-white mt-4 w-52">
-            <img
-              src={formik.values.image}
-              alt=""
-              className="w-full rounded-xl "
-            />
-            <Button
-              type="button"
-              size={"icon"}
-              variant={"ghost"}
-              className="absolute -top-2 -right-2 bg-white w-6 h-6 rounded-full border border-red-600"
-              onClick={() => {
-                onImageRemove();
-              }}
-            >
-              <X className="w-4 h-4 text-red-600" />
-            </Button>
+          <div className="image-item  border rounded-xl relative dark:bg-white mt-4 w-48">
+            <div className="mx-auto w-40 h-40">
+              <img
+                src={formik.values.image}
+                alt=""
+                className="w-full rounded-xl "
+              />
+              <Button
+                type="button"
+                size={"icon"}
+                variant={"ghost"}
+                className="absolute -top-2 -right-2 bg-white w-6 h-6 rounded-full border border-red-600"
+                onClick={() => {
+                  onImageRemove();
+                }}
+              >
+                <X className="w-4 h-4 text-red-600" />
+              </Button>
+            </div>
           </div>
         )}
       </SingleImageForm>

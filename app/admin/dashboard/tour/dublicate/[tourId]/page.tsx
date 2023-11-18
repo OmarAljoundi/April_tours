@@ -19,7 +19,7 @@ export default async function DublicateTourPage({
   return (
     <div className="px-8">
       <div className="flex justify-between">
-        <h1 className="text-3xl mt-16"> {tour?.name}</h1>
+        <h1 className="text-3xl mt-4"> {tour?.name}</h1>
       </div>
       <TourForm data={tour} />
     </div>

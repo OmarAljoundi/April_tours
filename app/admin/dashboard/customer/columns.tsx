@@ -5,7 +5,7 @@ import { DataTableColumnHeader } from "@/components/table/data-table-column-head
 import { DataTableAction } from "@/components/table/data-table-actions";
 import { supabaseClient } from "@/lib/supabaseClient";
 import { Filters } from "@/hooks/use-filter-modal";
-import { Customer, Tour } from "@/types/custom";
+import { Customer, Tour, eCustomerStatus } from "@/types/custom";
 import { Chip, Tooltip } from "@nextui-org/react";
 import { SelectOptionsProps } from "@/hooks/use-select-options-modal";
 import { DataTableSearchInput } from "@/components/table/data-table-search-input";
@@ -13,7 +13,6 @@ import { DataTableDateFilter } from "@/components/table/data-table-date-filter";
 import { DataTableFacetedFilter } from "@/components/table/data-table-faceted-filter";
 import { CUSTOMER_STATUS } from "@/lib/constants";
 import { REVALIDATE_CUSTOMER_LIST } from "@/lib/keys";
-import { eCustomerStatus } from "@/models/interface/Customer";
 
 export const columns: ColumnDef<Customer>[] = [
   {
@@ -190,10 +189,10 @@ export const columns: ColumnDef<Customer>[] = [
 
       const actions = [];
 
-      // if (row.original.status == eCustomerStatus.Pending) {
-      //   actions.push(markAsResponded);
-      //   actions.push(markAsNoResponded);
-      // }
+      if (row.original.status == eCustomerStatus.Pending) {
+        actions.push(markAsResponded);
+        actions.push(markAsNoResponded);
+      }
 
       return (
         <DataTableAction

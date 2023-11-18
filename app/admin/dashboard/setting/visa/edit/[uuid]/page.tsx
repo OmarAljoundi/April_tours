@@ -7,7 +7,7 @@ export default async function EditVisaPage({
 }) {
   return (
     <div className="px-8">
-      <h1 className="text-3xl mt-16">Edit Visa</h1>
+      <h1 className="text-3xl mt-4">Edit Visa</h1>
       <h1>Visa Form</h1>
       <VisaCreation id={params.uuid} />
     </div>

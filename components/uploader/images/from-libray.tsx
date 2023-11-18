@@ -1,5 +1,5 @@
 import { ListAllImagesInBucket } from "@/lib/storage-operations";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Skeleton } from "../../ui/skeleton";
 import { formatBytes } from "@/lib/helpers";
@@ -7,9 +7,19 @@ import { Check } from "lucide-react";
 import { ScrollArea } from "../../ui/scroll-area";
 import { FormikProps } from "formik";
 import { cn } from "@/lib/utils";
-import { Button, Card, CardBody, CardHeader, Image } from "@nextui-org/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Chip,
+  Image,
+} from "@nextui-org/react";
 import { TOUR_IMAGE } from "@/lib/keys";
-import NextImage from "next/image";
+import { CiCircleCheck } from "react-icons/ci";
+import { IoIosRemoveCircleOutline } from "react-icons/io";
+import ImageRef from "./image-ref";
+
 const FromLibrary: FC<{
   formik: FormikProps<any>;
   closeModal: () => void;
@@ -17,16 +27,28 @@ const FromLibrary: FC<{
   setSelectedImages: (select: string[]) => void;
   loadingDelete: boolean;
 }> = ({ selectedImages, setSelectedImages, loadingDelete }) => {
-  const { data, isLoading } = useQuery(
-    ["images"],
-    async () => {
-      const res = await ListAllImagesInBucket(100, 0);
+  const [pageSize, setPageSize] = useState(100);
+  const [total, setTotal] = useState(0);
+
+  const [end, setEnd] = useState(false);
+
+  const { data, isLoading } = useQuery({
+    queryFn: async () => {
+      const res = await ListAllImagesInBucket(pageSize, 0);
       return res;
     },
-    {
-      refetchInterval: false,
-    }
-  );
+    queryKey: [`IMAGES_LIST-${pageSize}`],
+    refetchInterval: false,
+    refetchOnWindowFocus: false,
+    keepPreviousData: true,
+    onSuccess(data) {
+      if (data.length == total) {
+        setEnd(true);
+      } else {
+        setTotal(data.length);
+      }
+    },
+  });
 
   useEffect(() => {
     return () => {
@@ -72,7 +94,7 @@ const FromLibrary: FC<{
                 classNames={{
                   zoomedWrapper: "rounded-b-none",
                 }}
-                className="w-full rounded-none max-h-52"
+                className="w-52 rounded-none h-52 object-contain"
               />
             </CardHeader>
             <CardBody className="justify-end">
@@ -88,6 +110,7 @@ const FromLibrary: FC<{
                   className="my-2"
                   variant={"bordered"}
                   color="danger"
+                  startContent={<IoIosRemoveCircleOutline />}
                   onClick={() => {
                     setSelectedImages([
                       ...selectedImages.filter(
@@ -104,6 +127,7 @@ const FromLibrary: FC<{
                   className="my-2"
                   variant={"bordered"}
                   color="primary"
+                  startContent={<CiCircleCheck />}
                   onClick={() => {
                     setSelectedImages([
                       ...selectedImages,
@@ -114,6 +138,10 @@ const FromLibrary: FC<{
                   Select Image
                 </Button>
               )}
+
+              <ImageRef
+                selectedImage={getImageLink(`${TOUR_IMAGE}/${image.name}`)}
+              />
 
               {selectedImages?.includes(
                 getImageLink(`${TOUR_IMAGE}/${image.name}`)
@@ -130,6 +158,27 @@ const FromLibrary: FC<{
             </CardBody>
           </Card>
         ))}
+        <div className="col-span-5">
+          {end ? (
+            <div className="flex justify-center">
+              <Chip color="primary">
+                <div className="flex justify-start gap-x-2">
+                  <h1 dir="ltr">You reached the end.</h1>
+                  <Check />
+                </div>
+              </Chip>
+            </div>
+          ) : (
+            <Button
+              onPress={() => setPageSize(pageSize + 100)}
+              className="w-full"
+              color="primary"
+              isLoading={isLoading}
+            >
+              Load More..
+            </Button>
+          )}
+        </div>
       </div>
     </ScrollArea>
   );

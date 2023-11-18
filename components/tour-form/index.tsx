@@ -117,7 +117,6 @@ const TourForm: FunctionComponent<TourFormProps> = ({ data }) => {
       is_ticket_included: undefined,
       price_single: undefined,
       price_double: undefined,
-
       type_id: undefined,
       tour_countries: undefined,
     },

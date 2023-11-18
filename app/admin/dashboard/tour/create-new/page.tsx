@@ -7,7 +7,7 @@ interface NewTourPageProps {}
 const NewTourPage: FunctionComponent<NewTourPageProps> = () => {
   return (
     <div className="px-8">
-      <h1 className="text-3xl mt-16">Create new tour</h1>
+      <h1 className="text-3xl mt-4">Create new tour</h1>
 
       <TourForm />
     </div>
