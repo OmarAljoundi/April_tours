@@ -27,7 +27,7 @@ const CustomerPage = async () => {
         <div className="flex items-center justify-between space-y-2">
           <div>
             <p className="text-muted-foreground">
-              Here&apos;s a list of your products!
+              Here&apos;s a list of your customers!
             </p>
           </div>
         </div>

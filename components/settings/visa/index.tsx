@@ -24,8 +24,7 @@ const VisaCreation: FunctionComponent<VisaCreationProps> = ({ id }) => {
     let newObject = { ...config.setting };
     if (id) {
       newObject = {
-        home: { ...newObject.home },
-        faq: [...(newObject.faq ?? [])],
+        ...newObject,
         visa: {
           ...newObject.visa?.seo,
           visa_types: [
@@ -36,8 +35,7 @@ const VisaCreation: FunctionComponent<VisaCreationProps> = ({ id }) => {
       };
     } else {
       newObject = {
-        home: { ...newObject.home },
-        faq: [...(newObject.faq ?? [])],
+        ...newObject,
         visa: {
           ...newObject.visa?.seo,
           visa_types: [...(newObject.visa?.visa_types ?? []), formData],

@@ -13,6 +13,7 @@ import { DataTableDateFilter } from "@/components/table/data-table-date-filter";
 import { DataTableFacetedFilter } from "@/components/table/data-table-faceted-filter";
 import { CUSTOMER_STATUS } from "@/lib/constants";
 import { REVALIDATE_CUSTOMER_LIST } from "@/lib/keys";
+import { BadgeCheck, ShieldOff, Trash } from "lucide-react";
 
 export const columns: ColumnDef<Customer>[] = [
   {
@@ -119,17 +120,32 @@ export const columns: ColumnDef<Customer>[] = [
       const status = row.original.status;
       return (
         <div className="w-32 flex items-center justify-between">
-          {/* <Chip color={eCustomerStatus.Completed == status ? 'success' : eCustomerStatus.No_Answer == status ? 'warning' : 'primary'}>
-            {status == eCustomerStatus.Completed ? 'Completed!' : status == eCustomerStatus.No_Answer ? 'No answer' : 'Pending'}
-          </Chip> */}
+          <Chip
+            color={
+              eCustomerStatus.Completed == status
+                ? "success"
+                : eCustomerStatus.No_Answer == status
+                ? "warning"
+                : "primary"
+            }
+          >
+            {status == eCustomerStatus.Completed
+              ? "Completed!"
+              : status == eCustomerStatus.No_Answer
+              ? "No answer"
+              : "Pending"}
+          </Chip>
         </div>
       );
     },
     filterFn: (row, id, value) => {
-      return true;
-      // const status =
-      //   row.original.status == eCustomerStatus.Completed ? 'Completed' : row.original.status == eCustomerStatus.No_Answer ? 'No_Answer' : 'Pending'
-      // return (value as string[]).includes(status)
+      const status =
+        row.original.status == eCustomerStatus.Completed
+          ? "Completed"
+          : row.original.status == eCustomerStatus.No_Answer
+          ? "No_Answer"
+          : "Pending";
+      return (value as string[]).includes(status);
     },
   },
   {
@@ -177,14 +193,30 @@ export const columns: ColumnDef<Customer>[] = [
 
       const markAsResponded = {
         label: "Completed",
-        type: "Promise" as any,
-        action: async () => await updateStatus(eCustomerStatus.Completed),
+        type: "Promise",
+        icon: BadgeCheck,
+        action: async () => {
+          await updateStatus(eCustomerStatus.Completed);
+          await fetch(`/api/revalidate?tag=${REVALIDATE_CUSTOMER_LIST}`);
+          return {
+            success: true,
+            message: "Customer updated successfully",
+          };
+        },
       };
 
       const markAsNoResponded = {
         label: "No Answer",
-        type: "Promise" as any,
-        action: async () => await updateStatus(eCustomerStatus.No_Answer),
+        type: "Promise",
+        icon: ShieldOff,
+        action: async () => {
+          await updateStatus(eCustomerStatus.No_Answer);
+          await fetch(`/api/revalidate?tag=${REVALIDATE_CUSTOMER_LIST}`);
+          return {
+            success: true,
+            message: "Customer updated successfully",
+          };
+        },
       };
 
       const actions = [];
@@ -202,6 +234,7 @@ export const columns: ColumnDef<Customer>[] = [
             {
               label: "Delete",
               type: "Promise",
+              icon: Trash,
               action: async () => {
                 const { data, error } = await supabaseClient
                   .from("customer")

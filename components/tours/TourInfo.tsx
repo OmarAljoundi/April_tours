@@ -20,6 +20,7 @@ import {
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { CustomerForm } from "./CustomerForm";
+import { IoChatbubbleEllipses } from "react-icons/io5";
 
 const variants = {
   visible: { opacity: 1, y: 0 },
@@ -65,15 +66,19 @@ export default function TourInfo({ tour }: { tour: Tour }) {
       <section className="pt-5 border-t"></section>
 
       <motion.div
-        className="fixed left-0 w-full bottom-0 bg-secondary/50 z-50 backdrop-saturate-150 backdrop-blur-lg"
+        className="fixed left-0 bottom-0  z-50  lg:hidden"
         variants={variants}
         animate={hidden ? "hidden" : "visible"}
         transition={{ ease: [0.1, 0.25, 0.3, 1], duration: 0.6 }}
       >
-        <div className="p-2 flex flex-grow justify-between items-center lg:hidden">
-          <h1 className="text-xl text-black">أبدأ تجربتك المثالية اليوم</h1>
-          <Button color="primary" size="sm" onPress={onOpen}>
-            تواصل معنا
+        <div className="p-2 flex flex-grow justify-between items-center ">
+          <Button color="primary" size="sm" onPress={onOpen} className="h-16">
+            <div className="grid gap-y-1 justify-items-center py-4">
+              <IconProvider bgColor="white" textColor="text-primary">
+                <IoChatbubbleEllipses />
+              </IconProvider>
+              <h1>احجز الآن</h1>
+            </div>
           </Button>
         </div>
       </motion.div>

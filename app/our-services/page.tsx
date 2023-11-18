@@ -2,7 +2,6 @@ import { FunctionComponent } from "react";
 import ServiceHeader from "./service-header";
 import Services from "./services";
 import Visa from "./visa";
-import Blog from "./test";
 
 interface OurServicesPageProps {}
 

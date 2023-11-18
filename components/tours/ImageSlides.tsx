@@ -65,8 +65,9 @@ const ImageSlides: FC<{
           <BlurImage image={mainImage} height={400} q={100} loading="eager" />
           {getImageDescription(mainImage) && (
             <div
-              className="text-center absolute z-40 bottom-5 right-0 left-0 max-w-[75%] w-fit mx-auto bg-white/90 rounded-xl shadow-lg p-2
-         shadow-black/5 saturate-200 backdrop-blur-sm"
+              className="text-center absolute z-40 bottom-5  right-5 
+              bg-white/75 rounded-xl shadow-lg p-2 w-fit
+             shadow-black/5 saturate-200 backdrop-blur-sm"
             >
               <h1 className="text-sm md:text-xl text-black font-bold  px-2">
                 {getImageDescription(mainImage)}
@@ -83,14 +84,15 @@ const ImageSlides: FC<{
             className="main-slider"
           >
             {tourImages?.map((o, i) => (
-              <SplideSlide key={i}>
+              <SplideSlide key={i} className="group">
                 <BlurImage image={o} height={300} q={100} />
                 {getImageDescription(o) && (
                   <div
-                    className="text-center absolute z-40 bottom-5 right-0 left-0 max-w-[75%] mx-auto bg-white/75 rounded-xl shadow-lg p-2
-                 shadow-black/5 saturate-200 backdrop-blur-sm"
+                    className="text-center absolute z-40 bottom-5  right-5 
+                     bg-white/75 rounded-xl shadow-lg p-2 w-fit
+                    shadow-black/5 saturate-200 backdrop-blur-sm"
                   >
-                    <h1 className="text-sm md:text-xl text-black font-bold ">
+                    <h1 className="text-sm md:text-base text-black font-bold ">
                       {getImageDescription(o)}
                     </h1>
                   </div>

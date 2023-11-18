@@ -69,17 +69,6 @@ const CardDetails: FunctionComponent<Slider> = ({
             src={image}
             width={1000}
           />
-          <div className="bg-black right-2 justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 shadow-small ml-1 z-10">
-            <Button
-              className="text-tiny text-white bg-black/20"
-              variant="flat"
-              color="default"
-              radius="lg"
-              size="sm"
-            >
-              {call_to_action}
-            </Button>
-          </div>
         </div>
       </CardBody>
       <CardFooter className="pt-2 p-0 border-t">
