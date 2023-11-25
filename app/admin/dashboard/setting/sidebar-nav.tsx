@@ -14,6 +14,10 @@ const SettingMenu = [
     href: "/admin/dashboard/setting",
   },
   {
+    label: "About Us",
+    href: "/admin/dashboard/setting/about-us-seo",
+  },
+  {
     label: "Visa Setting",
     href: "/admin/dashboard/setting/visa",
   },

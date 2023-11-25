@@ -21,6 +21,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { CustomerForm } from "./CustomerForm";
 import { IoChatbubbleEllipses } from "react-icons/io5";
+import TourAdditionalNotes from "./TourAdditionalNotes";
 
 const variants = {
   visible: { opacity: 1, y: 0 },
@@ -123,8 +124,14 @@ export default function TourInfo({ tour }: { tour: Tour }) {
       </div>
 
       {tour?.tour_hotels && tour?.tour_hotels.length > 0 && (
-        <section className="border-top-light mt-10">
+        <section className="border-top-light mt-2">
           <TourHotels tour={tour} />
+        </section>
+      )}
+
+      {tour?.additional_service && tour?.additional_service.length > 0 && (
+        <section className="border-top-light mt-2">
+          <TourAdditionalNotes tour={tour} />
         </section>
       )}
 

@@ -104,6 +104,7 @@ export const COUNTRIES = [
   { label: "الجزائر", countryCode: "DZ" },
   { label: "تونس", countryCode: "TN" },
   { label: "لبنان", countryCode: "LB" },
+  { label: "الأردن", countryCode: "JO" },
   { label: "العراق", countryCode: "IQ" },
   { label: "المملكة العربية السعودية", countryCode: "SA" },
   { label: "الإمارات العربية المتحدة", countryCode: "AE" },

@@ -3,10 +3,13 @@ import { FunctionComponent, useMemo } from "react";
 import SortDropdown from "./sort-dropdown";
 import { useCustomerFilter } from "@/hooks/use-customer-filter";
 import { cn } from "@/lib/utils";
+import { useParams } from "next/navigation";
 
 interface SortAndCountProps {}
 
 const SortAndCount: FunctionComponent<SortAndCountProps> = () => {
+  const { destination, tab } = useParams();
+
   const total = useCustomerFilter((x) => x.total);
   const totalMemo = useMemo(() => {
     return total;
@@ -19,7 +22,7 @@ const SortAndCount: FunctionComponent<SortAndCountProps> = () => {
       )}
     >
       <h1 className="text-xl">نتائج البحث {totalMemo}</h1>
-      <SortDropdown />
+      {!destination && !tab && <SortDropdown />}
     </div>
   );
 };

@@ -5,6 +5,12 @@ module.exports = {
   changefreq: "daily",
   priority: 0.8,
   exclude: ["/server-sitemap.xml", "/admin", "/admin/*"],
+  additionalPaths: async (config) => [
+    await config.transform(config, "/about-us"),
+    await config.transform(config, "/our-services"),
+    await config.transform(config, "/tour-listing"),
+    await config.transform(config, "/visa"),
+  ],
   robotsTxtOptions: {
     policies: [
       {

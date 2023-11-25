@@ -98,12 +98,12 @@ const Footer = () => {
               القدس - بيت صفافا - شارع التوحيد 10
             </h1>
 
-            <a dir="ltr" className="px-4 font-semibold" href="tel:+97226727957">
+            <a dir="ltr" className="px-4 font-bold" href="tel:+97226727957">
               +972 2 672 7957
             </a>
             <a
               dir="ltr"
-              className="px-4 font-semibold"
+              className="px-4 font-bold"
               href="mailto:info@apriltours.com"
             >
               info@apriltours.com

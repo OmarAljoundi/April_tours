@@ -134,7 +134,7 @@ export type Response<T> = {
 
 export type Setting = {
   home?: Home;
-  about?: Seo;
+  about?: AboutUsSeo;
   visa?: Visa;
   faq?: Faq[];
   best_tours?: BestTours;
@@ -154,6 +154,10 @@ export type Home = {
 
 export type Visa = {
   visa_types?: VisaType[];
+  seo?: Seo;
+};
+
+export type AboutUsSeo = {
   seo?: Seo;
 };
 

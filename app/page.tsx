@@ -6,9 +6,31 @@ import BlockGuide from "@/components/home/BlockGuide";
 import Counter from "@/components/home/Counter";
 import TourCategories from "@/components/home/TourCategories";
 import Tours from "@/components/tours/Tours";
+import { getContentData } from "@/lib/operations";
 import { Button } from "@nextui-org/react";
 import { ArrowLeft } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const response = await getContentData();
+  const { description, tags, title } = response?.home?.seo || {
+    title: "",
+    description: "",
+    tags: "",
+  };
+  return {
+    title: title,
+    description: description,
+    openGraph: {
+      title: title,
+      description: description,
+      type: "website",
+      siteName: "April Tours",
+    },
+    keywords: tags,
+  };
+}
 
 const Home = () => {
   return (
@@ -33,7 +55,7 @@ const Home = () => {
       </section>
 
       <section className="container mt-10 lg:mt-14">
-        <SectionTitle title="إختار المغامرة المفضلة" />
+        <SectionTitle title="إختر المغامرة المفضلة" />
         <div className="relative overflow-hidden pt-10 sm:pt-5">
           <TourCategories />
         </div>

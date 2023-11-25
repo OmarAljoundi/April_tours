@@ -42,7 +42,9 @@ const HomeSeoForm: FunctionComponent<HomeSeoFormProps> = () => {
     });
   };
   const formik = useFormik({
-    initialValues: config?.setting?.home ?? {},
+    initialValues: config?.setting?.home ?? {
+      seo: { title: "", description: "", tags: "" },
+    },
     onSubmit: SaveChanges,
     enableReinitialize: true,
     validateOnBlur: true,

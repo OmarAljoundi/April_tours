@@ -1,13 +1,16 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { BlurImage } from "../common/BlurImage";
 import Filter from "../filter/filter";
 import { useSetting } from "@/hooks/use-setting";
 import { Navigation, Pagination } from "swiper";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import BlurImageV2 from "../common/BlurImageV2";
+import Typewriter from "typewriter-effect";
+import { useState } from "react";
+
 const Hero = () => {
   const setting = useSetting((x) => x.setting?.home?.sliders ?? []);
+  const [showContent, setShowContent] = useState(false);
   return (
     <div className="relative">
       <Swiper
@@ -65,12 +68,40 @@ const Hero = () => {
                     <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed bg-[#3093d02b] ">
                       <div className="container grid items-center h-full">
                         <div className="text-center  z-30">
-                          <h1 className="text-3xl lg:text-5xl  font-secondary text-black">
-                            {item.title}
-                          </h1>
-                          <p className="mx-auto px-4 max-w-[600px] font-secondary text-sm md:text-base lg:text-2xl text-black mt-4 md:mt-7 mb-6 ">
-                            {item.sub_title}
-                          </p>
+                          <Typewriter
+                            onInit={(typewriter) => {
+                              typewriter
+                                .typeString(
+                                  `<h1 class="text-3xl lg:text-5xl  font-secondary text-black font-bold">${item.title}</h1>`
+                                )
+                                .start()
+                                .callFunction(() => {
+                                  setShowContent(true);
+                                });
+                            }}
+                            options={{
+                              loop: false,
+                              autoStart: true,
+                              cursor: "",
+                              delay: 50,
+                            }}
+                          />
+                          {showContent && (
+                            <AnimatePresence>
+                              <motion.p
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{
+                                  ease: [0.1, 0.25, 0.3, 1],
+                                  duration: 1.6,
+                                }}
+                                className="mx-auto px-4 max-w-[600px] font-secondary text-sm md:text-base lg:text-2xl text-black mt-4 md:mt-7 mb-6 "
+                              >
+                                {item.sub_title}
+                              </motion.p>
+                            </AnimatePresence>
+                          )}
                         </div>
                       </div>
                     </div>

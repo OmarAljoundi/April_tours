@@ -72,7 +72,7 @@ const Header = () => {
           <div className="flex justify-end items-center gap-x-2">
             <a
               dir="ltr"
-              className="font-semibold text-xs sm:text-sm"
+              className="font-bold text-xs sm:text-sm"
               href="tel:+97226727957"
             >
               +972 672 7957
@@ -81,7 +81,7 @@ const Header = () => {
               <BsTelephoneInboundFill />
             </IconProvider>
           </div>
-          <div className="flex justify-end font-semibold items-center gap-x-2">
+          <div className="flex justify-end font-bold items-center gap-x-2">
             <a className="text-xs sm:text-sm" href="mailto:info@apriltours.com">
               info@apriltours.com
             </a>

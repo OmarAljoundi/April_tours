@@ -2,6 +2,8 @@
 import BlurImageV2 from "@/components/common/BlurImageV2";
 import { FunctionComponent } from "react";
 import { motion } from "framer-motion";
+import Typewriter from "typewriter-effect";
+
 interface AboutHeaderProps {}
 
 const AboutHeader: FunctionComponent<AboutHeaderProps> = () => {
@@ -32,17 +34,52 @@ const AboutHeader: FunctionComponent<AboutHeaderProps> = () => {
           loading={"eager"}
           className="bg-gray-400 mx-auto max-w-full object-cover object-right-top md:object-center"
         />
+
+        <picture>
+          <source
+            media="(max-width: 768px)"
+            srcSet={"/assets/img/custom/About-Us---Mobile.jpg"}
+          />
+          <BlurImageV2
+            src={"/assets/img/custom/About-Us---Desktop.jpg"}
+            alt="Hero Service Image"
+            quality={100}
+            fill
+            fetchPriority={"high"}
+            loading={"eager"}
+            className="bg-gray-400 mx-auto max-w-full object-cover object-right-top md:object-center"
+          />
+        </picture>
         <section className="relative bg-[var(--bg-1)] border-t lg:border-t-0">
           <div className="pt-[70px] sm:pt-[100px] md:pt-[150px] xl:pt-[180px] pb-16  px-3 bg-no-repeat bg-cover bg-[#3093d052] relative h-[500px]">
             <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed bg-[#3093d052] ">
               <div className="container grid items-center h-full">
-                <div className="text-right pr-10 md:max-w-md z-30">
-                  <h1 className="text-3xl md:text-5xl  font-secondary text-black">
-                    ابـــريــل تـــــورز؟
+                <div className="text-center z-30">
+                  <h1 className="text-4xl sm:text-3xl md:text-5xl  font-secondary text-black font-bold ">
+                    ابـــريــل تـــــورز
                   </h1>
-                  <p className="mx-auto  max-w-[600px] font-secondary text-2xl md:text-4xl   text-black mt-4 md:mt-7 mb-6 ">
-                    تعرف على رفيق سفــرك!
-                  </p>
+
+                  <Typewriter
+                    onInit={(typewriter) => {
+                      typewriter
+                        .typeString(
+                          `<p class="mx-auto text-3xl  font-secondary sm:text-5xl md:text-6xl text-black mt-4 md:mt-7 mb-6 ">تعرف على رفيق سفــرك</p>`
+                        )
+                        .callFunction(() => {
+                          console.log("String typed out!");
+                        })
+                        .callFunction(() => {
+                          console.log("All strings were deleted");
+                        })
+                        .start();
+                    }}
+                    options={{
+                      loop: false,
+                      autoStart: true,
+                      cursor: "",
+                      delay: 50,
+                    }}
+                  />
                 </div>
               </div>
             </div>

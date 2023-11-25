@@ -3,7 +3,7 @@ import { TourCard } from "@/components/common/TourCard";
 import { useCustomerFilter } from "@/hooks/use-customer-filter";
 import { filterTours } from "@/lib/utils";
 import { Tour } from "@/types/custom";
-import { useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { FC, FunctionComponent, useMemo } from "react";
 import SortAndCount from "../filter/sort-and-count";
 import { Button } from "@nextui-org/react";
@@ -39,6 +39,7 @@ const TourListingClient: FunctionComponent<TourListingClientProps> = ({
       <div className="mt-2">
         <SortAndCount />
       </div>
+
       <div
         className="pt-5 max-w-full mx-auto  container min-w-lg overflow-hidden"
         style={{ marginTop: 5 }}
