@@ -5,8 +5,8 @@ import { useSetting } from "@/hooks/use-setting";
 import { Navigation, Pagination } from "swiper";
 import { AnimatePresence, motion } from "framer-motion";
 import BlurImageV2 from "../common/BlurImageV2";
-import Typewriter from "typewriter-effect";
 import { useState } from "react";
+import { TypeAnimation } from "react-type-animation";
 
 const Hero = () => {
   const setting = useSetting((x) => x.setting?.home?.sliders ?? []);
@@ -68,24 +68,20 @@ const Hero = () => {
                     <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed bg-[#3093d02b] ">
                       <div className="container grid items-center h-full">
                         <div className="text-center  z-30">
-                          <Typewriter
-                            onInit={(typewriter) => {
-                              typewriter
-                                .typeString(
-                                  `<h1 class="text-3xl lg:text-5xl  font-secondary text-black font-bold">${item.title}</h1>`
-                                )
-                                .start()
-                                .callFunction(() => {
+                          <h1 className="text-3xl lg:text-5xl  font-secondary text-black font-bold">
+                            <TypeAnimation
+                              speed={{ value: 50, type: "keyStrokeDelayInMs" }}
+                              sequence={[
+                                50,
+                                item.title,
+                                () => {
                                   setShowContent(true);
-                                });
-                            }}
-                            options={{
-                              loop: false,
-                              autoStart: true,
-                              cursor: "",
-                              delay: 50,
-                            }}
-                          />
+                                },
+                              ]}
+                              cursor={false}
+                            />
+                          </h1>
+
                           {showContent && (
                             <AnimatePresence>
                               <motion.p

@@ -3,7 +3,7 @@
 import { FunctionComponent } from "react";
 import { motion } from "framer-motion";
 import BlurImageV2 from "@/components/common/BlurImageV2";
-import Typewriter from "typewriter-effect";
+import { TypeAnimation } from "react-type-animation";
 
 interface ServiceHeaderProps {}
 
@@ -50,28 +50,13 @@ const ServiceHeader: FunctionComponent<ServiceHeaderProps> = () => {
                   <h1 className="text-5xl sm:text-3xl md:text-5xl  font-secondary text-black ">
                     ماذا نقدم في
                   </h1>
-
-                  <Typewriter
-                    onInit={(typewriter) => {
-                      typewriter
-                        .typeString(
-                          `<p class="mx-auto text-5xl  font-secondary sm:text-5xl md:text-6xl text-black mt-4 md:mt-7 mb-6 font-bold">ابـــريــل تـــــورز؟</p>`
-                        )
-                        .callFunction(() => {
-                          console.log("String typed out!");
-                        })
-                        .pauseFor(1000)
-                        .callFunction(() => {
-                          console.log("All strings were deleted");
-                        })
-                        .start();
-                    }}
-                    options={{
-                      loop: false,
-                      autoStart: true,
-                      cursor: "",
-                    }}
-                  />
+                  <p className="mx-auto text-5xl  font-secondary sm:text-5xl md:text-6xl text-black mt-4 md:mt-7 mb-6 font-bold">
+                    <TypeAnimation
+                      speed={{ value: 50, type: "keyStrokeDelayInMs" }}
+                      sequence={[50, "ابـــريــل تـــــورز؟"]}
+                      cursor={false}
+                    />
+                  </p>
                 </div>
               </div>
             </div>

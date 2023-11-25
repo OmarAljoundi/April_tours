@@ -94,7 +94,7 @@ const Footer = () => {
       <div className="bg-[#3093d02b] text-black py-2">
         <div className="container">
           <div className="flex flex-wrap justify-center ">
-            <h1 className="px-4 font-semibold">
+            <h1 className="px-4 font-bold">
               القدس - بيت صفافا - شارع التوحيد 10
             </h1>
 

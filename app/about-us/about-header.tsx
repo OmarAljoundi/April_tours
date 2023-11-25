@@ -2,7 +2,7 @@
 import BlurImageV2 from "@/components/common/BlurImageV2";
 import { FunctionComponent } from "react";
 import { motion } from "framer-motion";
-import Typewriter from "typewriter-effect";
+import { TypeAnimation } from "react-type-animation";
 
 interface AboutHeaderProps {}
 
@@ -59,27 +59,13 @@ const AboutHeader: FunctionComponent<AboutHeaderProps> = () => {
                     ابـــريــل تـــــورز
                   </h1>
 
-                  <Typewriter
-                    onInit={(typewriter) => {
-                      typewriter
-                        .typeString(
-                          `<p class="mx-auto text-3xl  font-secondary sm:text-5xl md:text-6xl text-black mt-4 md:mt-7 mb-6 ">تعرف على رفيق سفــرك</p>`
-                        )
-                        .callFunction(() => {
-                          console.log("String typed out!");
-                        })
-                        .callFunction(() => {
-                          console.log("All strings were deleted");
-                        })
-                        .start();
-                    }}
-                    options={{
-                      loop: false,
-                      autoStart: true,
-                      cursor: "",
-                      delay: 50,
-                    }}
-                  />
+                  <p className="mx-auto text-3xl  font-secondary sm:text-5xl md:text-6xl text-black mt-4 md:mt-7 mb-6 ">
+                    <TypeAnimation
+                      speed={{ value: 50, type: "keyStrokeDelayInMs" }}
+                      sequence={[50, "تعرف على رفيق سفــرك"]}
+                      cursor={false}
+                    />
+                  </p>
                 </div>
               </div>
             </div>
