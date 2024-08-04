@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 /** @type {import('next-sitemap').IConfig} */
 const nextConfig = {
   typescript: {
@@ -13,7 +14,7 @@ const nextConfig = {
         hostname: "cdlxkuzvjlyvwgzgcdro.supabase.co",
       },
       {
-        hostname: "kxoneskwkgrjredodsfx.supabase.co",
+        hostname: "xxenddfcrugjnsyjahbk.supabase.co",
       },
       {
         hostname: "flagcdn.com",

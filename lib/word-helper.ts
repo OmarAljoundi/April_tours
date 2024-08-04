@@ -13,7 +13,6 @@ import {
   PageBorderZOrder,
   NumberFormat,
   PageNumberSeparator,
-  PageTextDirectionType,
 } from "docx";
 import { saveAs } from "file-saver";
 export const generate = async (tour: Tour) => {
@@ -233,7 +232,7 @@ export const generate = async (tour: Tour) => {
       };
 
       fetch(
-        "https://kxoneskwkgrjredodsfx.supabase.co/storage/v1/object/public/admin-only/main-logo.png",
+        "https://xxenddfcrugjnsyjahbk.supabase.co/storage/v1/object/public/admin-only/main-logo.png",
         {
           headers: { "Cache-Control": "no-cache" },
           next: {
